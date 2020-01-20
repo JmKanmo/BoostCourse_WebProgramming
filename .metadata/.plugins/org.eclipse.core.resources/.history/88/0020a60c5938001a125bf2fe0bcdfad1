@@ -1,0 +1,21 @@
+package Todo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TodoDao {
+
+	public int addTodo(TodoDto todo) {
+		return 0;
+	}
+
+	List<TodoDto> getTodos() {
+		List<TodoDto> list = new ArrayList<>();
+		return list;
+	}
+
+	int updateTodo(TodoDto todo) {
+		int ret = 0;
+		return ret;
+	}
+}

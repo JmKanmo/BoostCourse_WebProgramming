@@ -1,0 +1,72 @@
+let todo_group = document.querySelector("#todo").querySelectorAll(".move_btn");
+
+let doing_group = document.querySelector("#doing")
+		.querySelectorAll(".move_btn");
+
+for (let i = 0; i < todo_group.length; i++) {
+	todo_group[i].addEventListener("click", function() {
+		console.log(i);
+		ajax(todo_set[i]["id"], todo_set[i]["type"], i);
+	}, false);
+}
+
+for (let i = 0; i < doing_group.length; i++) {
+	doing_group[i].addEventListener("click", function() {
+		ajax(doing_set[i]["id"], doing_set[i]["type"], i);
+	}, false);
+}
+
+function moveCard(idx, type) {
+	switch (type) {
+	case "TODO": {
+		console
+				.log(document.querySelector("#todo").querySelectorAll(".item")[idx]);
+		console.log(document.querySelector("#todo").childNodes[idx]);
+		document.querySelector("#doing").appendChild(
+				document.querySelector("#todo").querySelectorAll(".item")[idx]);
+
+		doing_set.push({
+			id : todo_set[idx]["id"],
+			type : "DOING"
+		});
+
+		todo_set.splice(idx, 1);
+		todo_group = document.querySelector("#todo").querySelectorAll(
+				".move_btn");
+		doing_group = document.querySelector("#doing").querySelectorAll(
+				".move_btn");
+		console.log(todo_group);
+		console.log(todo_set);
+		console.log(doing_group);
+		console.log(doing_set);
+		break;
+	}
+	case "DOING": {
+		document.querySelector("#doing").querySelectorAll(".item")[idx]
+				.querySelector(".move_btn").style.display = "none";
+
+		document.querySelector("#done")
+				.appendChild(
+						document.querySelector("#doing").querySelectorAll(
+								".item")[idx]);
+		break;
+	}
+	}
+}
+
+function ajax(id, type, idx) {
+	let xhr = new XMLHttpRequest();
+	let params = "id=" + id + "&" + "type=" + type;
+
+	xhr.open("POST", '/Todo/TodoTypeServlet', true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+	xhr.addEventListener("load", function() {
+		if (xhr.responseText === "success") {
+			moveCard(idx, type);
+			console.log("내가범인");
+		}
+	});
+
+	xhr.send(params);
+}

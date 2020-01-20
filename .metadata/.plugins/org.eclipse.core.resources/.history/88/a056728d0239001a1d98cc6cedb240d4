@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+/* 초기화 */
+html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
+	margin: 0;
+	padding: 0;
+	font-family: '나눔 고딕', NanumGothic, '돋움', Dotum, sans-serif;
+	list-style: none;
+	font-weight: normal;
+	text-decoration: none;
+	outline: none;
+	color: #333;
+}
+
+.clear_fix::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.blind {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+}
+
+.wrap {
+	padding: 150px 0 35px 70px;
+	position: relative;
+}
+
+.todo_box .menu {
+	float: left;
+}
+
+.menu .status_title {
+	background-color: rgb(52, 84, 97);
+	color: #fff;
+	padding: 20px 210px 25px 10px;
+	font-weight: bold;
+}
+
+.menu:nth-child(n+2) {
+	margin-left: 10px;
+}
+
+.menu .todo_list .item {
+	position: relative;
+	margin-top: 10px;
+	padding: 20px 10px 20px 20px;
+	background-color: rgb(206, 229, 239);
+	margin-top: 10px;
+}
+
+.todo_list .item .todo_title {
+	font-weight: bold;
+	font-size: 18px;
+	padding-bottom: 10px;
+	color: #000;
+}
+
+.todo_list .item .todo_text {
+	color: rgb(24, 63, 88);
+	font-size: 15px;
+}
+
+.todo_list .item .move_btn {
+	position: absolute;
+	right: 10px;
+	width: 22px;
+	height: 20px;
+	bottom: 12px;
+}
+
+.todo_list .item .move_btn::after {
+	content: "";
+	position: absolute;
+	background-image: url(./images/right_arrow.png);
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 10px;
+	height: 10px;
+}

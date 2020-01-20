@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>메인화면 페이지</title>
+
+<style>
+</style>
+
+</head>
+
+<body>
+	<div class="wrap">
+
+		<header class="header">
+			<nav class="menu">
+				<ul>
+					<li class="item">홈</li>
+					<li class="item">자기소개</li>
+					<li class="item">내사진</li>
+					<li class="item">몇시에요</li>
+				</ul>
+			</nav>
+		</header>
+
+	</div>
+</body>
+
+</html>

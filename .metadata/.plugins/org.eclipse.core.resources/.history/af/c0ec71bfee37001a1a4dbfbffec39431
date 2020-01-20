@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>자기소개 페이지</title>
+<link rel="stylesheet" href="./css/aboutme.css">
+
+</head>
+
+<body>
+	<div class="wrap">
+		<header class="header">
+			<nav class="menu">
+				<ul class="clear_fix">
+					<li class="item"><a href="http://localhost:8080/aboutme/today">몇시에요</a></li>
+					<li class="item"><a
+						href="http://localhost:8080/aboutme/photo.html">내사진</a></li>
+					<li class="item"><a
+						href="http://localhost:8080/aboutme/aboutme.html">자기소개</a></li>
+					<li class="item"><a
+						href="http://localhost:8080/aboutme/index.html">홈</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<div class="main">
+			<ul class="intro_list">
+				<li class="list">
+					<h1 class="title">이런 것을 잘해요?</h1>
+					<div class="explanation">
+						<p>HTML5, CSS, Respontive sementic web markup design, Image
+							replacement technique, C, C++, Java, Python, Javascript, data
+							structure, algorithm, problem solving, relational database
+							management system, computer structure, operational system, object
+							oriented programming language</p>
+					</div>
+				</li>
+
+				<li class="list">
+					<h1 class="title">나의 포트폴리오</h1>
+					<div class="explanation">
+						<a href="https://blog.naver.com/nebi25">https://blog.naver.com/nebi25</a>
+						<p>제 홈페이지입니다. 이곳에서 많은 개발코드를 볼 수 있습니다.</p>
+						<a href="https://github.com/JmKanmo">https://github.com/JmKanmo</a>
+						<p>제가 주로 개발하는 소스코드입니다. 이곳에서 많은 부분을 확인할 수 있습니다.</p>
+					</div>
+				</li>
+
+				<li class="list">
+					<h1 class="title">나의 최근 프로젝트 설명</h1>
+					<div class="explanation">
+						<p>제가 만든 프로젝트는 유기동물정보제공사이트입니다. 파이썬기반 Flask프레임워크를 이용해 개발을
+							진행하였으며 파이썬언어를 이용해 공공데이터포탈 REST API로부터 데이터를 받아와 javascript언어를 이용해
+							HTML에 정상적으로 정보를 출력했습니다. 뿐만아니라 HTML,CSS언어를 이용해 원하는 레이아웃구조를 마크업하였으며
+							모바일, 태블릿, PC환경에 맞춰 미디어쿼리를 작성해 유동적인 UI를 구성했습니다.</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<footer class="footer">
+			<a href="https://blog.naver.com/nebi25">https://blog.naver.com/nebi25</a>
+			<a href="https://github.com/JmKanmo">https://github.com/JmKanmo</a>
+		</footer>
+	</div>
+</body>
+
+</html>

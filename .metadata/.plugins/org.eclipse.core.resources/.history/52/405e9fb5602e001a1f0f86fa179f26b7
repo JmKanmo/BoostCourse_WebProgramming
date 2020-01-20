@@ -1,0 +1,56 @@
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class TodayServlet
+ */
+@WebServlet("/today")
+public class TodayServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private LocalDateTime now;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public TodayServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	private String getCurrentTime() {
+		now = LocalDateTime.now();
+		return "curtime : " + now.getYear() + "/" + now.getMonthValue() + "/" + now.getDayOfMonth() + " " + now.getHour()
+				+ ":" + now.getMinute();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<head><title>curtime</title><meta charset=\"UTF-8\"> </head>");
+		out.println("<body>");
+		out.println("<div style=position:relative;");
+		out.println(
+				"<a href=http://localhost:8080/aboutme/index.html style=position:absolute; top:5px; left:5px;>main page</a>");
+		out.println(getCurrentTime());
+		out.println("</div>");
+		out.println("</body>");
+		out.println("</html>");
+		out.close();
+	}
+
+}

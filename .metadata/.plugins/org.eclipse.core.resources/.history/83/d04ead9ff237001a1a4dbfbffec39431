@@ -1,0 +1,52 @@
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class TodayServlet
+ */
+@WebServlet("/today")
+public class TodayServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	// LocalDateTime객체를 이용해 현재시간정보를 출력형식에 맞는 문자열로 반환
+	private String getCurrentTime() {
+		LocalDateTime now = LocalDateTime.now(); // 객체 생성&저장
+//		Formatter form = new Formatter(); // 출력형식지정을 위한 Formatter객체생성
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("현재시간: yyyy/M/dd h/mm");
+//		int year = now.getYear();
+//		int month = now.getMonthValue();
+//		int day = now.getDayOfMonth();
+//		int hour = now.getHour();
+//		int minute = now.getMinute();
+//		form.format("현재시간 : %d/%d/%d %d:%d", year, month, day, hour, minute); // 출력형식 지정
+//		return form.toString(); // 문자열로 반환
+		return formatter.format(now);
+	}
+
+	// 클라이언트의 요청에 응답(화면에 작성코드 출력)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<head><title>현재시간 페이지</title></head>");
+		out.println("<body>");
+		out.println("<div style=position:relative>");
+		out.println("<a href=http://localhost:8080/aboutme/index.html>메인화면</a>");
+		out.println("<div style='text-align:center; margin-top:100px; font-weight:bold; font-size:20px;'>"
+				+ getCurrentTime() + "</div>");
+		out.println("</div>");
+		out.println("</body>");
+		out.println("</html>");
+		out.close();
+	}
+}

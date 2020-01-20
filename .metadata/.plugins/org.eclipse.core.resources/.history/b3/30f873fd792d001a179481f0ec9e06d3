@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>메인화면 페이지</title>
+
+<style>
+/*초기화 영역*/
+html, body, nav, ul, li, h1, h2, h3, h4, p {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.clear_fix::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.wrap {
+	background: #f1f1f1;
+	padding: 10px 20px 30px 20px;
+}
+
+.wrap .header {
+	background-color: #fff;
+}
+
+.header .menu {
+	padding: 30px;
+}
+</style>
+
+</head>
+
+<body>
+	<div class="wrap">
+		<header class="header">
+			<nav class="menu">
+				<ul class="clear_fix">
+					<li class="item">홈</li>
+					<li class="item">자기소개</li>
+					<li class="item">내사진</li>
+					<li class="item">몇시에요</li>
+				</ul>
+			</nav>
+		</header>
+
+	</div>
+</body>
+
+</html>
