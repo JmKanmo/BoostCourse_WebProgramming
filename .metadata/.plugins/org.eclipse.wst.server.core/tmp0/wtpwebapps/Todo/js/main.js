@@ -57,8 +57,7 @@ function func_todo(i) {
 				.querySelectorAll(".item").length;
 		todo_group[i]["type"] = "DONE";
 	}
-	console.log(todo_group);
-	console.log(doing_group);
+
 }
 
 function func_doing(i) {
@@ -67,9 +66,6 @@ function func_doing(i) {
 	doing_group[i]["idx"] = document.querySelector("#done").querySelectorAll(
 			".item").length;
 	doing_group[i]["type"] = "DONE";
-
-	console.log(todo_group);
-	console.log(doing_group);
 }
 
 function mediate_idx(type, idx) {
