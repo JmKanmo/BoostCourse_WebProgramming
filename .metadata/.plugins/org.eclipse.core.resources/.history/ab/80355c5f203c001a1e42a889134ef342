@@ -91,10 +91,6 @@ html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
 	padding: 9px 25px;
 }
 
-.button_box .prev_btn p {
-	border-bottom: 1px solid #393434;
-}
-
 .button_box .btn_group {
 	float: right;
 }

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/TodoAddServlet")
 public class TodoAddServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	private String getCurrentTime() {
 		LocalDateTime now = LocalDateTime.now(); // 객체 생성&저장

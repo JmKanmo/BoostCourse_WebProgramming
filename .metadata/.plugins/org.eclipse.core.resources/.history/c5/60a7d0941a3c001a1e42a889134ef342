@@ -16,12 +16,6 @@ public class TodoDao {
 	public int addTodo(TodoDto todo) {
 		int ret = 1;
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
 		try (Connection conn = (Connection) DriverManager.getConnection(url, user, password);
 				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(
 						"insert into todo(title,name,sequence,type,regdate) values(?,?,?,'TODO',?)");) {
