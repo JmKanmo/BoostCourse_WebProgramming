@@ -1,6 +1,9 @@
 package Todo;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,29 +16,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TodoAddServlet")
 public class TodoAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TodoAddServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	private String getCurrentTime() {
+		LocalDateTime now = LocalDateTime.now(); // 객체 생성&저장
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return formatter.format(now);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		String work_input = request.getParameter("work_input");
+		String who_input = request.getParameter("who_input");
+		int priority = Integer.parseInt(request.getParameter("priority").substring(0, 1));
+		TodoDao tododao = new TodoDao();
+		tododao.addTodo(new TodoDto(work_input, who_input, priority, "TODO", getCurrentTime()));
+		response.sendRedirect("/mavenweb/MainServlet");
 	}
-
 }

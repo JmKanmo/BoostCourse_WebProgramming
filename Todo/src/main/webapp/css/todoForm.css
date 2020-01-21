@@ -47,6 +47,7 @@ html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
 	width: 400px;
 	height: 25px;
 	margin-top: 5px;
+	border: 1px solid #d1d1d1;
 }
 
 .wrap label {
@@ -58,6 +59,7 @@ html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
 	height: 25px;
 	width: 200px;
 	height: 25px;
+	border: 1px solid #d1d1d1;
 }
 
 .priority_box .priority {

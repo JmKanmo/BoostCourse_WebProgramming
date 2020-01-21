@@ -14,6 +14,15 @@ public class TodoDto {
 		this.type = type;
 	}
 
+	public TodoDto(String title, String name, int sequence, String type, String regDate) {
+		super();
+		this.title = title;
+		this.name = name;
+		this.sequence = sequence;
+		this.type = type;
+		this.regDate = regDate;
+	}
+
 	public TodoDto(Long id, String title, String name, int sequence, String type, String regDate) {
 		super();
 		this.id = id;

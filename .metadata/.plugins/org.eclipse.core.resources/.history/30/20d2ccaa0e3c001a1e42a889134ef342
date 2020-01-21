@@ -1,0 +1,12 @@
+package project;
+
+import java.time.LocalDateTime;
+
+public class Hello {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LocalDateTime now = LocalDateTime.now(); // 객체 생성&저장
+		System.out.println(now);
+	}
+}

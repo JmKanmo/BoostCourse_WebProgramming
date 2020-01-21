@@ -1,0 +1,14 @@
+package project;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Hello {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LocalDateTime now = LocalDateTime.now(); // 객체 생성&저장
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("현재시간 : yyyy/M/dd HH:mm");
+		System.out.println(formatter.format(now));
+	}
+}

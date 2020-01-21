@@ -14,7 +14,22 @@ public class TodoDao {
 	private String url = "jdbc:mysql://localhost:3306/connectDB";
 
 	public int addTodo(TodoDto todo) {
-		return 0;
+		int ret = 1;
+
+		try (Connection conn = (Connection) DriverManager.getConnection(url, user, password);
+				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(
+						"insert into todo(title,name,sequence,type,regdate) values(?,?,?,'TODO',?)");) {
+			ps.setString(1, todo.getTitle());
+			ps.setString(2, todo.getName());
+			ps.setInt(3, todo.getSequence());
+			ps.setString(4, todo.getRegDate());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			ret = 0;
+		}
+
+		return ret;
 	}
 
 	public List<TodoDto> getTodos() {
