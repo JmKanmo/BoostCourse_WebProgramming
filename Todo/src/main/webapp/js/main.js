@@ -120,7 +120,7 @@ function ajax(id, type, idx, func, i) {
 	let xhr = new XMLHttpRequest();
 	let params = "id=" + id + "&" + "type=" + type;
 
-	xhr.open("POST", '/Todo/TodoTypeServlet', true);
+	xhr.open("POST", '/mavenweb/TodoTypeServlet', true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 	xhr.addEventListener("load", function() {

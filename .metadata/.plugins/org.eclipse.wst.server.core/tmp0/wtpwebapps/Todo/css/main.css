@@ -28,14 +28,12 @@ html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
 }
 
 .wrap {
-	padding: 150px 0 35px 70px;
 	position: relative;
 }
 
 .todo_box {
-	position: absolute;
-	right: 20px;
-	top: 100px;
+	padding: 120px 30px 20px 0;
+	float: right;
 }
 
 .todo_box .menu {
@@ -92,4 +90,15 @@ html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
 	margin: auto;
 	width: 10px;
 	height: 10px;
+}
+
+.register {
+	position: absolute;
+	top: 40px;
+	right: 30px;
+	background-color: rgb(32, 173, 273);
+	border: 0;
+	padding: 10px 30px;
+	font-weight: bold;
+	color: #fff;
 }

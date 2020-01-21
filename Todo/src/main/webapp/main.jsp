@@ -53,7 +53,7 @@
 </head>
 
 <body>
-	<div class="wrap">
+	<div class="wrap clear_fix">
 		<div class="todo_box clear_fix">
 			<nav class="menu">
 				<h1 class="status_title">TODO</h1>
@@ -110,6 +110,9 @@
 				</ul>
 			</nav>
 		</div>
+
+		<a href="/mavenweb/TodoFormServlet" class="register"
+			alt="">새로운 TODO 등록</a>
 	</div>
 	<script type="text/javascript" src="./js/main.js"></script>
 </body>

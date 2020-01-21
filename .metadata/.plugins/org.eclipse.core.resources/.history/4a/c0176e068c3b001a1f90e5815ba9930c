@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/* 초기화 */
+html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
+	margin: 0;
+	padding: 0;
+	font-family: '나눔 고딕', NanumGothic, '돋움', Dotum, sans-serif;
+	list-style: none;
+	font-weight: normal;
+	text-decoration: none;
+	outline: none;
+	color: #333;
+}
+
+.clear_fix::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.blind {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+}
