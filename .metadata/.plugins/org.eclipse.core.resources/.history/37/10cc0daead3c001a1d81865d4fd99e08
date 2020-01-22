@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>메인화면 페이지</title>
+<link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+	<div class="wrap">
+		<header class="header">
+			<nav class="menu">
+				<ul class="clear_fix">
+					<li class="item"><a href="/aboutme/today.html">몇시에요</a></li>
+					<li class="item"><a href="/aboutme/photo.html">내사진</a></li>
+					<li class="item"><a href="/aboutme/aboutme.html">자기소개</a></li>
+					<li class="item"><a href="/aboutme/index">홈</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<div class="main">
+			<h1 class="title">웹프론트엔드 개발자~! crong</h1>
+			<div class="intro_box">
+				<h2 class="text">함께개발하고 같이성장하고 싶어요</h2>
+				<h2 class="text">경기도 시흥시 장곡동 어딘가 살고 있어요!</h2>
+				<ul class="clear_fix">
+					<li><a href="/aboutme/aboutme">자기소개</a></li>
+					<li><a href="/aboutme/photo">내사진</a></li>
+				</ul>
+			</div>
+
+			<div class="image_box">
+				<img src="./images/네이버지도.png" alt="지도" class="image" />
+			</div>
+		</div>
+
+		<footer class="footer">
+			<a href="https://blog.naver.com/nebi25">https://blog.naver.com/nebi25</a>
+			<a href="https://github.com/JmKanmo">https://github.com/JmKanmo</a>
+		</footer>
+	</div>
+</body>
+
+</html>

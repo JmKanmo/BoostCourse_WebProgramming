@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>사진소개 페이지</title>
+<link rel="stylesheet" href="./css/photo.css">
+</head>
+
+<body>
+	<div class="wrap">
+		<header class="header">
+			<nav class="menu">
+				<ul class="clear_fix">
+					<li class="item"><a href="/aboutme/today.html">몇시에요</a></li>
+					<li class="item"><a href="/aboutme/photo.html">내사진</a></li>
+					<li class="item"><a href="/aboutme/aboutme">자기소개</a></li>
+					<li class="item"><a href="/aboutme/index">홈</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<div class="main">
+			<ul class="photo_list">
+				<li class="list">
+					<div class="picture_box clear_fix">
+						<img src="./images/mypic1.jpg"
+							style="width: 250px; height: 250px;" alt="첫번째사진" class="picture" />
+						<div class="textbox">
+							<p>2019.01.18</p>
+							<p>친구와 부산 감천문화마을에 놀러가서 찍은 사진입니다.</p>
+							<p>날씨가 무척 추웠지만 정말 아름다웠고 좋은추억을 남겨준 장소입니다.</p>
+						</div>
+					</div>
+				</li>
+
+				<li class="list">
+					<div class="picture_box clear_fix">
+						<img src="./images/mypic2.jpg"
+							style="width: 250px; height: 250px;" alt="두번째사진" class="picture" />
+						<div class="textbox">
+							<p>2019.10.18</p>
+							<p>C프로그래밍 멘토활동을하며 찍은 사진입니다.</p>
+							<p>아직 프로그래밍이 많이 낯설고 어려워하는 학생들에게 기초개념을 알려주며 지도하고있습니다.</p>
+							<p>멘토링은 언제나 모두에게 흥겹고 유익한 활동입니다.</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<footer class="footer">
+			<a href="https://blog.naver.com/nebi25">https://blog.naver.com/nebi25</a>
+			<a href="https://github.com/JmKanmo">https://github.com/JmKanmo</a>
+		</footer>
+	</div>
+</body>
+
+</html>
