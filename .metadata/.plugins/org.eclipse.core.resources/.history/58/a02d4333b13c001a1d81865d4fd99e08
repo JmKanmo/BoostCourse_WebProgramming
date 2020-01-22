@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/*메인영역*/
+.main {
+	background-color: #fff;
+	margin-top: 15px;
+	padding: 0 145px 0 145px;
+}
+
+.main .intro_list {
+	padding: 30px 0 30px 0;
+	text-align: left;
+}
+
+.main .intro_list .title {
+	font-size: 25px;
+}
+
+.main .intro_list .list:nth-child(n+2) {
+	margin-top: 30px;
+}
+
+.intro_list .list .explanation p {
+	padding-bottom: 15px;
+	line-height: 14px;
+	font-size: 14px;
+}
+
+.intro_list .list .explanation a {
+	color: blue;
+	font-size: 14px;
+}
+
+/*푸터영역*/
+.footer {
+	margin-top: 15px;
+	background-color: #fff;
+	padding: 20px 0 20px 0;
+	text-align: center;
+}
+
+.footer a {
+	display: block;
+	font-size: 16px;
+	color: #607D8B;
+}
