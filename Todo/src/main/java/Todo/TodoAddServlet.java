@@ -19,7 +19,7 @@ public class TodoAddServlet extends HttpServlet {
 	private String getCurrentTime() {
 		LocalDateTime now = LocalDateTime.now(); // 객체 생성&저장
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		return formatter.format(now).split(" ")[0];
+		return formatter.format(now);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

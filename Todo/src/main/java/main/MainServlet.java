@@ -35,15 +35,21 @@ public class MainServlet extends HttpServlet {
 		for (TodoDto todo : list) {
 			switch (todo.getType()) {
 			case "TODO": {
-				todo_list.add(todo);
+				todo_list.add(new TodoDto.Builder().id_(todo.getId()).name_(todo.getName())
+						.regDate_(todo.getRegDate().split(" ")[0]).sqeuence_(todo.getSequence()).title_(todo.getTitle())
+						.type_(todo.getType()).build());
 				break;
 			}
 			case "DOING": {
-				doing_list.add(todo);
+				doing_list.add(new TodoDto.Builder().id_(todo.getId()).name_(todo.getName())
+						.regDate_(todo.getRegDate().split(" ")[0]).sqeuence_(todo.getSequence()).title_(todo.getTitle())
+						.type_(todo.getType()).build());
 				break;
 			}
 			case "DONE": {
-				done_list.add(todo);
+				done_list.add(new TodoDto.Builder().id_(todo.getId()).name_(todo.getName())
+						.regDate_(todo.getRegDate().split(" ")[0]).sqeuence_(todo.getSequence()).title_(todo.getTitle())
+						.type_(todo.getType()).build());
 				break;
 			}
 			}
