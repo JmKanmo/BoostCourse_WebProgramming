@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -27,7 +28,29 @@ public class MainServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		TodoDao dao = new TodoDao();
 		List<TodoDto> list = dao.getTodos();
-		request.setAttribute("todo_list", list);
+		List<TodoDto> todo_list = new ArrayList<>();
+		List<TodoDto> doing_list = new ArrayList<>();
+		List<TodoDto> done_list = new ArrayList<>();
+
+		for (TodoDto todo : list) {
+			switch (todo.getType()) {
+			case "TODO": {
+				todo_list.add(todo);
+				break;
+			}
+			case "DOING": {
+				doing_list.add(todo);
+				break;
+			}
+			case "DONE": {
+				done_list.add(todo);
+				break;
+			}
+			}
+		}
+		request.setAttribute("todo_list", todo_list);
+		request.setAttribute("doing_list", doing_list);
+		request.setAttribute("done_list", done_list);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/main.jsp");
 		requestDispatcher.forward(request, response);
 	}

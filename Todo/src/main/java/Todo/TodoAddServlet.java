@@ -19,18 +19,23 @@ public class TodoAddServlet extends HttpServlet {
 	private String getCurrentTime() {
 		LocalDateTime now = LocalDateTime.now(); // 객체 생성&저장
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		return formatter.format(now);
+		return formatter.format(now).split(" ")[0];
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		String work_input = request.getParameter("work_input");
-		String who_input = request.getParameter("who_input");
-		int priority = Integer.parseInt(request.getParameter("priority").substring(0, 1));
-		TodoDao tododao = new TodoDao();
-		tododao.addTodo(new TodoDto(work_input, who_input, priority, "TODO", getCurrentTime()));
-		response.sendRedirect("/mavenweb/MainServlet");
+		try {
+			// TODO Auto-generated method stub
+			request.setCharacterEncoding("utf-8");
+			String work_input = request.getParameter("work_input");
+			String who_input = request.getParameter("who_input");
+			int priority = Integer.parseInt(request.getParameter("priority").substring(0, 1));
+			TodoDao tododao = new TodoDao();
+			tododao.addTodo(new TodoDto.Builder().title_(work_input).name_(who_input).sqeuence_(priority).type_("TODO")
+					.regDate_(getCurrentTime()).build());
+			response.sendRedirect("/mavenweb/MainServlet");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

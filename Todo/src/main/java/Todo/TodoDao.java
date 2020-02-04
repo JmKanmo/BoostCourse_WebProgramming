@@ -14,14 +14,14 @@ public class TodoDao {
 	private String url = "jdbc:mysql://localhost:3306/connectDB";
 
 	public int addTodo(TodoDto todo) {
-		int ret = 1;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			return 0;
 		}
-		
+
 		try (Connection conn = (Connection) DriverManager.getConnection(url, user, password);
 				PreparedStatement ps = (PreparedStatement) conn.prepareStatement(
 						"insert into todo(title,name,sequence,type,regdate) values(?,?,?,'TODO',?)");) {
@@ -32,10 +32,10 @@ public class TodoDao {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			ret = 0;
+			return 0;
 		}
 
-		return ret;
+		return 1;
 	}
 
 	public List<TodoDto> getTodos() {
@@ -45,6 +45,7 @@ public class TodoDao {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			return null;
 		}
 
 		try (Connection conn = (Connection) DriverManager.getConnection(url, user, password);
@@ -52,20 +53,22 @@ public class TodoDao {
 
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
-					list.add(new TodoDto(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
-							rs.getString(6).split(" ")[0]));
+					list.add(new TodoDto.Builder().id_(rs.getLong("id")).type_(rs.getString("type"))
+							.name_(rs.getString("name")).regDate_(rs.getString("regdate"))
+							.sqeuence_(rs.getInt("sequence")).title_(rs.getString("title")).build());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				return null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 		return list;
 	}
 
 	public int updateTodo(TodoDto param) {
-		int ret = 1;
 		Long id = param.getId();
 		String type = param.getType();
 
@@ -73,6 +76,7 @@ public class TodoDao {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			return 0;
 		}
 
 		try (Connection conn = (Connection) DriverManager.getConnection(url, user, password);
@@ -83,8 +87,8 @@ public class TodoDao {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			ret = 0;
+			return 0;
 		}
-		return ret;
+		return 1;
 	}
 }

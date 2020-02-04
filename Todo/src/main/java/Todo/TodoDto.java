@@ -8,29 +8,57 @@ public class TodoDto {
 	private String title;
 	private String type;
 
-	public TodoDto(Long id, String type) {
-		super();
-		this.id = id;
-		this.type = type;
+	public static class Builder {
+		// Optional fields
+		private Long id_ = 0L;
+		private String type_ = "";
+		private String name_ = "";
+		private String regDate_ = "";
+		private int sequence_ = 0;
+		private String title_ = "";
+
+		public Builder id_(Long value) {
+			id_ = value;
+			return this;
+		}
+
+		public Builder type_(String value) {
+			type_ = value;
+			return this;
+		}
+
+		public Builder name_(String value) {
+			name_ = value;
+			return this;
+		}
+
+		public Builder regDate_(String value) {
+			regDate_ = value;
+			return this;
+		}
+
+		public Builder sqeuence_(int value) {
+			sequence_ = value;
+			return this;
+		}
+
+		public Builder title_(String value) {
+			title_ = value;
+			return this;
+		}
+
+		public TodoDto build() {
+			return new TodoDto(this);
+		}
 	}
 
-	public TodoDto(String title, String name, int sequence, String type, String regDate) {
-		super();
-		this.title = title;
-		this.name = name;
-		this.sequence = sequence;
-		this.type = type;
-		this.regDate = regDate;
-	}
-
-	public TodoDto(Long id, String title, String name, int sequence, String type, String regDate) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.name = name;
-		this.sequence = sequence;
-		this.type = type;
-		this.regDate = regDate;
+	private TodoDto(Builder builder) {
+		id = builder.id_;
+		name = builder.name_;
+		regDate = builder.regDate_;
+		sequence = builder.sequence_;
+		title = builder.title_;
+		type = builder.type_;
 	}
 
 	public Long getId() {

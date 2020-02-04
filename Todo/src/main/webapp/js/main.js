@@ -1,5 +1,5 @@
-let todo_group = new Array();
-let doing_group = new Array();
+let todo_group = [];
+let doing_group = [];
 
 init();
 set_eventListener(func_todo, func_doing);

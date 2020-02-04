@@ -24,18 +24,23 @@ public class TodoTypeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("id"));
-		String type = getType(request.getParameter("type"));
-		TodoDao tododao = new TodoDao();
-		TodoDto tododto = new TodoDto(id, type);
-		response.setHeader("Content-Type", "text/plain");
-		PrintWriter writer = response.getWriter();
 
-		if (tododao.updateTodo(tododto) == 1) {
-			writer.print("success");
-		} else {
-			writer.print("fail");
+		try {
+			Long id = Long.parseLong(request.getParameter("id"));
+			String type = getType(request.getParameter("type"));
+			TodoDao tododao = new TodoDao();
+			TodoDto tododto = new TodoDto.Builder().id_(id).type_(type).build();
+			response.setHeader("Content-Type", "text/plain");
+			PrintWriter writer = response.getWriter();
+
+			if (tododao.updateTodo(tododto) == 1) {
+				writer.print("success");
+			} else {
+				writer.print("fail");
+			}
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		writer.close();
 	}
 }
