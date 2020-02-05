@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/common.css" />
 <link rel="stylesheet" href="./css/todoForm.css">
 </head>
 
@@ -28,18 +29,18 @@
 				<label for="priority_1th">우선순위를 선택하세요</label>
 
 				<div class="priority clear_fix">
-					<input type="radio" id="priority_1th" name="priority" value="1순위" required>
-					<label for="priority_1th">1순위</label>
+					<input type="radio" id="priority_1th" name="priority" value="1순위"
+						required> <label for="priority_1th">1순위</label>
 				</div>
 
 				<div class="priority clear_fix">
-					<input type="radio" id="priority_2th" name="priority" value="2순위" required>
-					<label for="priority_2th">2순위</label>
+					<input type="radio" id="priority_2th" name="priority" value="2순위"
+						required> <label for="priority_2th">2순위</label>
 				</div>
 
 				<div class="priority clear_fix">
-					<input type="radio" id="priority_3th" name="priority" value="3순위" required>
-					<label for="priority_3th">3순위</label>
+					<input type="radio" id="priority_3th" name="priority" value="3순위"
+						required> <label for="priority_3th">3순위</label>
 				</div>
 			</div>
 
@@ -50,8 +51,7 @@
 				</button>
 
 				<div class="btn_group clear_fix">
-					<button class="submit_btn" type="submit">
-						제출</button>
+					<button class="submit_btn" type="submit">제출</button>
 					<button class="reset_btn" type="reset" value="Reset">
 						내용지우기</button>
 				</div>

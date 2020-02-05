@@ -12,6 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./css/common.css" />
 <link rel="stylesheet" href="./css/main.css">
 <title>할일목록화면</title>
 </head>
@@ -23,6 +24,8 @@
 	</script>
 	<div class="wrap clear_fix">
 		<div class="todo_box clear_fix">
+			<a href="/mavenweb/TodoFormServlet" class="register" alt="">새로운
+				TODO 등록</a>
 			<nav class="menu">
 				<h1 class="status_title">TODO</h1>
 				<ul class="todo_list" id="todo">
@@ -78,9 +81,6 @@
 				</ul>
 			</nav>
 		</div>
-
-		<a href="/mavenweb/TodoFormServlet" class="register" alt="">새로운
-			TODO 등록</a>
 	</div>
 	<script type="text/javascript" src="./js/main.js"></script>
 </body>
