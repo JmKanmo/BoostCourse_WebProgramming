@@ -11,7 +11,8 @@ function init() {
 				.push({
 					btn : document.querySelector("#todo").querySelectorAll(
 							".move_btn")[i],
-					id : todo_set[i]["id"],
+					id : document.querySelector("#todo").querySelectorAll(
+							".move_btn")[i].getAttribute("data-id"),
 					idx : i,
 					type : "TODO"
 				});
@@ -19,13 +20,15 @@ function init() {
 
 	for (let i = 0; i < document.querySelector("#doing").querySelectorAll(
 			".move_btn").length; i++) {
-		doing_group.push({
-			btn : document.querySelector("#doing")
-					.querySelectorAll(".move_btn")[i],
-			id : doing_set[i]["id"],
-			idx : i,
-			type : "DOING"
-		});
+		doing_group
+				.push({
+					btn : document.querySelector("#doing").querySelectorAll(
+							".move_btn")[i],
+					id : document.querySelector("#doing").querySelectorAll(
+							".move_btn")[i].getAttribute("data-id"),
+					idx : i,
+					type : "DOING"
+				});
 	}
 }
 

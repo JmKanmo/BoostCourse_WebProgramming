@@ -18,10 +18,6 @@
 </head>
 
 <body>
-	<script type="text/javascript">
-		let todo_set = [];
-		let doing_set = [];
-	</script>
 	<div class="wrap clear_fix">
 		<div class="todo_box clear_fix">
 			<a href="/mavenweb/TodoFormServlet" class="register" alt="">새로운
@@ -34,15 +30,10 @@
 							<h2 class="todo_title">${item.title}</h2>
 							<p class="todo_text">등록날짜:${item.regDate}, ${item.name}
 								우선순위:${item.sequence}</p>
-							<button type="button" class="move_btn">
+							<button type="button" class="move_btn" data-id="${item.id}">
 								<span class="blind">카드우측한칸이동</span>
 							</button>
 						</li>
-						<script>
-							todo_set.push({
-								id : "${item.id}"
-							});
-						</script>
 					</c:forEach>
 				</ul>
 			</nav>
@@ -55,15 +46,10 @@
 							<h2 class="todo_title">${item.title}</h2>
 							<p class="todo_text">등록날짜:${item.regDate}, ${item.name}
 								우선순위:${item.sequence}</p>
-							<button type="button" class="move_btn">
+							<button type="button" class="move_btn" data-id="${item.id}">
 								<span class="blind">카드우측한칸이동</span>
 							</button>
 						</li>
-						<script>
-							doing_set.push({
-								id : "${item.id}"
-							});
-						</script>
 					</c:forEach>
 				</ul>
 			</nav>

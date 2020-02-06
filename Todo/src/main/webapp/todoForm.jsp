@@ -11,7 +11,8 @@
 
 <body>
 	<div class="wrap">
-		<form action="/mavenweb/TodoAddServlet" method="POST">
+		<form name="form" action="/mavenweb/TodoAddServlet" method="POST"
+			onsubmit="return validation();">
 			<h1 class="title">할일 등록</h1>
 
 			<div class="work_box">
@@ -47,7 +48,7 @@
 			<div class="button_box clear_fix">
 				<button type="button" class="prev_btn" value="뒤로가기"
 					onclick="location.href = '/mavenweb/MainServlet'">
-					<p>< 이전</p>
+					<p>&lt;이전</p>
 				</button>
 
 				<div class="btn_group clear_fix">
@@ -58,5 +59,6 @@
 			</div>
 		</form>
 	</div>
+	<script type="text/javascript" src="./js/todoForm.js"></script>
 </body>
 </html>
