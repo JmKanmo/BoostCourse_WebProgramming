@@ -12,6 +12,16 @@
 	float: left;
 }
 
+.todo_title {
+	position: absolute;
+	top: 60px;
+	font-weight: bold;
+	transform: rotate(-30deg);
+	left: -90px;
+	font-size: 26px;
+	color: rgb(66, 100, 117);
+}
+
 .menu .status_title {
 	background-color: rgb(52, 84, 97);
 	color: #fff;

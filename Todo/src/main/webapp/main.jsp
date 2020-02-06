@@ -20,14 +20,15 @@
 <body>
 	<div class="wrap clear_fix">
 		<div class="todo_box clear_fix">
+			<h1 class="todo_title">나의 해야할 일들</h1>
 			<a href="/mavenweb/TodoFormServlet" class="register" alt="">새로운
 				TODO 등록</a>
 			<nav class="menu">
-				<h1 class="status_title">TODO</h1>
+				<h2 class="status_title">TODO</h2>
 				<ul class="todo_list" id="todo">
 					<c:forEach items="${todo_list}" var="item">
 						<li class="item">
-							<h2 class="todo_title">${item.title}</h2>
+							<h3 class="todo_title">${item.title}</h3>
 							<p class="todo_text">등록날짜:${item.regDate}, ${item.name}
 								우선순위:${item.sequence}</p>
 							<button type="button" class="move_btn" data-id="${item.id}">
@@ -39,11 +40,11 @@
 			</nav>
 
 			<nav class="menu">
-				<h1 class="status_title">DOING</h1>
+				<h2 class="status_title">DOING</h2>
 				<ul class="todo_list" id="doing">
 					<c:forEach items="${doing_list}" var="item">
 						<li class="item">
-							<h2 class="todo_title">${item.title}</h2>
+							<h3 class="todo_title">${item.title}</h3>
 							<p class="todo_text">등록날짜:${item.regDate}, ${item.name}
 								우선순위:${item.sequence}</p>
 							<button type="button" class="move_btn" data-id="${item.id}">
@@ -55,11 +56,11 @@
 			</nav>
 
 			<nav class="menu">
-				<h1 class="status_title">DONE</h1>
+				<h2 class="status_title">DONE</h2>
 				<ul class="todo_list" id="done">
 					<c:forEach items="${done_list}" var="item">
 						<li class="item">
-							<h2 class="todo_title">${item.title}</h2>
+							<h3 class="todo_title">${item.title}</h3>
 							<p class="todo_text">등록날짜:${item.regDate}, ${item.name}
 								우선순위:${item.sequence}</p>
 						</li>
