@@ -20,7 +20,7 @@
 <body>
 	<div class="wrap clear_fix">
 		<div class="todo_box clear_fix">
-			<h1 class="todo_title">나의 해야할 일들</h1>
+			<h1 class="main_title">나의 해야할 일들</h1>
 			<a href="/mavenweb/TodoFormServlet" class="register" alt="">새로운
 				TODO 등록</a>
 			<nav class="menu">
