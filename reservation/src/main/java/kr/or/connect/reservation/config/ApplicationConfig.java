@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@ComponentScan(basePackages = { "kr.or.connect.guestbook.dao", "kr.or.connect.guestbook.service" })
+@ComponentScan(basePackages = { "kr.or.connect.reservation.dao", "kr.or.connect.reservation.service" })
 @Import({ DBConfig.class })
 @PropertySource(value = { "classpath:application.properties" })
 public class ApplicationConfig {

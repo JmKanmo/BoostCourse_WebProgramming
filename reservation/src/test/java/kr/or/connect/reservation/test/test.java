@@ -1,16 +1,18 @@
 package kr.or.connect.reservation.test;
 
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.dao.ReservationDao;
 
 public class test {
 
-	@Value("${name}")
-	private String password;
-
 	@Test
 	public void test() {
-		System.out.println(password);
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		ReservationDao dao = ac.getBean(ReservationDao.class);
 	}
 
 }
