@@ -28,7 +28,7 @@ public class MainpageDao {
 	}
 
 	public int getProductCount(int categoryId) {
-		int ret = -1;
+		int ret = 0;
 
 		try {
 			if (categoryId == 0) {

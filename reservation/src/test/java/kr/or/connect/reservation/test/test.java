@@ -13,6 +13,6 @@ public class test {
 	public void test() {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		MainpageService service = ac.getBean(MainpageService.class);
-		System.out.println(service.getProduct(2,4));
+		System.out.println(service.getProduct(1,10));
 	}
 }
