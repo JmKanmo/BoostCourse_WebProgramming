@@ -17,7 +17,6 @@ import kr.or.connect.guestbook.service.GuestBookService;
 
 @Controller
 public class GuestBookController {
-
 	private GuestBookService guestbookService;
 
 	public GuestBookController(GuestBookService guestbookService) {

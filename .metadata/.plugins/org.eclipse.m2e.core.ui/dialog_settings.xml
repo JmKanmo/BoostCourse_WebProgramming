@@ -27,6 +27,7 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="kr.or.connect.reservation"/>
 			<item value="kr.or.connect.guestbook"/>
 			<item value="kr.or.connect.kr.or.connect.guestbook"/>
 		</list>
@@ -34,6 +35,7 @@
 			<item value="kr.or.connect"/>
 		</list>
 		<list key="artifactId">
+			<item value="reservation"/>
 			<item value="guestbook"/>
 			<item value="kr.or.connect.guestbook"/>
 		</list>

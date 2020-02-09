@@ -8,7 +8,6 @@ import kr.or.connect.guestbook.config.ApplicationConfig;
 import kr.or.connect.guestbook.service.GuestBookService;
 
 public class serviceTest {
-
 	@Test
 	public void test() {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
