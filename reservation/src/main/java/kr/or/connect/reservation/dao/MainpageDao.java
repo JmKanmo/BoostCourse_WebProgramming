@@ -17,27 +17,34 @@ import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
 
 @Repository
-public class ReservationDao {
+public class MainpageDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<Promotion> promotion_Mapper = BeanPropertyRowMapper.newInstance(Promotion.class);
 	private RowMapper<Category> category_Mapper = BeanPropertyRowMapper.newInstance(Category.class);
 	private RowMapper<Product> product_Mapper = BeanPropertyRowMapper.newInstance(Product.class);
 
-	public ReservationDao(DataSource dataSource) {
+	public MainpageDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
 	public int getProductCount(int categoryId) {
-		if (categoryId == 0) {
-			// 전체 상품개수 반홤
-			return jdbc.queryForObject(ReservationDaoSqls.SELECT_ALL_PRODUCT_COUNT, Collections.emptyMap(),
-					Integer.class);
-		} else {
-			// 카테고리별 상품개수 반환
-			Map<String, Integer> params = new HashMap<>();
-			params.put("id", categoryId);
-			return jdbc.queryForObject(ReservationDaoSqls.SELECT_PRODUCT_COUNT_BY_CATEGORY, params, Integer.class);
+		int ret = -1;
+
+		try {
+			if (categoryId == 0) {
+				// 전체 상품개수 반홤
+				ret = jdbc.queryForObject(ReservationDaoSqls.SELECT_ALL_PRODUCT_COUNT, Collections.emptyMap(),
+						Integer.class);
+			} else {
+				// 카테고리별 상품개수 반환
+				Map<String, Integer> params = new HashMap<>();
+				params.put("id", categoryId);
+				ret = jdbc.queryForObject(ReservationDaoSqls.SELECT_PRODUCT_COUNT_BY_CATEGORY, params, Integer.class);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return ret;
 	}
 
 	public List<Promotion> selectPromotion() {
@@ -55,16 +62,21 @@ public class ReservationDao {
 		Map<String, Integer> params = new HashMap<>();
 		List<Product> ret = null;
 
-		if (categoryId == 0) {
-			// 전체 상품정보 반환
-			params.put("turn", turn);
-			ret = jdbc.query(ReservationDaoSqls.SELECT_ALL_PRODUCTS, params, product_Mapper);
-		} else {
-			// 카테고리별 상품정보 반환
-			params.put("id", categoryId);
-			params.put("turn", turn);
-			ret = jdbc.query(ReservationDaoSqls.SELECT_PRODUCTS_BY_CATEGORY, params, product_Mapper);
+		try {
+			if (categoryId == 0) {
+				// 전체 상품정보 반환
+				params.put("turn", turn);
+				ret = jdbc.query(ReservationDaoSqls.SELECT_ALL_PRODUCTS, params, product_Mapper);
+			} else {
+				// 카테고리별 상품정보 반환
+				params.put("id", categoryId);
+				params.put("turn", turn);
+				ret = jdbc.query(ReservationDaoSqls.SELECT_PRODUCTS_BY_CATEGORY, params, product_Mapper);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 		return ret;
 	}
 }
