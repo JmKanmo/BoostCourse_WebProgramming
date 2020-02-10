@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="./resources/css/mainpage.css" />
 <title>예약서비스</title>
 </head>
+
 <body>
 	<div class="wrap">
 		<!--  헤더영역 -->
@@ -21,7 +22,7 @@
 		</div>
 
 		<div class="email_box">
-			<p>nebi25@naver.com</p>
+			<a href="">nebi25@naver.com</a>
 		</div>
 		</header>
 
@@ -38,6 +39,12 @@
 					style="width: 100%; height: 100%;" alt=""></li>
 
 				<li><img src="./resources/img/27_th_65.png"
+					style="width: 100%; height: 100%;" alt=""></li>
+
+				<li><img src="./resources/img/20_th_50.png"
+					style="width: 100%; height: 100%;" alt=""></li>
+
+				<li><img src="./resources/img/30_th_71.png"
 					style="width: 100%; height: 100%;" alt=""></li>
 			</ul>
 		</div>

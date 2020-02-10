@@ -35,7 +35,7 @@
 	float: right;
 }
 
-.email_box p {
+.email_box a {
 	cursor: pointer;
 	float: right;
 	line-height: 50px;

@@ -1,35 +1,26 @@
 let promotion = document.querySelector(".promotion");
 let targets = [];
-let slide_len=null;
+let slideLen=null;
 
 document.addEventListener("DOMContentLoaded", function() {
-	init();
-	image_slide(0);
+	promotionInit();
+	imageSlide(0);
 });
 
-function init()
+function promotionInit()
 {
-	slide_len = getListLen();
+	slideLen = Math.floor(promotion.childNodes.length/2);
 	
-	for (let i = 1; i <= slide_len; i++) {
+	for (let i = 1; i <= slideLen; i++) {
 	    let elem = promotion.querySelector(`li:nth-child(${i})`);
-	    elem.style.zIndex = slide_len - (i);
+	    elem.style.zIndex = slideLen - (i);
 	    targets.push(elem);
 	}	
 }
 
-function getListLen() {
-    let len = 0;
-
-    for (let i = 0; i < promotion.childNodes.length; i++) {
-        if (!promotion.childNodes[i].length) len++;
-    }
-    return len;
-}
-
-function image_slide(idx) {
+function imageSlide(idx) {
     setTimeout(() => {
-        targets[idx].style.zIndex = (slide_len - 1) - idx;
+        targets[idx].style.zIndex = (slideLen - 1) - idx;
         targets[idx].style.transition = "transform 0.5s";
         targets[idx].style.transform = `translateX(-${promotion.offsetWidth}px)`;
 
@@ -44,6 +35,6 @@ function image_slide(idx) {
             targets[idx + 1].style.transform = `translateX(${0}px)`;
         }
 
-        image_slide(idx + 1);
+        imageSlide(idx + 1);
     }, 2000);
 }
