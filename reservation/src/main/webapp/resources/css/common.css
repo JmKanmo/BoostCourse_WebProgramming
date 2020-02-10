@@ -4,7 +4,9 @@
 html, body, h1, h2, h3, ul, ol, p, a, dl, dt, dd, figure {
 	margin: 0;
 	padding: 0;
-	font-family: '나눔 고딕', NanumGothic, '돋움', Dotum, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+		Helvetica Nenu, Helvetica, Roboto, Arial, NanumGothicWebB, '맑은고딕',
+		MalgunGothic, '돋움', Dotum, sans-serif;
 	list-style: none;
 	font-weight: normal;
 	text-decoration: none;

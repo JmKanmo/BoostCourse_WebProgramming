@@ -1,6 +1,6 @@
 let promotion = document.querySelector(".promotion");
 let targets = [];
-let slideLen=null;
+let slideLen= 0;
 
 document.addEventListener("DOMContentLoaded", function() {
 	promotionInit();
@@ -36,5 +36,5 @@ function imageSlide(idx) {
         }
 
         imageSlide(idx + 1);
-    }, 2000);
+    }, 1800);
 }

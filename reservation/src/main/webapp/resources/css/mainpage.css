@@ -45,6 +45,10 @@
 }
 
 /* 프로모션 영역*/
+.promotion_box {
+	cursor: pointer;
+}
+
 .promotion {
 	position: relative;
 	z-index: -1;
@@ -52,13 +56,35 @@
 	overflow: hidden;
 }
 
-.promotion li {
+.promotion .item {
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
 }
+
+/* 카테고리 영역*/
+.main_box {
+	background-color: rgb(232, 235, 238);
+}
+
+.category {
+	background-color: #fff;
+}
+
+.category p {
+	font-size: 18px;
+	color: rgb(27, 27, 27);
+}
+
+.category .item {
+	float: left;
+	padding: 14px 0;
+	margin:0 14px;
+	cursor: pointer;
+}
+
 
 /* 미디어쿼리 1024px이상 */
 @media ( min-width :1024px) {

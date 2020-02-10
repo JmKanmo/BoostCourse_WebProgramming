@@ -29,24 +29,27 @@
 		<!-- 프로모션영역 -->
 		<div class="promotion_box">
 			<ul class="promotion">
-				<li><img src="./resources/img/11_th_30.png"
-					style="width: 100%; height: 100%;" alt=""></li>
-
-				<li><img src="./resources/img/22_th_55.png"
-					style="width: 100%; height: 100%;" alt=""></li>
-
-				<li><img src="./resources/img/24_th_59.png"
-					style="width: 100%; height: 100%;" alt=""></li>
-
-				<li><img src="./resources/img/27_th_65.png"
-					style="width: 100%; height: 100%;" alt=""></li>
-
-				<li><img src="./resources/img/20_th_50.png"
-					style="width: 100%; height: 100%;" alt=""></li>
-
-				<li><img src="./resources/img/30_th_71.png"
-					style="width: 100%; height: 100%;" alt=""></li>
+				<c:forEach items="${promotions}" var="item">
+					<li class="item"><img src="./resources/${item.saveFileName}"
+						style="width: 100%; height: 100%;" alt=""></li>
+				</c:forEach>
 			</ul>
+		</div>
+
+		<div class="main_box">
+			<ul class="category clear_fix">
+				<li class="item" id="0">
+					<p>전체리스트</p>
+				</li>
+				<c:forEach items="${categories}" var="item">
+					<li class="item" id="${item.id}">
+						<p>${item.name}</p>
+					</li>
+				</c:forEach>
+			</ul>
+
+			<div class="category_cnt"></div>
+
 		</div>
 
 		<footer class="footer"> </footer>

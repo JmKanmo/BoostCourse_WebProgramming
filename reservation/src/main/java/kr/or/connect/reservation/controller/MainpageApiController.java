@@ -21,8 +21,8 @@ public class MainpageApiController {
 	}
 
 	@GetMapping(path = "/products")
-	public Map<String, Object> products(@RequestParam(name = "id") int categoryId,
-			@RequestParam(name = "turn") int turn) {
+	public Map<String, Object> products(@RequestParam(name = "id", required = false, defaultValue = "0") int categoryId,
+			@RequestParam(name = "turn", required = false, defaultValue = "0") int turn) {
 		Map<String, Object> ret = new HashMap<>();
 		ret.put("products", mainpageService.getProduct(categoryId, turn));
 		ret.put("productCount", mainpageService.getProductCount(categoryId));
