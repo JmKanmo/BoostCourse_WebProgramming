@@ -7,6 +7,8 @@ import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
 
 public interface MainpageService {
+	public static final int VIEW_MORE_CNT = 4;
+
 	public List<Promotion> getPromotion();
 
 	public List<Category> getCategory();

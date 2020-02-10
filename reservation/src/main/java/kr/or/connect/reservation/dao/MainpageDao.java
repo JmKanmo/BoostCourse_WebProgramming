@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.service.MainpageService;
 
 @Repository
 public class MainpageDao {
@@ -43,6 +44,7 @@ public class MainpageDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return ret;
 	}
@@ -66,15 +68,18 @@ public class MainpageDao {
 			if (categoryId == 0) {
 				// 전체 상품정보 반환
 				params.put("turn", turn);
+				params.put("cnt", MainpageService.VIEW_MORE_CNT);
 				ret = jdbc.query(ReservationDaoSqls.SELECT_ALL_PRODUCTS, params, product_Mapper);
 			} else {
 				// 카테고리별 상품정보 반환
 				params.put("id", categoryId);
 				params.put("turn", turn);
+				params.put("cnt", MainpageService.VIEW_MORE_CNT);
 				ret = jdbc.query(ReservationDaoSqls.SELECT_PRODUCTS_BY_CATEGORY, params, product_Mapper);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
 		return ret;

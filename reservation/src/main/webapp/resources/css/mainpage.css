@@ -1,0 +1,75 @@
+/* 헤더영역 */
+.header {
+	height: 50px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: rgb(11, 186, 24);
+}
+
+.header .logo_box {
+	width: 50%;
+	height: 50px;
+	float: left;
+}
+
+.logo_box img {
+	cursor: pointer;
+	float: left;
+	height: 30px;
+	margin: 10px 0 0 10px;
+}
+
+.logo_box p {
+	cursor: pointer;
+	float: left;
+	line-height: 50px;
+	margin-left: 10px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.email_box {
+	width: 50%;
+	height: 50px;
+	float: right;
+}
+
+.email_box p {
+	cursor: pointer;
+	float: right;
+	line-height: 50px;
+	margin-right: 15px;
+	font-size: 15px;
+	color: #fff;
+}
+
+/* 프로모션 영역*/
+.promotion {
+	position: relative;
+	z-index: -1;
+	height: 300px;
+	overflow: hidden;
+}
+
+.promotion li {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+/* 미디어쿼리 1024px이상 */
+@media ( min-width :1024px) {
+	.wrap {
+		width: 500px;
+		margin: 0 auto;
+	}
+	.header {
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		width: 500px;
+	}
+}
