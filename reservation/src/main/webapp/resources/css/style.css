@@ -116,6 +116,15 @@
 	src: url('../font/NanumGothicBold.woff') format('woff')
 }
 
+.blind {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+}
+
 body, html {
 	min-height: 100%
 }

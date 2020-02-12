@@ -1,5 +1,5 @@
 // Promotion - variables
-let promotion = document.querySelector(".visual_img");
+let promotion = null;
 let targets = [];
 let slideLen = 0;
 
@@ -17,16 +17,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // moreBtn initialize
-function moreBtnInit(){
-	
-	
+function moreBtnInit(){	
+	document.querySelector(".more").addEventListener("click", function(){
+		requestAjax(categoryIdx, document.querySelector(".wrap_event_box").childElementCount-1);
+	});
 }
 
 // Category tab variables initialize
 function categoryTabInit(){
-	let category_tab = document.querySelector(".event_tab_lst");
-	
-	category_tab.addEventListener("click", function(evt){
+	document.querySelector(".event_tab_lst").addEventListener("click", function(evt){
 		  if(evt.target.tagName==="A" || evt.target.tagName==="SPAN") {
 			  contentsUpdate(evt);
 			  setActiveMenu(evt.target.closest("LI"));
@@ -38,7 +37,7 @@ function categoryTabInit(){
 
 function contentsUpdate(evt) {	
 	let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
-	
+
 	if(clicked_idx != categoryIdx){
 		requestAjax(clicked_idx);	
 	}
@@ -52,21 +51,20 @@ function requestAjax(id = 0, turn = 0){
 	xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 	xhr.addEventListener("load", function() {
-			 update(id , JSON.parse(this.responseText));
+			 update(id , JSON.parse(this.responseText), turn);
 	});
 
 	xhr.send();
 }
 
-function update(id,jsonData){
+function update(id, jsonData, turn = 0){
 	let event_cnt = document.querySelector(".event_lst_txt .pink");
-	let moreBtn = document.querySelector(".more");
 	let list = "";
+	let moreBtn = document.querySelector(".more");
 	
 	event_cnt.innerText = jsonData["productCount"] + "개";
 	
-	jsonData["products"].forEach(elem=>{
-		
+	jsonData["products"].forEach(elem=>{	
 		list += document.querySelector("#template-product-card").innerHTML
 				.replace("{saveFileName}","./resources/" + elem["saveFileName"])
 				.replace("{description}", elem["description"])
@@ -74,10 +72,15 @@ function update(id,jsonData){
 				.replace("{content}", elem["content"])
 	});
 	
-	contentsTemplates[id] = list;
-	document.querySelector(".wrap_event_box").innerHTML = contentsTemplates[id];
-	
-	if(document.querySelector(".wrap_event_box").childElementCount-1 < jsonData["productCount"]){
+	if(turn === 0){
+		contentsTemplates[id] = list;
+		document.querySelector(".wrap_event_box").innerHTML = contentsTemplates[id];	
+	}else{
+		document.querySelector(".wrap_event_box").removeChild(moreBtn);
+		document.querySelector(".wrap_event_box").innerHTML += list;
+	}
+
+	if(document.querySelector(".wrap_event_box").childElementCount < jsonData["productCount"]){
 		document.querySelector(".wrap_event_box").appendChild(moreBtn);
 	}
 }
@@ -91,8 +94,9 @@ function setActiveMenu(item){
 
 // Promotion variables initialize
 function promotionInit() {
+	promotion = document.querySelector(".visual_img");
 	slideLen = Math.floor(promotion.childNodes.length / 2);
-
+	
 	for (let i = 1; i <= slideLen; i++) {
 		let elem = promotion.querySelector(`li:nth-child(${i})`);
 		targets.push({
