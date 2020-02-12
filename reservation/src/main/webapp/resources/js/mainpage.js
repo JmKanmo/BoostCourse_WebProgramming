@@ -1,12 +1,48 @@
+// Promotion - variables
 let promotion = document.querySelector(".visual_img");
 let targets = [];
 let slideLen = 0;
 
+// Category tab - variables
+let categoryObj = {
+		idx : 0,
+		cnt : 0,
+}
+
+// Execute all functions
 document.addEventListener("DOMContentLoaded", function() {
 	promotionInit();
+	categoryTabInit();
 	imageSlide();
 });
 
+
+// Category tab variables initialize
+function categoryTabInit(){
+	let category_tab = document.querySelector(".event_tab_lst");
+	
+	category_tab.addEventListener("click", function(evt){
+		  if(evt.target.tagName==="A" || evt.target.tagName==="SPAN") {
+			  contentsUpdate(evt);
+		  }
+	});
+}
+
+// Category tab update implementation functions
+
+function contentsUpdate(evt) {
+	setActiveMenu(evt.target.closest("LI"));
+	console.log(document.querySelector("template-product-card"));
+}
+
+function setActiveMenu(item){ 
+	let inactivMenu = item.closest("UL").querySelector(`:nth-child(${categoryObj["idx"] + 1})`);
+	inactivMenu.querySelector(".anchor").classList.remove("active");
+	item.querySelector(".anchor").classList.add("active");
+	categoryObj["idx"] = parseInt(item.getAttribute("data-category"));
+}
+
+// Promotion variables initialize
 function promotionInit() {
 	slideLen = Math.floor(promotion.childNodes.length / 2);
 
@@ -19,6 +55,8 @@ function promotionInit() {
 		});
 	}
 }
+
+// Image promotion implementation functions
 
 function getNextIndex(index){
 	if(index===0){
