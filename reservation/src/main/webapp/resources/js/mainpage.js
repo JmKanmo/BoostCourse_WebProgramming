@@ -4,18 +4,23 @@ let targets = [];
 let slideLen = 0;
 
 // Category tab - variables
-let categoryObj = {
-		idx : 0,
-		cnt : 0,
-}
+let categoryIdx = 0;
+let contentsTemplates = [``,``,``,``,``,``];
 
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function() {
 	promotionInit();
 	categoryTabInit();
+	moreBtnInit();
 	imageSlide();
+	requestAjax(0);
 });
 
+// moreBtn initialize
+function moreBtnInit(){
+	
+	
+}
 
 // Category tab variables initialize
 function categoryTabInit(){
@@ -24,22 +29,64 @@ function categoryTabInit(){
 	category_tab.addEventListener("click", function(evt){
 		  if(evt.target.tagName==="A" || evt.target.tagName==="SPAN") {
 			  contentsUpdate(evt);
+			  setActiveMenu(evt.target.closest("LI"));
 		  }
 	});
 }
 
 // Category tab update implementation functions
 
-function contentsUpdate(evt) {
-	setActiveMenu(evt.target.closest("LI"));
-	console.log(document.querySelector("template-product-card"));
+function contentsUpdate(evt) {	
+	let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
+	
+	if(clicked_idx != categoryIdx){
+		requestAjax(clicked_idx);	
+	}
+}
+
+function requestAjax(id = 0, turn = 0){
+	let xhr = new XMLHttpRequest();
+	let params = "id=" + id + "&" + "turn=" + turn;
+
+	xhr.open("GET", 'http://localhost:8080/reservation/api/products?'+params, true);
+	xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+	xhr.addEventListener("load", function() {
+			 update(id , JSON.parse(this.responseText));
+	});
+
+	xhr.send();
+}
+
+function update(id,jsonData){
+	let event_cnt = document.querySelector(".event_lst_txt .pink");
+	let moreBtn = document.querySelector(".more");
+	let list = "";
+	
+	event_cnt.innerText = jsonData["productCount"] + "개";
+	
+	jsonData["products"].forEach(elem=>{
+		
+		list += document.querySelector("#template-product-card").innerHTML
+				.replace("{saveFileName}","./resources/" + elem["saveFileName"])
+				.replace("{description}", elem["description"])
+				.replace("{placeName}", elem["placeName"])
+				.replace("{content}", elem["content"])
+	});
+	
+	contentsTemplates[id] = list;
+	document.querySelector(".wrap_event_box").innerHTML = contentsTemplates[id];
+	
+	if(document.querySelector(".wrap_event_box").childElementCount-1 < jsonData["productCount"]){
+		document.querySelector(".wrap_event_box").appendChild(moreBtn);
+	}
 }
 
 function setActiveMenu(item){ 
-	let inactivMenu = item.closest("UL").querySelector(`:nth-child(${categoryObj["idx"] + 1})`);
+	let inactivMenu = item.closest("UL").querySelector(`:nth-child(${categoryIdx + 1})`);
 	inactivMenu.querySelector(".anchor").classList.remove("active");
 	item.querySelector(".anchor").classList.add("active");
-	categoryObj["idx"] = parseInt(item.getAttribute("data-category"));
+	categoryIdx = parseInt(item.getAttribute("data-category"));
 }
 
 // Promotion variables initialize

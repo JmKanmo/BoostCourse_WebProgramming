@@ -86,27 +86,6 @@
 				</p>
 				<!-- 상품정보박스 -->
 				<div class="wrap_event_box">
-					<!-- 상품정보카드 템플릿-->
-					<script id="template-product-card" type="text/template">
-						<ul class="lst_event_box">
-							<li class="item">
-                            	<a href="detail.html" class="item_book">
-                                	<div class="item_preview"> 
-										<img alt="" class="img_thumb" src={saveFileName}>
-										<span class="img_border"></span>
-									</div>
-
-                                	<div class="event_txt">
-                                    	<h4 class="event_txt_tit">
-											<span>{description}</span> 
-											<small class="sm">{placeName}</small>
-										</h4>
-                                    	<p class="event_txt_dsc">{content}</p>
-                                	</div>
-                            	</a>
-                        	</li> 
-						</ul>
-					</script>
 					<!-- 더보기 -->
 					<div class="more">
 						<button class="btn">
@@ -132,4 +111,25 @@
 
 	<script type="text/javascript" src="./resources/js/mainpage.js"></script>
 </body>
+	<!-- 상품정보카드 템플릿-->
+				<script id="template-product-card" type="text/template">
+						<ul class="lst_event_box">
+							<li class="item">
+                            	<a href="detail.html" class="item_book">
+                                	<div class="item_preview"> 
+										<img alt="" class="img_thumb" src={saveFileName}>
+										<span class="img_border"></span>
+									</div>
+
+                                	<div class="event_txt">
+                                    	<h4 class="event_txt_tit">
+											<span>{description}</span> 
+											<small class="sm">{placeName}</small>
+										</h4>
+                                    	<p class="event_txt_dsc">{content}</p>
+                                	</div>
+                            	</a>
+                        	</li> 
+						</ul>
+					</script>
 </html>
