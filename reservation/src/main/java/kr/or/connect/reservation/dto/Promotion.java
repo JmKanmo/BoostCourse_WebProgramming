@@ -1,7 +1,7 @@
 package kr.or.connect.reservation.dto;
 
 public class Promotion {
-	String saveFileName;
+	private String saveFileName;
 
 	public String getSaveFileName() {
 		return saveFileName;

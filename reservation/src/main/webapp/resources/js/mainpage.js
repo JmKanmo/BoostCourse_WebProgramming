@@ -7,6 +7,7 @@ let slideLen = 0;
 let categoryIdx = 0;
 let contentsTemplates = [``,``,``,``,``,``];
 
+
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function() {
 	promotionInit();
@@ -58,11 +59,10 @@ function requestAjax(id = 0, turn = 0){
 }
 
 function update(id, jsonData, turn = 0){
-	let event_cnt = document.querySelector(".event_lst_txt .pink");
 	let list = "";
 	let moreBtn = document.querySelector(".more");
 	
-	event_cnt.innerText = jsonData["productCount"] + "개";
+	document.querySelector(".event_lst_txt .pink").innerText = jsonData["productCount"] + "개";
 	
 	jsonData["products"].forEach(elem=>{	
 		list += document.querySelector("#template-product-card").innerHTML
@@ -80,8 +80,14 @@ function update(id, jsonData, turn = 0){
 		document.querySelector(".wrap_event_box").innerHTML += list;
 	}
 
+	document.querySelector(".wrap_event_box").appendChild(moreBtn);	
+	
 	if(document.querySelector(".wrap_event_box").childElementCount < jsonData["productCount"]){
-		document.querySelector(".wrap_event_box").appendChild(moreBtn);
+		if(moreBtn.classList.contains("blind")){
+			moreBtn.classList.remove("blind");
+		}
+	}else{
+		moreBtn.classList.add("blind");
 	}
 }
 
