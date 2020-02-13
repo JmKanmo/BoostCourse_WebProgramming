@@ -129,6 +129,23 @@
                                     	<p class="event_txt_dsc">{content}</p>
                                 	</div>
                             	</a>
+                        	</li>
+
+							<li class="item">
+                            	<a href="detail.html" class="item_book">
+                                	<div class="item_preview"> 
+										<img alt="" class="img_thumb" src={saveFileName2}>
+										<span class="img_border"></span>
+									</div>
+
+                                	<div class="event_txt">
+                                    	<h4 class="event_txt_tit">
+											<span>{description2}</span> 
+											<small class="sm">{placeName2}</small>
+										</h4>
+                                    	<p class="event_txt_dsc">{content2}</p>
+                                	</div>
+                            	</a>
                         	</li> 
 						</ul>
 					</script>

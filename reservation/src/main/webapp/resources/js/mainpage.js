@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // moreBtn initialize
 function moreBtnInit(){	
 	document.querySelector(".more").addEventListener("click", function(){
-		requestAjax(categoryIdx, document.querySelector(".wrap_event_box").childElementCount-1);
+		requestAjax(categoryIdx,(document.querySelector(".wrap_event_box").childElementCount*2)-2);
 	});
 }
 
@@ -59,19 +59,11 @@ function requestAjax(id = 0, turn = 0){
 }
 
 function update(id, jsonData, turn = 0){
-	let list = "";
+	let list = getHtmlTemplate(jsonData);
 	let moreBtn = document.querySelector(".more");
 	
 	document.querySelector(".event_lst_txt .pink").innerText = jsonData["productCount"] + "개";
-	
-	jsonData["products"].forEach(elem=>{	
-		list += document.querySelector("#template-product-card").innerHTML
-				.replace("{saveFileName}","./resources/" + elem["saveFileName"])
-				.replace("{description}", elem["description"])
-				.replace("{placeName}", elem["placeName"])
-				.replace("{content}", elem["content"])
-	});
-	
+		
 	if(turn === 0){
 		contentsTemplates[id] = list;
 		document.querySelector(".wrap_event_box").innerHTML = contentsTemplates[id];	
@@ -82,13 +74,30 @@ function update(id, jsonData, turn = 0){
 
 	document.querySelector(".wrap_event_box").appendChild(moreBtn);	
 	
-	if(document.querySelector(".wrap_event_box").childElementCount < jsonData["productCount"]){
+	if((document.querySelector(".wrap_event_box").childElementCount*2)-2 < jsonData["productCount"]){
 		if(moreBtn.classList.contains("blind")){
 			moreBtn.classList.remove("blind");
 		}
 	}else{
 		moreBtn.classList.add("blind");
 	}
+}
+
+function getHtmlTemplate(jsonData){
+	let list = "";
+	
+	for(let i = 0,j=0; j < jsonData["products"].length/2; i+=2, j++){
+		list += document.querySelector("#template-product-card").innerHTML
+		.replace("{saveFileName}","./resources/" + jsonData["products"][i]["saveFileName"])
+		.replace("{description}", jsonData["products"][i]["description"])
+		.replace("{placeName}", jsonData["products"][i]["placeName"])
+		.replace("{content}", jsonData["products"][i]["content"])			
+		.replace("{saveFileName2}","./resources/" + jsonData["products"][i+1]["saveFileName"])
+		.replace("{description2}", jsonData["products"][i+1]["description"])
+		.replace("{placeName2}", jsonData["products"][i+1]["placeName"])
+		.replace("{content2}", jsonData["products"][i+1]["content"])	
+	}
+	return list;
 }
 
 function setActiveMenu(item){ 
