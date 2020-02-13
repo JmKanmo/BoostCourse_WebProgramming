@@ -34,7 +34,7 @@ function categoryTabInit(){
 	});
 }
 
-// Category tab update implementation functions
+// Category tab & event list update implementation functions
 
 function contentsUpdate(evt) {	
 	let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
@@ -58,7 +58,7 @@ function requestAjax(id = 0, turn = 0){
 	xhr.send();
 }
 
-function update(id, jsonData, turn = 0){
+function update(id, jsonData, turn){
 	let list = getHtmlTemplate(jsonData);
 	let moreBtn = document.querySelector(".more");
 	
@@ -74,7 +74,7 @@ function update(id, jsonData, turn = 0){
 
 	document.querySelector(".wrap_event_box").appendChild(moreBtn);	
 	
-	if((document.querySelector(".wrap_event_box").childElementCount*2)-2 < jsonData["productCount"]){
+	if(jsonData["productCount"] > 0 && (document.querySelector(".wrap_event_box").childElementCount*2)-2 < jsonData["productCount"]){
 		if(moreBtn.classList.contains("blind")){
 			moreBtn.classList.remove("blind");
 		}
@@ -84,20 +84,30 @@ function update(id, jsonData, turn = 0){
 }
 
 function getHtmlTemplate(jsonData){
-	let list = "";
+	let cardTemplate = null;
+	let itemList = "", cardList = "";
 	
-	for(let i = 0,j=0; j < jsonData["products"].length/2; i+=2, j++){
-		list += document.querySelector("#template-product-card").innerHTML
+	for(let i=0; i< jsonData["products"].length; i++){
+		itemList += document.querySelector("#template-card-item").innerHTML
 		.replace("{saveFileName}","./resources/" + jsonData["products"][i]["saveFileName"])
 		.replace("{description}", jsonData["products"][i]["description"])
 		.replace("{placeName}", jsonData["products"][i]["placeName"])
-		.replace("{content}", jsonData["products"][i]["content"])			
-		.replace("{saveFileName2}","./resources/" + jsonData["products"][i+1]["saveFileName"])
-		.replace("{description2}", jsonData["products"][i+1]["description"])
-		.replace("{placeName2}", jsonData["products"][i+1]["placeName"])
-		.replace("{content2}", jsonData["products"][i+1]["content"])	
+		.replace("{content}", jsonData["products"][i]["content"]);
+		
+		if(i%2 != 0){
+			cardTemplate = document.querySelector("#template-product-card").innerHTML;
+			cardTemplate =  cardTemplate.replace("{item}",itemList);
+			cardList += cardTemplate;
+			itemList = "";
+		}
 	}
-	return list;
+	
+	if(itemList != ""){
+		cardTemplate = document.querySelector("#template-product-card").innerHTML;
+		cardTemplate = cardTemplate.replace("{item}",itemList);
+		cardList += cardTemplate;
+	}	
+	return cardList;
 }
 
 function setActiveMenu(item){ 

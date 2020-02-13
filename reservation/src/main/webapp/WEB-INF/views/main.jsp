@@ -111,42 +111,30 @@
 
 	<script type="text/javascript" src="./resources/js/mainpage.js"></script>
 </body>
-	<!-- 상품정보카드 템플릿-->
-				<script id="template-product-card" type="text/template">
-						<ul class="lst_event_box">
-							<li class="item">
-                            	<a href="detail.html" class="item_book">
-                                	<div class="item_preview"> 
-										<img alt="" class="img_thumb" src={saveFileName}>
-										<span class="img_border"></span>
-									</div>
 
-                                	<div class="event_txt">
-                                    	<h4 class="event_txt_tit">
-											<span>{description}</span> 
-											<small class="sm">{placeName}</small>
-										</h4>
-                                    	<p class="event_txt_dsc">{content}</p>
-                                	</div>
-                            	</a>
-                        	</li>
+<!-- 상품정보카드 템플릿-->
+<script id="template-product-card" type="text/template">
+	<ul class="lst_event_box">
+	{item}
+	</ul>
+</script>
 
-							<li class="item">
-                            	<a href="detail.html" class="item_book">
-                                	<div class="item_preview"> 
-										<img alt="" class="img_thumb" src={saveFileName2}>
-										<span class="img_border"></span>
-									</div>
+<script id="template-card-item" type="text/template">
+	<li class="item">
+		<a href="detail.html" class="item_book">
+        	<div class="item_preview"> 
+				<img alt="" class="img_thumb" src={saveFileName}>
+				<span class="img_border"></span>
+			</div>
 
-                                	<div class="event_txt">
-                                    	<h4 class="event_txt_tit">
-											<span>{description2}</span> 
-											<small class="sm">{placeName2}</small>
-										</h4>
-                                    	<p class="event_txt_dsc">{content2}</p>
-                                	</div>
-                            	</a>
-                        	</li> 
-						</ul>
-					</script>
+            <div class="event_txt">
+            	<h4 class="event_txt_tit">
+					<span>{description}</span> 
+					<small class="sm">{placeName}</small>
+				</h4>
+                <p class="event_txt_dsc">{content}</p>
+        	</div>
+    	</a>
+	</li>
+</script>
 </html>
