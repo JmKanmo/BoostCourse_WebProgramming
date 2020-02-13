@@ -5,7 +5,6 @@ let slideLen = 0;
 
 // Category tab - variables
 let categoryIdx = 0;
-let contentsTemplates = [``,``,``,``,``,``];
 
 
 // Execute all functions
@@ -58,18 +57,18 @@ function requestAjax(id = 0, turn = 0){
 	xhr.send();
 }
 
+// update products list
 function update(id, jsonData, turn){
-	let list = getHtmlTemplate(jsonData);
+	let templates = getHtmlTemplate(jsonData);
 	let moreBtn = document.querySelector(".more");
 	
 	document.querySelector(".event_lst_txt .pink").innerText = jsonData["productCount"] + "개";
 		
 	if(turn === 0){
-		contentsTemplates[id] = list;
-		document.querySelector(".wrap_event_box").innerHTML = contentsTemplates[id];	
+		document.querySelector(".wrap_event_box").innerHTML = templates;	
 	}else{
 		document.querySelector(".wrap_event_box").removeChild(moreBtn);
-		document.querySelector(".wrap_event_box").innerHTML += list;
+		document.querySelector(".wrap_event_box").innerHTML += templates;
 	}
 
 	document.querySelector(".wrap_event_box").appendChild(moreBtn);	
@@ -110,6 +109,7 @@ function getHtmlTemplate(jsonData){
 	return cardList;
 }
 
+// change active category tab
 function setActiveMenu(item){ 
 	let inactivMenu = item.closest("UL").querySelector(`:nth-child(${categoryIdx + 1})`);
 	inactivMenu.querySelector(".anchor").classList.remove("active");
