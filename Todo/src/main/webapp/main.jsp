@@ -1,8 +1,3 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.fasterxml.jackson.core.type.TypeReference"%>
-<%@page import="java.util.Map"%>
-<%@page import="com.fasterxml.jackson.databind.ObjectMapper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -21,7 +16,7 @@
 	<div class="wrap clear_fix">
 		<div class="todo_box clear_fix">
 			<h1 class="main_title">나의 해야할 일들</h1>
-			<a href="/mavenweb/TodoFormServlet" class="register" alt="">새로운
+			<a href="/mavenweb/TodoFormServlet" class="register">새로운
 				TODO 등록</a>
 			<nav class="menu">
 				<h2 class="status_title">TODO</h2>

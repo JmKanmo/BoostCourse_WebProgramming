@@ -1,8 +1,5 @@
-let todo_group = [];
-let doing_group = [];
-
-init();
-set_eventListener(func_todo, func_doing);
+var todo_group = [];
+var doing_group = [];
 
 function init() {
 	for (let i = 0; i < document.querySelector("#todo").querySelectorAll(
@@ -32,23 +29,23 @@ function init() {
 	}
 }
 
-function set_eventListener(func_todo, func_doing) {
+function set_eventListener(todo, doing) {
 	for (let i = 0; i < todo_group.length; i++) {
 		todo_group[i]["btn"].addEventListener("click", function() {
 			ajax(todo_group[i]["id"], todo_group[i]["type"],
-					todo_group[i]["idx"], func_todo, i);
+					todo_group[i]["idx"], todo, i);
 		}, false);
 	}
 
 	for (let i = 0; i < doing_group.length; i++) {
 		doing_group[i]["btn"].addEventListener("click", function() {
 			ajax(doing_group[i]["id"], doing_group[i]["type"],
-					doing_group[i]["idx"], func_doing, i);
+					doing_group[i]["idx"], doing, i);
 		}, false);
 	}
 }
 
-function func_todo(i) {
+function todo(i) {
 	mediate_idx(todo_group[i]["type"], todo_group[i]["idx"]);
 
 	if (todo_group[i]["type"] === "TODO") {
@@ -63,7 +60,7 @@ function func_todo(i) {
 
 }
 
-function func_doing(i) {
+function doing(i) {
 	mediate_idx(doing_group[i]["type"], doing_group[i]["idx"]);
 
 	doing_group[i]["idx"] = document.querySelector("#done").querySelectorAll(
@@ -135,3 +132,9 @@ function ajax(id, type, idx, func, i) {
 
 	xhr.send(params);
 }
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    init();
+    set_eventListener(todo, doing);
+});
