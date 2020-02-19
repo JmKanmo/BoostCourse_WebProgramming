@@ -7,15 +7,6 @@ let slideLen = 0;
 let categoryIdx = 0;
 
 
-// Execute all functions
-document.addEventListener("DOMContentLoaded", function() {
-	promotionInit();
-	categoryTabInit();
-	moreBtnInit();
-	imageSlide();
-	requestAjax(0);
-});
-
 // moreBtn initialize
 function moreBtnInit(){	
 	document.querySelector(".more").addEventListener("click", function(){
@@ -51,14 +42,14 @@ function requestAjax(id = 0, turn = 0){
 	xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 	xhr.addEventListener("load", function() {
-			 update(id , JSON.parse(this.responseText), turn);
+			 update(JSON.parse(this.responseText), turn);
 	});
 
 	xhr.send();
 }
 
 // update products list
-function update(id, jsonData, turn){
+function update(jsonData, turn){
 	let templates = getHtmlTemplate(jsonData);
 	let moreBtn = document.querySelector(".more");
 	
@@ -201,3 +192,12 @@ function imageSlide() {
 	  imageSlide();
 	}, 1500);
 }
+
+// Execute all functions
+document.addEventListener("DOMContentLoaded", function() {
+	promotionInit();
+	categoryTabInit();
+	moreBtnInit();
+	imageSlide();
+	requestAjax(0);
+});
