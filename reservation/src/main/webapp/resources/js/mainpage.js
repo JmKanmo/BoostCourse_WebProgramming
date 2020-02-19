@@ -1,20 +1,20 @@
-// Promotion - variables
-let promotion = null;
-let targets = [];
+
+let imageList = null;
+let imgObject = [];
 let slideLen = 0;
 
-// Category tab - variables
+
 let categoryIdx = 0;
 
 
-// moreBtn initialize
+
 function initMorebtn() {
 	document.querySelector(".more").addEventListener("click", function () {
 		requestAjax(categoryIdx, getProductListCount());
 	});
 }
 
-// Category tab variables initialize
+
 function initCategoryTab() {
 	document.querySelector(".event_tab_lst").addEventListener("click", function (evt) {
 		if (evt.target.tagName === "A" || evt.target.tagName === "SPAN") {
@@ -24,7 +24,7 @@ function initCategoryTab() {
 	});
 }
 
-// Category tab & event list update implementation functions
+
 
 function getProductListCount() {
 	return (document.querySelector(".wrap_event_box").childElementCount * 2) - 2;
@@ -52,7 +52,7 @@ function requestAjax(id = 0, turn = 0) {
 	xhr.send();
 }
 
-// update products list
+
 function updateContents(jsonData, turn) {
 	let templates = getTemplate(jsonData);
 	let moreBtn = document.querySelector(".more");
@@ -104,7 +104,7 @@ function getTemplate(jsonData) {
 	return cardList;
 }
 
-// change active category tab
+
 function setActiveMenu(item) {
 	let inactivMenu = item.closest("UL").querySelector(`:nth-child(${categoryIdx + 1})`);
 	inactivMenu.querySelector(".anchor").classList.remove("active");
@@ -112,14 +112,14 @@ function setActiveMenu(item) {
 	categoryIdx = parseInt(item.getAttribute("data-category"));
 }
 
-// Promotion variables initialize
+
 function initPromotion() {
-	promotion = document.querySelector(".visual_img");
-	slideLen = Math.floor(promotion.childNodes.length / 2);
+	imageList = document.querySelector(".visual_img");
+	slideLen = Math.floor(imageList.childNodes.length / 2);
 
 	for (let i = 1; i <= slideLen; i++) {
-		let elem = promotion.querySelector(`li:nth-child(${i})`);
-		targets.push({
+		let elem = imageList.querySelector(`li:nth-child(${i})`);
+		imgObject.push({
 			pos: 0,
 			idx: i,
 			img: elem
@@ -127,7 +127,6 @@ function initPromotion() {
 	}
 }
 
-// Image promotion implementation functions
 
 function getNextIndex(index) {
 	if (index === 0) {
@@ -153,35 +152,35 @@ function convertIndex(slideLen, index) {
 }
 
 function moveImageEnd(idx) {
-	targets[idx]["pos"] = (slideLen - convertIndex(slideLen, targets[idx]["idx"])) * promotion.offsetWidth;
-	targets[idx]["img"].style.transition = "transform 0s";
-	targets[idx]["img"].style.transform = `translateX(${targets[idx]["pos"]}px)`;
+	imgObject[idx]["pos"] = (slideLen - convertIndex(slideLen, imgObject[idx]["idx"])) * imageList.offsetWidth;
+	imgObject[idx]["img"].style.transition = "transform 0s";
+	imgObject[idx]["img"].style.transform = `translateX(${imgObject[idx]["pos"]}px)`;
 }
 
 function moveImageOneStep(idx) {
-	targets[idx]["img"].style.transition = "transform 0.5s";
-	targets[idx]["pos"] -= promotion.offsetWidth;
-	targets[idx]["img"].style.transform = `translateX(${targets[idx]["pos"]}px)`;
+	imgObject[idx]["img"].style.transition = "transform 0.5s";
+	imgObject[idx]["pos"] -= imageList.offsetWidth;
+	imgObject[idx]["img"].style.transform = `translateX(${imgObject[idx]["pos"]}px)`;
 }
 
 function slideImage() {
 	setTimeout(() => {
-		for (let i = 0, flag = false; i < targets.length; i++) {
+		for (let i = 0, flag = false; i < imgObject.length; i++) {
 			if (slideLen > 2) {
 				let next = getNextIndex(i);
 				moveImageOneStep(i);
 
-				if (targets[next]["pos"] < -targets[next]["idx"] * promotion.offsetWidth) {
+				if (imgObject[next]["pos"] < -imgObject[next]["idx"] * imageList.offsetWidth) {
 					moveImageEnd(next);
 				}
 			} else {
-				if (targets[i]["pos"] <= -targets[i]["idx"] * promotion.offsetWidth) {
+				if (imgObject[i]["pos"] <= -imgObject[i]["idx"] * imageList.offsetWidth) {
 					moveImageEnd(i);
 					flag = true;
 				} else {
 					let next = getNextIndex(i);
 
-					if (next != i && targets[getNextIndex(0)]["pos"] === -targets[getNextIndex(0)]["idx"] * promotion.offsetWidth) {
+					if (next != i && imgObject[getNextIndex(0)]["pos"] === -imgObject[getNextIndex(0)]["idx"] * imageList.offsetWidth) {
 						moveImageEnd(next);
 					}
 
