@@ -1,110 +1,111 @@
-let categoryIdx = 0;
 
+const eventTabObj = {
+	categoryIdx: 0,
 
+	initMorebtn: function () {
+		document.querySelector(".more").addEventListener("click", function () {
+			this.requestAjax(this.categoryIdx, this.getProductListCount());
+		}.bind(eventTabObj));
+	},
 
-function initMorebtn() {
-	document.querySelector(".more").addEventListener("click", function () {
-		requestAjax(categoryIdx, getProductListCount());
-	});
-}
+	initCategory: function () {
+		document.querySelector(".event_tab_lst").addEventListener("click", function (evt) {
+			if (evt.target.tagName === "A" || evt.target.tagName === "SPAN") {
+				this.checkIdx(evt);
+				this.setActiveMenu(evt.target.closest("LI"));
+			}
+		}.bind(eventTabObj));
+	},
 
+	initEventTab: function(){
+		this.initMorebtn();
+		this.initCategory();
+	},
+	
+	getProductListCount: function () {
+		return (document.querySelector(".wrap_event_box").childElementCount * 2) - 2;
+	},
 
-function initCategoryTab() {
-	document.querySelector(".event_tab_lst").addEventListener("click", function (evt) {
-		if (evt.target.tagName === "A" || evt.target.tagName === "SPAN") {
-			checkIdx(evt);
-			setActiveMenu(evt.target.closest("LI"));
+	checkIdx: function (evt) {
+		let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
+
+		if (clicked_idx != this.categoryIdx) {
+			this.requestAjax(clicked_idx);
 		}
-	});
-}
+	},
 
+	 requestAjax: function(id = 0, turn = 0) {
+		let xhr = new XMLHttpRequest();
+		let params = "id=" + id + "&" + "turn=" + turn;
 
+		xhr.open("GET", 'http://localhost:8080/reservation/api/products?' + params, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-function getProductListCount() {
-	return (document.querySelector(".wrap_event_box").childElementCount * 2) - 2;
-}
+		xhr.addEventListener("load", function () {
+			eventTabObj.updateContents(JSON.parse(this.responseText), turn);
+		});
 
-function checkIdx(evt) {
-	let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
+		xhr.send();
+	},
+	
+	setActiveMenu: function (item) {
+		let inactivMenu = item.closest("UL").querySelector(`:nth-child(${this.categoryIdx + 1})`);
+		inactivMenu.querySelector(".anchor").classList.remove("active");
+		item.querySelector(".anchor").classList.add("active");
+		this.categoryIdx = parseInt(item.getAttribute("data-category"));
+	},
 
-	if (clicked_idx != categoryIdx) {
-		requestAjax(clicked_idx);
-	}
-}
+	updateContents: function (jsonData, turn) {
+		let templates = this.getTemplate(jsonData);
+		let moreBtn = document.querySelector(".more");
 
-function requestAjax(id = 0, turn = 0) {
-	let xhr = new XMLHttpRequest();
-	let params = "id=" + id + "&" + "turn=" + turn;
+		document.querySelector(".event_lst_txt .pink").innerText = jsonData["productCount"] + "개";
 
-	xhr.open("GET", 'http://localhost:8080/reservation/api/products?' + params, true);
-	xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-	xhr.addEventListener("load", function () {
-		updateContents(JSON.parse(this.responseText), turn);
-	});
-
-	xhr.send();
-}
-
-
-function updateContents(jsonData, turn) {
-	let templates = getTemplate(jsonData);
-	let moreBtn = document.querySelector(".more");
-
-	document.querySelector(".event_lst_txt .pink").innerText = jsonData["productCount"] + "개";
-
-	if (turn === 0) {
-		document.querySelector(".wrap_event_box").innerHTML = templates;
-	} else {
-		document.querySelector(".wrap_event_box").removeChild(moreBtn);
-		document.querySelector(".wrap_event_box").innerHTML += templates;
-	}
-
-	document.querySelector(".wrap_event_box").appendChild(moreBtn);
-
-	if (jsonData["productCount"] > 0 && getProductListCount() < jsonData["productCount"]) {
-		if (moreBtn.classList.contains("blind")) {
-			moreBtn.classList.remove("blind");
+		if (turn === 0) {
+			document.querySelector(".wrap_event_box").innerHTML = templates;
+		} else {
+			document.querySelector(".wrap_event_box").removeChild(moreBtn);
+			document.querySelector(".wrap_event_box").innerHTML += templates;
 		}
-	} else {
-		moreBtn.classList.add("blind");
-	}
-}
 
-function getTemplate(jsonData) {
-	let cardTemplate = null;
-	let itemList = "", cardList = "";
+		document.querySelector(".wrap_event_box").appendChild(moreBtn);
 
-	for (let i = 0; i < jsonData["products"].length; i++) {
-		itemList += document.querySelector("#template-card-item").innerHTML
-			.replace("{saveFileName}", "./resources/" + jsonData["products"][i]["saveFileName"])
-			.replace("{description}", jsonData["products"][i]["description"])
-			.replace("{placeName}", jsonData["products"][i]["placeName"])
-			.replace("{content}", jsonData["products"][i]["content"]);
+		if (jsonData["productCount"] > 0 && this.getProductListCount() < jsonData["productCount"]) {
+			if (moreBtn.classList.contains("blind")) {
+				moreBtn.classList.remove("blind");
+			}
+		} else {
+			moreBtn.classList.add("blind");
+		}
+	},
 
-		if (i % 2 != 0) {
+	getTemplate: function (jsonData) {
+		let cardTemplate = null;
+		let itemList = "", cardList = "";
+
+		for (let i = 0; i < jsonData["products"].length; i++) {
+			itemList += document.querySelector("#template-card-item").innerHTML
+				.replace("{saveFileName}", "./resources/" + jsonData["products"][i]["saveFileName"])
+				.replace("{description}", jsonData["products"][i]["description"])
+				.replace("{placeName}", jsonData["products"][i]["placeName"])
+				.replace("{content}", jsonData["products"][i]["content"]);
+
+			if (i % 2 != 0) {
+				cardTemplate = document.querySelector("#template-product-card").innerHTML;
+				cardTemplate = cardTemplate.replace("{item}", itemList);
+				cardList += cardTemplate;
+				itemList = "";
+			}
+		}
+
+		if (itemList != "") {
 			cardTemplate = document.querySelector("#template-product-card").innerHTML;
 			cardTemplate = cardTemplate.replace("{item}", itemList);
 			cardList += cardTemplate;
-			itemList = "";
 		}
+		return cardList;
 	}
-
-	if (itemList != "") {
-		cardTemplate = document.querySelector("#template-product-card").innerHTML;
-		cardTemplate = cardTemplate.replace("{item}", itemList);
-		cardList += cardTemplate;
-	}
-	return cardList;
-}
-
-
-function setActiveMenu(item) {
-	let inactivMenu = item.closest("UL").querySelector(`:nth-child(${categoryIdx + 1})`);
-	inactivMenu.querySelector(".anchor").classList.remove("active");
-	item.querySelector(".anchor").classList.add("active");
-	categoryIdx = parseInt(item.getAttribute("data-category"));
-}
+};
 
 const promotionObj = {
 	imageList: null,
@@ -130,7 +131,7 @@ const promotionObj = {
 			return this.slideLen - 1;
 		}
 		else {
-			return this.index - 1;
+			return index - 1;
 		}
 	},
 
@@ -146,6 +147,18 @@ const promotionObj = {
 		} else {
 			return index + 1;
 		}
+	},
+
+	moveImageEnd: function (idx) {
+		this.imgObject[idx]["pos"] = (this.slideLen - this.convertIndex(this.slideLen, this.imgObject[idx]["idx"])) * this.imageList.offsetWidth;
+		this.imgObject[idx]["img"].style.transition = "transform 0s";
+		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
+	},
+
+	moveImageOneStep: function (idx) {
+		this.imgObject[idx]["img"].style.transition = "transform 0.5s";
+		this.imgObject[idx]["pos"] -= this.imageList.offsetWidth;
+		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
 	},
 
 	slideImage: function () {
@@ -186,7 +199,6 @@ const promotionObj = {
 document.addEventListener("DOMContentLoaded", function () {
 	promotionObj.initPromotion();
 	promotionObj.slideImage();
-	initCategoryTab();
-	initMorebtn();
-	requestAjax(0);
+	eventTabObj.initEventTab();
+	eventTabObj.requestAjax(0);
 });
