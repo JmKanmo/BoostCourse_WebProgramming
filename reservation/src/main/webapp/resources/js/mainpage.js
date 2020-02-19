@@ -1,9 +1,3 @@
-
-let imageList = null;
-let imgObject = [];
-let slideLen = 0;
-
-
 let categoryIdx = 0;
 
 
@@ -112,95 +106,87 @@ function setActiveMenu(item) {
 	categoryIdx = parseInt(item.getAttribute("data-category"));
 }
 
+const promotionObj = {
+	imageList: null,
+	imgObject: [],
+	slideLen: 0,
 
-function initPromotion() {
-	imageList = document.querySelector(".visual_img");
-	slideLen = Math.floor(imageList.childNodes.length / 2);
+	initPromotion: function () {
+		this.imageList = document.querySelector(".visual_img");
+		this.slideLen = Math.floor(this.imageList.childNodes.length / 2);
 
-	for (let i = 1; i <= slideLen; i++) {
-		let elem = imageList.querySelector(`li:nth-child(${i})`);
-		imgObject.push({
-			pos: 0,
-			idx: i,
-			img: elem
-		});
-	}
-}
+		for (let i = 1; i <= this.slideLen; i++) {
+			let elem = this.imageList.querySelector(`li:nth-child(${i})`);
+			this.imgObject.push({
+				pos: 0,
+				idx: i,
+				img: elem
+			});
+		}
+	},
 
+	getNextIndex: function (index) {
+		if (index === 0) {
+			return this.slideLen - 1;
+		}
+		else {
+			return this.index - 1;
+		}
+	},
 
-function getNextIndex(index) {
-	if (index === 0) {
-		return slideLen - 1;
-	}
-	else {
-		return index - 1;
-	}
-}
+	convertIndex: function (slideLen, index) {
+		if (slideLen <= 1) {
+			return 0;
+		}
+		else if (slideLen > 1 && slideLen < 3) {
+			if (index == 1)
+				return 1;
+			else
+				return 2;
+		} else {
+			return index + 1;
+		}
+	},
 
-function convertIndex(slideLen, index) {
-	if (slideLen <= 1) {
-		return 0;
-	}
-	else if (slideLen > 1 && slideLen < 3) {
-		if (index == 1)
-			return 1;
-		else
-			return 2;
-	} else {
-		return index + 1;
-	}
-}
+	slideImage: function () {
+		setTimeout(() => {
+			for (let i = 0, flag = false; i < this.imgObject.length; i++) {
+				if (this.slideLen > 2) {
+					let next = this.getNextIndex(i);
+					this.moveImageOneStep(i);
 
-function moveImageEnd(idx) {
-	imgObject[idx]["pos"] = (slideLen - convertIndex(slideLen, imgObject[idx]["idx"])) * imageList.offsetWidth;
-	imgObject[idx]["img"].style.transition = "transform 0s";
-	imgObject[idx]["img"].style.transform = `translateX(${imgObject[idx]["pos"]}px)`;
-}
-
-function moveImageOneStep(idx) {
-	imgObject[idx]["img"].style.transition = "transform 0.5s";
-	imgObject[idx]["pos"] -= imageList.offsetWidth;
-	imgObject[idx]["img"].style.transform = `translateX(${imgObject[idx]["pos"]}px)`;
-}
-
-function slideImage() {
-	setTimeout(() => {
-		for (let i = 0, flag = false; i < imgObject.length; i++) {
-			if (slideLen > 2) {
-				let next = getNextIndex(i);
-				moveImageOneStep(i);
-
-				if (imgObject[next]["pos"] < -imgObject[next]["idx"] * imageList.offsetWidth) {
-					moveImageEnd(next);
-				}
-			} else {
-				if (imgObject[i]["pos"] <= -imgObject[i]["idx"] * imageList.offsetWidth) {
-					moveImageEnd(i);
-					flag = true;
-				} else {
-					let next = getNextIndex(i);
-
-					if (next != i && imgObject[getNextIndex(0)]["pos"] === -imgObject[getNextIndex(0)]["idx"] * imageList.offsetWidth) {
-						moveImageEnd(next);
+					if (this.imgObject[next]["pos"] < -this.imgObject[next]["idx"] * this.imageList.offsetWidth) {
+						this.moveImageEnd(next);
 					}
+				} else {
+					if (this.imgObject[i]["pos"] <= -this.imgObject[i]["idx"] * this.imageList.offsetWidth) {
+						this.moveImageEnd(i);
+						flag = true;
+					} else {
+						let next = this.getNextIndex(i);
 
-					moveImageOneStep(i);
+						if (next != i && this.imgObject[this.getNextIndex(0)]["pos"] === -this.imgObject[this.getNextIndex(0)]["idx"] * this.imageList.offsetWidth) {
+							this.moveImageEnd(next);
+						}
 
-					if (flag === true) {
-						moveImageOneStep(next);
+						this.moveImageOneStep(i);
+
+						if (flag === true) {
+							this.moveImageOneStep(next);
+						}
 					}
 				}
 			}
-		}
-		slideImage();
-	}, 1500);
-}
+			this.slideImage();
+		}, 1500);
+	}
+};
 
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function () {
-	initPromotion();
+	promotionObj.initPromotion();
+	promotionObj.slideImage();
 	initCategoryTab();
 	initMorebtn();
-	slideImage();
 	requestAjax(0);
 });
