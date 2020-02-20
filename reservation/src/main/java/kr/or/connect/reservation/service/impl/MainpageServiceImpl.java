@@ -34,9 +34,9 @@ public class MainpageServiceImpl implements MainpageService {
 
 	@Override
 	@Transactional
-	public List<Product> getProduct(int categoryId, int turn) {
+	public List<Product> getProduct(int categoryId, int turn, int limit) {
 		// TODO Auto-generated method stub
-		return mainpageDao.selectProduct(categoryId, turn);
+		return mainpageDao.selectProduct(categoryId, turn, limit);
 	}
 
 	@Override

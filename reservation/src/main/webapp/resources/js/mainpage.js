@@ -1,4 +1,5 @@
 
+// product event tab component object define
 const eventTabObj = {
 	categoryIdx: 0,
 
@@ -34,9 +35,9 @@ const eventTabObj = {
 		}
 	},
 
-	requestAjax: function (id = 0, turn = 0) {
+	requestAjax: function (id = 0, turn = 0, limit = 4) {
 		let xhr = new XMLHttpRequest();
-		let params = "id=" + id + "&" + "turn=" + turn;
+		let params = "id=" + id + "&" + "turn=" + turn + "&" + "limit=" + limit;
 
 		xhr.open("GET", 'http://localhost:8080/reservation/api/products?' + params, true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -97,6 +98,7 @@ const eventTabObj = {
 	}
 };
 
+// image promotion component object define
 const promotionObj = {
 	imageList: null,
 	imgObject: [],
