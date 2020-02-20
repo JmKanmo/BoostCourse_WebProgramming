@@ -11,22 +11,22 @@ const eventTabObj = {
 	initCategory: function () {
 		document.querySelector(".event_tab_lst").addEventListener("click", function (evt) {
 			if (evt.target.tagName === "A" || evt.target.tagName === "SPAN") {
-				this.checkIdx(evt);
+				this.callAjax(evt);
 				this.setActiveMenu(evt.target.closest("LI"));
 			}
 		}.bind(eventTabObj));
 	},
 
-	initEventTab: function(){
+	initEventTab: function () {
 		this.initMorebtn();
 		this.initCategory();
 	},
-	
+
 	getProductListCount: function () {
 		return (document.querySelector(".wrap_event_box").childElementCount * 2) - 2;
 	},
 
-	checkIdx: function (evt) {
+	callAjax: function (evt) {
 		let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
 
 		if (clicked_idx != this.categoryIdx) {
@@ -34,7 +34,7 @@ const eventTabObj = {
 		}
 	},
 
-	 requestAjax: function(id = 0, turn = 0) {
+	requestAjax: function (id = 0, turn = 0) {
 		let xhr = new XMLHttpRequest();
 		let params = "id=" + id + "&" + "turn=" + turn;
 
@@ -47,7 +47,7 @@ const eventTabObj = {
 
 		xhr.send();
 	},
-	
+
 	setActiveMenu: function (item) {
 		let inactivMenu = item.closest("UL").querySelector(`:nth-child(${this.categoryIdx + 1})`);
 		inactivMenu.querySelector(".anchor").classList.remove("active");
@@ -80,30 +80,20 @@ const eventTabObj = {
 	},
 
 	getTemplate: function (jsonData) {
-		let cardTemplate = null;
-		let itemList = "", cardList = "";
-
-		for (let i = 0; i < jsonData["products"].length; i++) {
-			itemList += document.querySelector("#template-card-item").innerHTML
-				.replace("{saveFileName}", "./resources/" + jsonData["products"][i]["saveFileName"])
-				.replace("{description}", jsonData["products"][i]["description"])
-				.replace("{placeName}", jsonData["products"][i]["placeName"])
-				.replace("{content}", jsonData["products"][i]["content"]);
-
-			if (i % 2 != 0) {
-				cardTemplate = document.querySelector("#template-product-card").innerHTML;
-				cardTemplate = cardTemplate.replace("{item}", itemList);
-				cardList += cardTemplate;
-				itemList = "";
+		let sliced_data = [
+			{
+				"products": jsonData["products"].slice(0, 2)
 			}
-		}
+			,
+			{
+				"products": jsonData["products"].slice(2, 4)
+			}
+		];
 
-		if (itemList != "") {
-			cardTemplate = document.querySelector("#template-product-card").innerHTML;
-			cardTemplate = cardTemplate.replace("{item}", itemList);
-			cardList += cardTemplate;
-		}
-		return cardList;
+		let template = document.querySelector("#template-product-list").innerText;
+		let bindTemplate = Handlebars.compile(template);
+		let ret_data = [bindTemplate(sliced_data[0]), bindTemplate(sliced_data[1])];
+		return ret_data[0] + ret_data[1];
 	}
 };
 
