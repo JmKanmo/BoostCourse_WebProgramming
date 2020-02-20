@@ -9,13 +9,13 @@ public class ReservationDaoSqls {
 	public static final String SELECT_ALL_PRODUCTS = "SELECT product.description, display.place_name, product.content, fi.save_file_name"
 			+ " FROM product, display_info display, file_info fi, product_image pi"
 			+ " WHERE product.id = display.product_id and pi.product_id = product.id and pi.file_id = fi.id "
-			+ "group by product.content limit :turn,:cnt";
+			+ "group by product.id limit :turn,:cnt";
 
 	public static final String SELECT_PRODUCTS_BY_CATEGORY = "SELECT product.description, display.place_name, product.content, fi.save_file_name"
 			+ " FROM product , display_info display, file_info fi, product_image pi"
 			+ " WHERE product.id = display.product_id and pi.product_id = product.id"
 			+ " and pi.file_id = fi.id and product.category_id = :id"
-			+ " group by product.content order by product.id limit :turn,:cnt";
+			+ " group by product.id order by product.id limit :turn,:cnt";
 
 	public static final String SELECT_ALL_PRODUCT_COUNT = "SELECT count(*) FROM product";
 
