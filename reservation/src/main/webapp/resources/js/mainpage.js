@@ -3,13 +3,21 @@
 const eventTabObj = {
 	categoryIdx: 0,
 
-	initMorebtn: function () {
+	drawCategoryTap: function (jsonData) {
+		let categoryTab = document.querySelector(".event_tab_lst");
+		let template = document.querySelector("#template-category-tab").innerText;
+		let bindTemplate = Handlebars.compile(template);
+		let ret = bindTemplate(jsonData);
+		categoryTab.innerHTML+=ret;
+	},
+	
+	setMorebtnEvent: function () {
 		document.querySelector(".more").addEventListener("click", function () {
-			this.requestAjax(this.categoryIdx, this.getProductListCount());
+			this.requestAjax("products", this.categoryIdx, this.getProductListCount());
 		}.bind(eventTabObj));
 	},
 
-	initCategory: function () {
+	setCategoryEvent: function () {
 		document.querySelector(".event_tab_lst").addEventListener("click", function (evt) {
 			if (evt.target.tagName === "A" || evt.target.tagName === "SPAN") {
 				this.callAjax(evt);
@@ -19,8 +27,10 @@ const eventTabObj = {
 	},
 
 	initEventTab: function () {
-		this.initMorebtn();
-		this.initCategory();
+		this.requestAjax("categories");
+		this.setMorebtnEvent();
+		this.setCategoryEvent();
+		this.requestAjax("products");
 	},
 
 	getProductListCount: function () {
@@ -31,19 +41,28 @@ const eventTabObj = {
 		let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
 
 		if (clicked_idx != this.categoryIdx) {
-			this.requestAjax(clicked_idx);
+			this.requestAjax("products", clicked_idx);
 		}
 	},
 
-	requestAjax: function (id = 0, turn = 0, limit = 4) {
+	requestAjax: function (target, id = 0, turn = 0, limit = 4) {
 		let xhr = new XMLHttpRequest();
-		let params = "id=" + id + "&" + "turn=" + turn + "&" + "limit=" + limit;
+		let params = target + "?" + "id=" + id + "&" + "turn=" + turn + "&" + "limit=" + limit;
 
-		xhr.open("GET", 'http://localhost:8080/reservation/api/products?' + params, true);
+		xhr.open("GET", 'http://localhost:8080/reservation/api/' + params, true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
-			eventTabObj.updateContents(JSON.parse(this.responseText), turn);
+			switch (target)
+			{
+				case 'products':
+					eventTabObj.updateContents(JSON.parse(this.responseText), turn);
+					break;
+					
+				case 'categories':
+					eventTabObj.drawCategoryTap(JSON.parse(this.responseText));
+					break;
+			}
 		});
 
 		xhr.send();
@@ -104,8 +123,12 @@ const promotionObj = {
 	imgObject: [],
 	slideLen: 0,
 
-	initPromotion: function () {
-		this.imageList = document.querySelector(".visual_img");
+	initPromotion : function () {
+		this.requestAjax();
+		this.slideImage();
+	},
+	
+	initField: function () {
 		this.slideLen = Math.floor(this.imageList.childNodes.length / 2);
 
 		for (let i = 1; i <= this.slideLen; i++) {
@@ -118,6 +141,28 @@ const promotionObj = {
 		}
 	},
 
+	drawPromotions: function (jsonData) {
+		this.imageList = document.querySelector(".visual_img");
+		let template = document.querySelector("#template-promotion").innerText;
+		let bindTemplate = Handlebars.compile(template);
+		let ret = bindTemplate(jsonData);
+		this.imageList.innerHTML = ret;
+	},
+	
+	requestAjax: function () {
+		let xhr = new XMLHttpRequest();
+
+		xhr.open("GET", 'http://localhost:8080/reservation/api/promotions', true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+		xhr.addEventListener("load", function () {
+			promotionObj.drawPromotions(JSON.parse(this.responseText));
+			promotionObj.initField();
+		});
+
+		xhr.send();
+	},
+	
 	getNextIndex: function (index) {
 		if (index === 0) {
 			return this.slideLen - 1;
@@ -190,7 +235,5 @@ const promotionObj = {
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function () {
 	promotionObj.initPromotion();
-	promotionObj.slideImage();
 	eventTabObj.initEventTab();
-	eventTabObj.requestAjax(0);
 });
