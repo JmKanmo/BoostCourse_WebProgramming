@@ -10,5 +10,5 @@ import org.springframework.context.annotation.PropertySource;
 @Import({ DBConfig.class })
 @PropertySource(value = { "classpath:application.properties" })
 public class ApplicationConfig {
-	
+
 }

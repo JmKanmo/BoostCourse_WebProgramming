@@ -43,25 +43,35 @@ public class MainpageDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
 		}
 		return ret;
 	}
 
 	public List<Promotion> selectPromotion() {
-		List<Promotion> ret = jdbc.query(ReservationDaoSqls.SELECT_PROMOTIONS, Collections.emptyMap(),
-				promotionMapper);
+		List<Promotion> ret = Collections.emptyList();
+
+		try {
+			ret = jdbc.query(ReservationDaoSqls.SELECT_PROMOTIONS, Collections.emptyMap(), promotionMapper);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return ret;
 	}
 
 	public List<Category> selectCategory() {
-		List<Category> ret = jdbc.query(ReservationDaoSqls.SELECT_CATEGORY, Collections.emptyMap(), categoryMapper);
+		List<Category> ret = Collections.emptyList();
+
+		try {
+			ret = jdbc.query(ReservationDaoSqls.SELECT_CATEGORY, Collections.emptyMap(), categoryMapper);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return ret;
 	}
 
 	public List<Product> selectProduct(int categoryId, int turn, int limit) {
 		Map<String, Integer> params = new HashMap<>();
-		List<Product> ret = null;
+		List<Product> ret = Collections.emptyList();
 
 		try {
 			if (categoryId == 0) {
@@ -78,9 +88,7 @@ public class MainpageDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
 		}
-
 		return ret;
 	}
 }

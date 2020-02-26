@@ -1,5 +1,6 @@
 package kr.or.connect.reservation.test;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -43,14 +44,7 @@ public class test {
 	}
 
 	@Test
-	public void test3() throws ParseException {
-		RestTemplate restTemplate = new RestTemplate();
-		String ret = restTemplate.getForObject("http://localhost:8080/reservation/api/products?id={id}&turn={turn}",
-				String.class, 1, 8);
-		JSONParser parser = new JSONParser();
-		JSONObject jsonObj = (JSONObject) parser.parse(ret);
-
-		Long productCount = (Long) jsonObj.get("productCount");
-		List<Map<String, Object>> list = (List<Map<String, Object>>) jsonObj.get("products");
+	public void test3() throws ParseException, SQLException {
+		
 	}
 }
