@@ -47,9 +47,9 @@ const eventTabObj = {
 
 	requestAjax: function (target, id = 0, turn = 0, limit = 4) {
 		let xhr = new XMLHttpRequest();
-		let params = target + "?" + "id=" + id + "&" + "turn=" + turn + "&" + "limit=" + limit;
+		let params = `${target}?id=${id}&turn=${turn}&limit=${limit}`;
 
-		xhr.open("GET", 'http://localhost:8080/reservation/api/' + params, true);
+		xhr.open("GET", '/reservation/api/' + params, true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
@@ -152,7 +152,7 @@ const promotionObj = {
 	requestAjax: function () {
 		let xhr = new XMLHttpRequest();
 
-		xhr.open("GET", 'http://localhost:8080/reservation/api/promotions', true);
+		xhr.open("GET", '/reservation/api/promotions', true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {

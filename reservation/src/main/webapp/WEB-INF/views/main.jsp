@@ -12,7 +12,7 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 <title>네이버 예약</title>
-<link href="./resources/css/style.css" rel="stylesheet">
+<link href="./resources/css/style.css?ver=1.1" rel="stylesheet">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
 	integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
@@ -35,7 +35,7 @@
 		</div>
 		<hr>
 		<div class="event">
-			<div class="section_visual">
+			<div id="top" class="section_visual">
 				<div class="group_visual">
 					<div class="container_visual">
 						<div class="prev_e" style="display: none;">
@@ -93,7 +93,7 @@
 	<!-- 푸터영역 -->
 	<footer>
 	<div class="gototop">
-		<a href="#" class="lnk_top"> <span class="lnk_top_text">TOP</span>
+		<a href="#top" class="lnk_top"> <span class="lnk_top_text">TOP</span>
 		</a>
 	</div>
 	<div class="footer">
@@ -103,7 +103,8 @@
 	</div>
 	</footer>
 
-	<script type="text/javascript" src="./resources/js/mainpage.js"></script>
+	<script type="text/javascript"
+		src="./resources/js/mainpage.js?ver=20200305"></script>
 </body>
 
 <!-- 이미지 프로모션 템플릿 -->
