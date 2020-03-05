@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.connect.reservation.dao.sql.MainpageDaoSqls;
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
@@ -33,13 +34,13 @@ public class MainpageDao {
 		try {
 			if (categoryId == 0) {
 				// 전체 상품개수 반홤
-				ret = jdbc.queryForObject(ReservationDaoSqls.SELECT_ALL_PRODUCT_COUNT, Collections.emptyMap(),
+				ret = jdbc.queryForObject(MainpageDaoSqls.SELECT_ALL_PRODUCT_COUNT, Collections.emptyMap(),
 						Integer.class);
 			} else {
 				// 카테고리별 상품개수 반환
 				Map<String, Integer> params = new HashMap<>();
 				params.put("id", categoryId);
-				ret = jdbc.queryForObject(ReservationDaoSqls.SELECT_PRODUCT_COUNT_BY_CATEGORY, params, Integer.class);
+				ret = jdbc.queryForObject(MainpageDaoSqls.SELECT_PRODUCT_COUNT_BY_CATEGORY, params, Integer.class);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,7 +52,7 @@ public class MainpageDao {
 		List<Promotion> ret = Collections.emptyList();
 
 		try {
-			ret = jdbc.query(ReservationDaoSqls.SELECT_PROMOTIONS, Collections.emptyMap(), promotionMapper);
+			ret = jdbc.query(MainpageDaoSqls.SELECT_PROMOTIONS, Collections.emptyMap(), promotionMapper);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,7 +63,7 @@ public class MainpageDao {
 		List<Category> ret = Collections.emptyList();
 
 		try {
-			ret = jdbc.query(ReservationDaoSqls.SELECT_CATEGORY, Collections.emptyMap(), categoryMapper);
+			ret = jdbc.query(MainpageDaoSqls.SELECT_CATEGORY, Collections.emptyMap(), categoryMapper);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,13 +79,13 @@ public class MainpageDao {
 				// 전체 상품정보 반환
 				params.put("turn", turn);
 				params.put("cnt", limit);
-				ret = jdbc.query(ReservationDaoSqls.SELECT_ALL_PRODUCTS, params, productMapper);
+				ret = jdbc.query(MainpageDaoSqls.SELECT_ALL_PRODUCTS, params, productMapper);
 			} else {
 				// 카테고리별 상품정보 반환
 				params.put("id", categoryId);
 				params.put("turn", turn);
 				params.put("cnt", limit);
-				ret = jdbc.query(ReservationDaoSqls.SELECT_PRODUCTS_BY_CATEGORY, params, productMapper);
+				ret = jdbc.query(MainpageDaoSqls.SELECT_PRODUCTS_BY_CATEGORY, params, productMapper);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

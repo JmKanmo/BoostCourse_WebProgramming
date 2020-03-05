@@ -1,6 +1,7 @@
 package kr.or.connect.reservation.dto;
 
 public class Product {
+	private int id;
 	private String description;
 	private String placeName;
 	private String content;
@@ -20,6 +21,14 @@ public class Product {
 
 	public void setPlaceName(String placeName) {
 		this.placeName = placeName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getContent() {

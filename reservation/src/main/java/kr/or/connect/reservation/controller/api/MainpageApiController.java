@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.apicontroller;
+package kr.or.connect.reservation.controller.api;
 
 import java.util.Collections;
 import java.util.HashMap;

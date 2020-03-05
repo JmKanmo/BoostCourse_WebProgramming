@@ -132,7 +132,7 @@
 	<ul class="lst_event_box">
 		{{#products}}
 		<li class="item">
-			<a href="/reservation/detail?id=5" class="item_book">
+			<a href="/reservation/detail?id={{id}}" class="item_book">
 				<div class="item_preview"> 
 					<img alt="" class="img_thumb" src=./resources/{{saveFileName}}>
 					<span class="img_border"></span>
