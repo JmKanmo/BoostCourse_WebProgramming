@@ -30,7 +30,7 @@
 					class="spr_bi ico_bk_logo">예약</span>
 				</a>
 			</h1>
-			<a class="btn_my"> <span class="viewReservation" title="예약확인">nebi25@naver</span>
+			<a class="btn_my"> <span title="예약확인">nebi25@naver</span>
 			</a> </header>
 		</div>
 		<hr>
@@ -132,7 +132,7 @@
 	<ul class="lst_event_box">
 		{{#products}}
 		<li class="item">
-			<a href="detail.html" class="item_book">
+			<a href="/reservation/detail?id=5" class="item_book">
 				<div class="item_preview"> 
 					<img alt="" class="img_thumb" src=./resources/{{saveFileName}}>
 					<span class="img_border"></span>
