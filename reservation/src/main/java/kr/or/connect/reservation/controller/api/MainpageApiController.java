@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.or.connect.reservation.service.MainpageService;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/mainpage/api")
 public class MainpageApiController {
 	private MainpageService mainpageService;
 
