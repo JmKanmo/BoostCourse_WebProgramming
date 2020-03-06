@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import kr.or.connect.reservation.dao.DetailpageDao;
 import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.Review;
+import kr.or.connect.reservation.dto.ReviewAvgCnt;
 import kr.or.connect.reservation.service.DetailpageService;
 
 @Service
@@ -33,5 +35,17 @@ public class DetailpageServiceImpl implements DetailpageService {
 	public int getEtcImageCount(int productId) {
 		// TODO Auto-generated method stub
 		return detailpageDao.getEtcImageCount(productId);
+	}
+
+	@Override
+	public ReviewAvgCnt getReviewAvgCnt(int productId) {
+		// TODO Auto-generated method stub
+		return detailpageDao.getUserReviewAvgCnt(productId);
+	}
+
+	@Override
+	public List<Review> getUserReview(int productId) {
+		// TODO Auto-generated method stub
+		return detailpageDao.selectReview(productId);
 	}
 }

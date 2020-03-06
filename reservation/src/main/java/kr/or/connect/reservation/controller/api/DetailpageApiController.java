@@ -27,4 +27,13 @@ public class DetailpageApiController {
 		ret.put("etcImgCnt", detailpageService.getEtcImageCount(productId));
 		return ret;
 	}
+
+	@GetMapping(path = "/review")
+	public Map<String, Object> review(
+			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId) {
+		Map<String, Object> ret = new HashMap<>();
+		ret.put("avgAndCnt", detailpageService.getReviewAvgCnt(productId));
+		ret.put("review", detailpageService.getUserReview(productId));
+		return ret;
+	}
 }
