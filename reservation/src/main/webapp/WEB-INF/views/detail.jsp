@@ -8,8 +8,9 @@
 	content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-<title>네이버 예약</title>
+<title>상세페이지</title>
 <link href="./resources/css/style.css?ver=1.1" rel="stylesheet">
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
 	integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
@@ -43,59 +44,20 @@
 							</a>
 						</h1>
 						<a href="./myreservation.html" class="btn_my"> <span
-							class="viewReservation" title="예약확인">예약확인</span>
+							title="예약확인">nebi25@naver.com</span>
 						</a>
 					</header>
 					<div class="pagination">
 						<div class="bg_pagination"></div>
 						<div class="figure_pagination">
-							<span class="num">1</span> <span class="num off">/ <span>2</span></span>
+							<span class="num sequence"></span> <span class="num range"></span>
 						</div>
 					</div>
 					<div class="group_visual">
 						<div>
-							<div class="container_visual" style="width: 414px; height: 414px;">
-								<ul class="visual_img detail_swipe">
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
-									<li class="item" style="width: 414px;"><img alt=""
-										class="img_thumb" src=""> <span class="img_bg"></span>
-										<div class="visual_txt">
-											<div class="visual_txt_inn">
-												<h2 class="visual_txt_tit">
-													<span></span>
-												</h2>
-												<p class="visual_txt_dsc"></p>
-											</div>
-										</div></li>
+							<div class="container_visual" style="width: 414px;">
+								<ul class="visual_img detail_swipe" style="height: 414px;">
+									<!-- image item 스크립트 표시 -->
 								</ul>
 							</div>
 							<div class="prev">
@@ -324,8 +286,23 @@
 		</div>
 	</footer>
 	<div id="photoviwer"></div>
-
 	<script type="text/javascript"
 		src="./resources/js/detailpage.js?ver=20200305"></script>
 </body>
+<!-- 이미지 프로모션 템플릿  -->
+<script type="text/template" id="template-promotion">
+	{{#image}}
+	<li class="item" style="width:100%;height:100%">
+		<img alt="" class="img_thumb" src=./resources/{{saveFileName}}> 
+		<span class="img_bg"></span>
+		<div class="visual_txt">
+			<div class="visual_txt_inn" style="height:100%">
+				<h2 class="visual_txt_tit">
+					<span class="product_description">{{description}}</span>
+				</h2>
+			</div>
+		</div>
+	</li>
+	{{/image}}
+</script>
 </html>

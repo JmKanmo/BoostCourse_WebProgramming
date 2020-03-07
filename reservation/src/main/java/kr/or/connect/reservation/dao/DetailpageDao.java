@@ -30,12 +30,12 @@ public class DetailpageDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public List<Product> selectProduct(int id) {
+	public List<Product> selectProduct(int productId) {
 		Map<String, Integer> params = new HashMap<>();
 		List<Product> ret = Collections.emptyList();
 
 		try {
-			params.put("id", id);
+			params.put("productId", productId);
 			ret = jdbc.query(DetailpageDaoSqls.SELECT_PRODUCT_BY_ID, params, productMapper);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class DetailpageDao {
 
 		try {
 			params.put("productId", productId);
-			ret = jdbc.query(DetailpageDaoSqls.SELECT_IMAGE_BY_ID, params, promotionMapper);
+			ret = jdbc.query(DetailpageDaoSqls.SELECT_PROMOTION_BY_ID, params, promotionMapper);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
