@@ -19,12 +19,20 @@ public class DetailpageApiController {
 		this.detailpageService = detailpageService;
 	}
 
-	@GetMapping(path = "/product")
-	public Map<String, Object> product(@RequestParam(name = "id", required = false, defaultValue = "0") int productId) {
+	@GetMapping(path = "/promotion")
+	public Map<String, Object> promotion(
+			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId) {
 		Map<String, Object> ret = new HashMap<>();
 		ret.put("product", detailpageService.getProduct(productId));
 		ret.put("image", detailpageService.getPromotion(productId));
 		ret.put("etcImgCnt", detailpageService.getEtcImageCount(productId));
+		return ret;
+	}
+
+	@GetMapping(path = "/product")
+	public Map<String, Object> product(@RequestParam(name = "productId", required = false, defaultValue = "0") int productId) {
+		Map<String, Object> ret = new HashMap<>();
+		ret.put("product", detailpageService.getProduct(productId));
 		return ret;
 	}
 

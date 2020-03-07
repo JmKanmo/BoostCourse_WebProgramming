@@ -3,14 +3,14 @@
 const eventTabObj = {
 	categoryIdx: 0,
 
-	drawCategoryTap: function (jsonData) {
+	updateCategoryTap: function (jsonData) {
 		let categoryTab = document.querySelector(".event_tab_lst");
 		let template = document.querySelector("#template-category-tab").innerText;
 		let bindTemplate = Handlebars.compile(template);
 		let ret = bindTemplate(jsonData);
-		categoryTab.innerHTML+=ret;
+		categoryTab.innerHTML += ret;
 	},
-	
+
 	setMorebtnEvent: function () {
 		document.querySelector(".more").addEventListener("click", function () {
 			this.requestAjax("products", this.categoryIdx, this.getProductListCount());
@@ -53,14 +53,13 @@ const eventTabObj = {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
-			switch (target)
-			{
+			switch (target) {
 				case 'products':
 					eventTabObj.updateContents(JSON.parse(this.responseText), turn);
 					break;
-					
+
 				case 'categories':
-					eventTabObj.drawCategoryTap(JSON.parse(this.responseText));
+					eventTabObj.updateCategoryTap(JSON.parse(this.responseText));
 					break;
 			}
 		});
@@ -123,11 +122,11 @@ const promotionObj = {
 	imgObject: [],
 	slideLen: 0,
 
-	initPromotion : function () {
+	initPromotion: function () {
 		this.requestAjax();
 		this.slideImage();
 	},
-	
+
 	initField: function () {
 		this.slideLen = Math.floor(this.imageList.childNodes.length / 2);
 
@@ -141,14 +140,14 @@ const promotionObj = {
 		}
 	},
 
-	drawPromotions: function (jsonData) {
+	updatePromotion: function (jsonData) {
 		this.imageList = document.querySelector(".visual_img");
 		let template = document.querySelector("#template-promotion").innerText;
 		let bindTemplate = Handlebars.compile(template);
 		let ret = bindTemplate(jsonData);
 		this.imageList.innerHTML = ret;
 	},
-	
+
 	requestAjax: function () {
 		let xhr = new XMLHttpRequest();
 
@@ -156,13 +155,13 @@ const promotionObj = {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
-			promotionObj.drawPromotions(JSON.parse(this.responseText));
+			promotionObj.updatePromotion(JSON.parse(this.responseText));
 			promotionObj.initField();
 		});
 
 		xhr.send();
 	},
-	
+
 	getNextIndex: function (index) {
 		if (index === 0) {
 			return this.slideLen - 1;

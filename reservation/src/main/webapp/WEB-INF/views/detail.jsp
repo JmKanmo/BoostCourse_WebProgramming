@@ -14,18 +14,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
 	integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
 	crossorigin="anonymous"></script>
-<style>
-.container_visual {
-	height: 414px;
-}
-</style>
-
-<script>
-	sch = location.search;
-	params = new URLSearchParams(sch);
-	var id = params.get('id');
-	console.log(id);
-</script>
 </head>
 
 <body>
@@ -48,9 +36,9 @@
 				<div class="section_visual">
 					<header>
 						<h1 class="logo">
-							<a href="./mainpage.html" class="lnk_logo" title="네이버"> <span
+							<a href="/reservation/main" class="lnk_logo" title="네이버"> <span
 								class="spr_bi ico_n_logo">네이버</span>
-							</a> <a href="./mainpage.html" class="lnk_logo" title="예약"> <span
+							</a> <a href="/reservation/main" class="lnk_logo" title="예약"> <span
 								class="spr_bi ico_bk_logo">예약</span>
 							</a>
 						</h1>
@@ -66,7 +54,7 @@
 					</div>
 					<div class="group_visual">
 						<div>
-							<div class="container_visual" style="width: 414px;">
+							<div class="container_visual" style="width: 414px; height: 414px;">
 								<ul class="visual_img detail_swipe">
 									<li class="item" style="width: 414px;"><img alt=""
 										class="img_thumb" src=""> <span class="img_bg"></span>
@@ -336,5 +324,8 @@
 		</div>
 	</footer>
 	<div id="photoviwer"></div>
+
+	<script type="text/javascript"
+		src="./resources/js/detailpage.js?ver=20200305"></script>
 </body>
 </html>
