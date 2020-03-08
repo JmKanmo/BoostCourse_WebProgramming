@@ -1,12 +1,12 @@
 package kr.or.connect.reservation.dto;
 
 public class Review {
-	private String description;
-	private String id;
+	private String description = "";
+	private String id = "";
 	private double score;
-	private String comment;
-	private String modify_date;
-	private String fileURL;
+	private String comment = "";
+	private String modify_date = "";
+	private String fileURL = "";
 
 	public String getDescription() {
 		return description;

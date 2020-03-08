@@ -2,10 +2,10 @@ package kr.or.connect.reservation.dto;
 
 public class Product {
 	private int id;
-	private String description;
-	private String placeName;
-	private String content;
-	private String saveFileName;
+	private String description = "";
+	private String placeName = "";
+	private String content = "";
+	private String saveFileName = "";
 
 	public String getDescription() {
 		return description;

@@ -2,7 +2,7 @@ package kr.or.connect.reservation.dto;
 
 public class Category {
 	private int id;
-	private String name;
+	private String name = "";
 
 	public int getId() {
 		return id;
