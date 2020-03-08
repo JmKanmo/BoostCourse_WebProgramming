@@ -22,25 +22,8 @@ const promotionObj = {
 	},
 
 	initField : function() {
-		this.imageList = document.querySelector(".visual_img");
-		this.sequence = document.querySelector(".sequence");
 		this.prevBtn = document.querySelector(".btn_prev");
 		this.nextBtn = document.querySelector(".btn_nxt");
-	},
-
-	updatePromotion : function(jsonData) {
-		if (jsonData["image"].length == 0) {
-			this.sequence.innerText = 0;
-			this.range.innerText = `/ ${0}`;
-		} else {
-			this.sequence.innerText = 1;
-			document.querySelector(".range").innerText = `/ ${jsonData["etcImgCnt"] + 1}`
-		}
-
-		let template = document.querySelector("#template-promotion").innerText;
-		let bindTemplate = Handlebars.compile(template);
-		let ret = bindTemplate(jsonData);
-		this.imageList.innerHTML = ret;
 		this.slideLen = Math.floor(this.imageList.childNodes.length / 2);
 
 		for (let i = 1; i <= this.slideLen; i++) {
@@ -53,6 +36,24 @@ const promotionObj = {
 		}
 	},
 
+	updatePromotion : function(jsonData) {
+		this.imageList = document.querySelector(".visual_img");
+		this.sequence = document.querySelector(".sequence");
+
+		if (jsonData["image"].length == 0) {
+			this.sequence.innerText = 0;
+			this.range.innerText = `/ ${0}`;
+		} else {
+			this.sequence.innerText = 1;
+			document.querySelector(".range").innerText = `/ ${jsonData["etcImgCnt"] + 1}`
+		}
+
+		let template = document.querySelector("#template-promotion").innerText;
+		let bindTemplate = Handlebars.compile(template);
+		let ret = bindTemplate(jsonData);
+		this.imageList.innerHTML = ret;
+	},
+
 	requestAjax : function(id) {
 		let xhr = new XMLHttpRequest();
 		let params = `promotion?productId=${id}`;
@@ -61,8 +62,8 @@ const promotionObj = {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function() {
-			promotionObj.initField();
 			promotionObj.updatePromotion(JSON.parse(this.responseText));
+			promotionObj.initField();
 			promotionObj.setEventListener();
 		});
 		xhr.send();
@@ -70,11 +71,11 @@ const promotionObj = {
 
 	setEventListener : function() {
 		this.prevBtn.addEventListener("click", function() {
-			this.moveImages(-1);
+			this.slideImageLeft(-1);
 		}.bind(promotionObj));
 
 		this.nextBtn.addEventListener("click", function() {
-			this.moveImages(1);
+			this.slideImageRight(1);
 		}.bind(promotionObj));
 	},
 
@@ -87,9 +88,7 @@ const promotionObj = {
 	},
 
 	convertIndex : function(slideLen, index) {
-		if (slideLen <= 1) {
-			return 0;
-		} else if (slideLen > 1 && slideLen < 3) {
+		if (slideLen <= 2) {
 			if (index == 1)
 				return 1;
 			else
@@ -99,7 +98,65 @@ const promotionObj = {
 		}
 	},
 
-	moveImages : function(sign) {
+	moveImageEnd : function(idx, sign) {
+		if (sign === -1) {
+			this.imgObject[idx]["pos"] = (this.slideLen - this.convertIndex(
+					this.slideLen, this.imgObject[idx]["idx"]))
+					* this.imageList.offsetWidth;
+		} else {
+			this.imgObject[idx]["pos"] = -this.imgObject[idx]["idx"]
+					* this.imageList.offsetWidth;
+		}
+		this.imgObject[idx]["img"].style.transition = "transform 0s";
+		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
+	},
+
+	moveImageOneStep : function(idx, sign) {
+		this.imgObject[idx]["img"].style.transition = "transform 0.5s";
+		if (sign === -1) {
+			this.imgObject[idx]["pos"] -= this.imageList.offsetWidth;
+		} else {
+			this.imgObject[idx]["pos"] += this.imageList.offsetWidth;
+		}
+		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
+	},
+
+	slideImageRight : function(sign) {
+		for (let i = this.imgObject.length - 1, flag = false; i >= 0; i--) {
+			if (i === this.slideLen - 1 && this.imgObject[i]["pos"] === 0) {
+				this.moveImageEnd(i, sign);
+				continue;
+			}
+
+			let next = this.getNextIndex(i);
+
+			if (!flag
+					&& this.imgObject[next]["pos"] === (this.slideLen - this.imgObject[next]["idx"])
+							* this.imageList.offsetWidth) {
+				this.moveImageEnd(next, sign);
+				flag = true;
+				continue;
+			}
+
+			if (flag) {
+				this.moveImageOneStep(i + 1, sign);
+				this.moveImageOneStep(i, sign);
+				flag = false;
+			} else {
+				this.moveImageOneStep(i, sign);
+			}
+
+			if (i === 0 && this.imgObject[i]["pos"] === 0)
+				continue;
+
+			if (this.imgObject[next]["pos"] <= -this.imgObject[next]["idx"]
+					* this.imageList.offsetWidth) {
+				this.moveImageOneStep(next, sign);
+			}
+		}
+	},
+
+	slideImageLeft : function(sign) {
 		for (let i = 0, flag = false; i < this.imgObject.length; i++) {
 			if (this.slideLen > 2) {
 				let next = this.getNextIndex(i);
@@ -132,21 +189,7 @@ const promotionObj = {
 				}
 			}
 		}
-	},
-
-	moveImageOneStep : function(idx, sign) {
-		this.imgObject[idx]["img"].style.transition = "transform 0.5s";
-		this.imgObject[idx]["pos"] -= (this.imageList.offsetWidth * sign);
-		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
-	},
-
-	moveImageEnd : function(idx, sign) {
-		this.imgObject[idx]["pos"] = (this.slideLen - this.convertIndex(
-				this.slideLen, this.imgObject[idx]["idx"]))
-				* this.imageList.offsetWidth * sign;
-		this.imgObject[idx]["img"].style.transition = "transform 0s";
-		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
-	},
+	}
 };
 
 // Execute all functions

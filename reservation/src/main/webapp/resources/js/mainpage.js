@@ -124,7 +124,7 @@ const promotionObj = {
 
 	initPromotion: function () {
 		this.requestAjax();
-		this.slideImage();
+		this.slideImageLeft();
 	},
 
 	initField: function () {
@@ -172,10 +172,7 @@ const promotionObj = {
 	},
 
 	convertIndex: function (slideLen, index) {
-		if (slideLen <= 1) {
-			return 0;
-		}
-		else if (slideLen > 1 && slideLen < 3) {
+		if (slideLen <=2) {
 			if (index == 1)
 				return 1;
 			else
@@ -185,48 +182,92 @@ const promotionObj = {
 		}
 	},
 
-	moveImageEnd: function (idx) {
-		this.imgObject[idx]["pos"] = (this.slideLen - this.convertIndex(this.slideLen, this.imgObject[idx]["idx"])) * this.imageList.offsetWidth;
+	moveImageEnd: function (idx, sign) {
+		if(sign === -1){
+			this.imgObject[idx]["pos"] = (this.slideLen - this.convertIndex(this.slideLen, this.imgObject[idx]["idx"])) * this.imageList.offsetWidth;	
+		}else{
+			this.imgObject[idx]["pos"] = -this.imgObject[idx]["idx"] * this.imageList.offsetWidth;
+		}
 		this.imgObject[idx]["img"].style.transition = "transform 0s";
 		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
 	},
 
-	moveImageOneStep: function (idx) {
+	moveImageOneStep: function (idx, sign) {
 		this.imgObject[idx]["img"].style.transition = "transform 0.5s";
-		this.imgObject[idx]["pos"] -= this.imageList.offsetWidth;
+		if(sign === -1){
+			this.imgObject[idx]["pos"] -= this.imageList.offsetWidth;	
+		}else{
+			this.imgObject[idx]["pos"] += this.imageList.offsetWidth;
+		}	
 		this.imgObject[idx]["img"].style.transform = `translateX(${this.imgObject[idx]["pos"]}px)`;
 	},
 
-	slideImage: function () {
+	slideImageRight: function(){
+		setTimeout(()=>{
+			for(let i=this.imgObject.length-1, flag= false;i>=0;i--){
+				if(i === this.slideLen-1 && this.imgObject[i]["pos"]===0) {
+					this.moveImageEnd(i,1);
+					continue;
+				}
+			
+				let next = this.getNextIndex(i);
+				
+				if(!flag && this.imgObject[next]["pos"] === (this.slideLen - this.imgObject[next]["idx"]) * this.imageList.offsetWidth){
+					this.moveImageEnd(next,1);
+					flag = true;
+					continue;
+				}
+				
+				if(flag){
+					this.moveImageOneStep(i+1,1);
+					this.moveImageOneStep(i,1);	
+					flag = false;
+				}
+				else{
+					this.moveImageOneStep(i,1);		
+				}
+				
+				if(i===0 && this.imgObject[i]["pos"]===0) 
+					continue;
+			
+				if(this.imgObject[next]["pos"]<= -this.imgObject[next]["idx"] * this.imageList.offsetWidth){
+					this.moveImageOneStep(next,1);
+				}	
+			}
+			this.slideImageRight();
+		},1500);
+	},
+
+	slideImageLeft: function () {
 		setTimeout(() => {
 			for (let i = 0, flag = false; i < this.imgObject.length; i++) {
 				if (this.slideLen > 2) {
 					let next = this.getNextIndex(i);
-					this.moveImageOneStep(i);
+					this.moveImageOneStep(i,-1);
 
 					if (this.imgObject[next]["pos"] < -this.imgObject[next]["idx"] * this.imageList.offsetWidth) {
-						this.moveImageEnd(next);
+						this.moveImageEnd(next,-1);
 					}
 				} else {
 					if (this.imgObject[i]["pos"] <= -this.imgObject[i]["idx"] * this.imageList.offsetWidth) {
-						this.moveImageEnd(i);
+						this.moveImageEnd(i,-1);
 						flag = true;
 					} else {
 						let next = this.getNextIndex(i);
 
 						if (next != i && this.imgObject[this.getNextIndex(0)]["pos"] === -this.imgObject[this.getNextIndex(0)]["idx"] * this.imageList.offsetWidth) {
-							this.moveImageEnd(next);
+							this.moveImageEnd(next,-1);
 						}
 
-						this.moveImageOneStep(i);
+						this.moveImageOneStep(i,-1);
 
 						if (flag === true) {
-							this.moveImageOneStep(next);
+							this.moveImageOneStep(next,-1);
 						}
 					}
 				}
 			}
-			this.slideImage();
+			this.slideImageLeft();
 		}, 1500);
 	}
 };
