@@ -72,11 +72,35 @@ const promotionObj = {
 	setEventListener : function() {
 		this.prevBtn.addEventListener("click", function() {
 			this.slideImageLeft(-1);
+			this.updateSequence(-1);
 		}.bind(promotionObj));
 
 		this.nextBtn.addEventListener("click", function() {
 			this.slideImageRight(1);
+			this.updateSequence(1);
 		}.bind(promotionObj));
+
+		if (this.slideLen <= 1) {
+			this.prevBtn.style.display = "none";
+			this.nextBtn.style.display = "none";
+		}
+	},
+
+	updateSequence : function(sign) {
+		let n = parseInt(this.sequence.innerText);
+
+		if (sign === 1) {
+			if (n + 1 > this.slideLen)
+				n = 1;
+			else
+				n++;
+		} else {
+			if (n - 1 === 0)
+				n = this.slideLen;
+			else
+				n--;
+		}
+		this.sequence.innerText = `${n}`;
 	},
 
 	getPrevIndex : function(index) {
@@ -190,7 +214,59 @@ const promotionObj = {
 	}
 };
 
+const eventContentObj = {
+
+	initEventContent : function() {
+		this.requestAjax(urlParser.getProductId());
+	},
+
+	updateContent : function(content) {
+		document.querySelector(".store_details .dsc").innerText = content;
+	},
+
+	setEventListener : function() {
+		$("._open").click(function() {
+			$(".store_details").css({
+				"height" : "auto",
+				"display" : "block"
+			});
+
+			$("._open").css("display", "none");
+			$("._close").css("display", "block");
+		});
+
+		$("._close").click(function() {
+			$(".store_details").css({
+				"height" : "73px",
+				"display" : "-webkit-box"
+			});
+
+			$("._open").css("display", "block");
+			$("._close").css("display", "none");
+		});
+	},
+
+	requestAjax : function(id) {
+		let xhr = new XMLHttpRequest();
+		let params = `product?productId=${id}`;
+
+		xhr.open("GET", '/reservation/detailpage/api/' + params, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+		xhr
+				.addEventListener(
+						"load",
+						function() {
+							let content = JSON.parse(this.responseText)["product"][0]["content"];
+							eventContentObj.updateContent(content);
+							eventContentObj.setEventListener();
+						});
+		xhr.send();
+	}
+};
+
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function() {
 	promotionObj.initPromotion();
+	eventContentObj.initEventContent();
 });

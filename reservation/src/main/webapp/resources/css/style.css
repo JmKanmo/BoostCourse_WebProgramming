@@ -2248,7 +2248,7 @@ button {
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	text-overflow: ellipsis;
-	display: -webkit-box !important
+	display: -webkit-box
 }
 
 .section_store_details .store_details .dsc {
