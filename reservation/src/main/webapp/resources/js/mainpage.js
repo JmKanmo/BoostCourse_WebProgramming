@@ -162,29 +162,23 @@ const promotionObj = {
 		xhr.send();
 	},
 
-	getNextIndex: function (index) {
-		if (index === 0) {
-			return this.slideLen - 1;
-		}
-		else {
+	getPrevIndex: function (index) {
+		if (index === 0)
+			return this.slideLen - 1;	
+		else 
 			return index - 1;
-		}
 	},
 
-	convertIndex: function (slideLen, index) {
-		if (slideLen <=2) {
-			if (index == 1)
-				return 1;
-			else
-				return 2;
-		} else {
+	getNextIndex: function (index){
+		if(index === this.slideLen -1) 
+			return 0;
+		else
 			return index + 1;
-		}
 	},
-
+	
 	moveImageEnd: function (idx, sign) {
 		if(sign === -1){
-			this.imgObject[idx]["pos"] = (this.slideLen - this.convertIndex(this.slideLen, this.imgObject[idx]["idx"])) * this.imageList.offsetWidth;	
+			this.imgObject[idx]["pos"] = (this.slideLen - this.imgObject[idx]["idx"]) * this.imageList.offsetWidth;	
 		}else{
 			this.imgObject[idx]["pos"] = -this.imgObject[idx]["idx"] * this.imageList.offsetWidth;
 		}
@@ -210,7 +204,7 @@ const promotionObj = {
 					continue;
 				}
 			
-				let next = this.getNextIndex(i);
+				let next = this.getPrevIndex(i);
 				
 				if(!flag && this.imgObject[next]["pos"] === (this.slideLen - this.imgObject[next]["idx"]) * this.imageList.offsetWidth){
 					this.moveImageEnd(next,1);
@@ -239,34 +233,30 @@ const promotionObj = {
 	},
 
 	slideImageLeft: function () {
-		setTimeout(() => {
-			for (let i = 0, flag = false; i < this.imgObject.length; i++) {
-				if (this.slideLen > 2) {
-					let next = this.getNextIndex(i);
-					this.moveImageOneStep(i,-1);
-
-					if (this.imgObject[next]["pos"] < -this.imgObject[next]["idx"] * this.imageList.offsetWidth) {
-						this.moveImageEnd(next,-1);
-					}
-				} else {
-					if (this.imgObject[i]["pos"] <= -this.imgObject[i]["idx"] * this.imageList.offsetWidth) {
-						this.moveImageEnd(i,-1);
-						flag = true;
-					} else {
-						let next = this.getNextIndex(i);
-
-						if (next != i && this.imgObject[this.getNextIndex(0)]["pos"] === -this.imgObject[this.getNextIndex(0)]["idx"] * this.imageList.offsetWidth) {
-							this.moveImageEnd(next,-1);
-						}
-
-						this.moveImageOneStep(i,-1);
-
-						if (flag === true) {
-							this.moveImageOneStep(next,-1);
-						}
-					}
+		setTimeout(() => {		
+			let leftOut = -1, leftEnd = -1;
+			
+			for(let i=0; i< this.slideLen; i++){
+				if(this.imgObject[i]["pos"] === (-this.imgObject[i]["idx"] * this.imageList.offsetWidth)){
+					leftOut = i;
+				}
+				if(this.imgObject[i]["pos"] === (-(this.imgObject[i]["idx"]-1) * this.imageList.offsetWidth)){
+					leftEnd = i;
 				}
 			}
+			
+			if(leftOut >= 0){
+				this.moveImageEnd(leftOut,-1);
+			}
+			
+			while(true){
+				if(this.imgObject[leftEnd]["pos"] === (this.slideLen - this.imgObject[leftEnd]["idx"]) * this.imageList.offsetWidth){
+					this.moveImageOneStep(leftEnd,-1);
+					break;
+				}
+				this.moveImageOneStep(leftEnd,-1);
+				leftEnd = this.getNextIndex(leftEnd);
+			}	
 			this.slideImageLeft();
 		}, 1500);
 	}
