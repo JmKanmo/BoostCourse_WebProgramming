@@ -19,4 +19,16 @@ public class PageController {
 		model.setViewName("detail");
 		return model;
 	}
+
+	@GetMapping(path = "/reserve")
+	public ModelAndView reservepage(ModelAndView model) throws ParseException {
+		model.setViewName("reserve");
+		return model;
+	}
+
+	@GetMapping(path = "/review")
+	public ModelAndView reviewpage(ModelAndView model) throws ParseException {
+		model.setViewName("review");
+		return model;
+	}
 }

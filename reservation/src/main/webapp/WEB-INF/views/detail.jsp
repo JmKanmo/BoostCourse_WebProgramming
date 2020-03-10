@@ -15,10 +15,9 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
 	integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
 	crossorigin="anonymous"></script>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -66,8 +65,8 @@
 							</div>
 							<div class="prev">
 								<div class="prev_inn">
-									<a href="#" class="btn_prev" title="이전"> <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
-										<i class="spr_book2 ico_arr6_lt off"></i>
+									<a href="#" class="btn_prev" title="이전"> <i
+										class="spr_book2 ico_arr6_lt"></i>
 									</a>
 								</div>
 							</div>
@@ -130,68 +129,14 @@
 						<div class="short_review_area">
 							<div class="grade_area">
 								<!-- [D] 별점 graph_value는 퍼센트 환산하여 width 값을 넣어줌 -->
-								<span class="graph_mask"> <em class="graph_value"
-									style="width: 84%;"></em>
-								</span> <strong class="text_value"> <span>4.2</span> <em
-									class="total">5.0</em>
+								<span class="graph_mask"> <em class="graph_value"></em>
+								</span> <strong class="text_value"> <span
+									class="user_comment_grade">4.2</span> <em class="total">5.0</em>
 								</strong> <span class="join_count"><em class="green">52건</em> 등록</span>
 							</div>
+
 							<ul class="list_short_review">
-								<li class="list_item">
-									<div>
-										<div class="review_area">
-											<div class="thumb_area">
-												<a href="#" class="thumb" title="이미지 크게 보기"> <img
-													width="90" height="90" class="img_vertical_top"
-													src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300"
-													alt="리뷰이미지">
-												</a> <span class="img_count" style="display: none;">1</span>
-											</div>
-											<h4 class="resoc_name"></h4>
-											<p class="review">2층이어서 걱정했는데 꽤잘보여서 좋았습니다 고미오 너무 멋있었습니다
-												사진은 커튼콜때 찍었습니다 끝나고 퇴근길도 봐서 너무 좋았어요</p>
-										</div>
-										<div class="info_area">
-											<div class="review_info">
-												<span class="grade">4.0</span> <span class="name">dbfl****</span>
-												<span class="date">2017.3.5. 방문</span>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li class="list_item">
-									<div>
-										<div class="review_area no_img">
-											<h4 class="resoc_name"></h4>
-											<p class="review">
-												너무 재밌게봤구요~<br>마지막공연 후 뒷풀이도 잘봤습니다
-											</p>
-										</div>
-										<div class="info_area">
-											<div class="review_info">
-												<span class="grade">5.0</span> <span class="name">yyck****</span>
-												<span class="date">2017.3.5. 방문</span>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li class="list_item">
-									<div>
-										<div class="review_area no_img">
-											<h4 class="resoc_name"></h4>
-											<p class="review">
-												좋은 공연이었습니다. <br>머큐쇼역활 하신분의 열창이 기억에 남는 반면에,,, 로미오는 별로
-												기억에 남지 않네요..
-											</p>
-										</div>
-										<div class="info_area">
-											<div class="review_info">
-												<span class="grade">4.0</span> <span class="name">xero****</span>
-												<span class="date">2017.3.4. 방문</span>
-											</div>
-										</div>
-									</div>
-								</li>
+								<!-- 예매자 한출평 리스트 작성 -->
 							</ul>
 						</div>
 						<p class="guide">
@@ -199,7 +144,7 @@
 								이용자가 남긴 평가입니다.</span>
 						</p>
 					</div>
-					<a class="btn_review_more" href="./review.html"> <span>예매자
+					<a class="btn_review_more" href="#" onclick="return false;"> <span>예매자
 							한줄평 더보기</span> <i class="fn fn-forward1"></i>
 					</a>
 				</div>
@@ -308,5 +253,34 @@
 		</div>
 	</li>
 	{{/image}}
+</script>
+
+<!-- 한줄평 템플릿 -->
+<script type="text/template" id="template-comment">
+	{{#review}}
+		<li class="list_item">
+			<div>
+				<div class="review_area">
+					<div class="thumb_area">
+						<a href="#" class="thumb {{blind}}" onclick="return false;"> 
+							<img width="90" height="90" class="img_vertical_top" alt="리뷰이미지" src= {{fileURL}} >
+						</a> 
+						<span class="img_count" style="display: none;">1</span>
+					</div>
+
+					<h4 class="resoc_name"></h4>
+					<p class="review">{{comment}}</p>
+				</div>
+
+				<div class="info_area">
+					<div class="review_info">
+						<span class="grade">{{score}}</span> 
+						<span class="name">{{id}}</span>
+						<span class="date">{{modify_date}} 방문</span>
+					</div>
+				</div>
+			</div>
+		</li>
+	{{/review}}
 </script>
 </html>

@@ -1,4 +1,4 @@
-// URL parser object
+// URL parser object define
 const urlParser = {
 	getProductId : function() {
 		sch = location.search;
@@ -8,7 +8,7 @@ const urlParser = {
 	}
 }
 
-// image promotion object
+// image promotion object define
 const promotionObj = {
 	imageList : null,
 	imgObject : [],
@@ -42,7 +42,7 @@ const promotionObj = {
 
 		if (jsonData["image"].length == 0) {
 			this.sequence.innerText = 0;
-			this.range.innerText = `/ ${0}`;
+			this.range.innerText = `/ 0`;
 		} else {
 			this.sequence.innerText = 1;
 			document.querySelector(".range").innerText = `/ ${jsonData["etcImgCnt"] + 1}`
@@ -214,8 +214,8 @@ const promotionObj = {
 	}
 };
 
+// event content Object define
 const eventContentObj = {
-
 	initEventContent : function() {
 		this.requestAjax(urlParser.getProductId());
 	},
@@ -226,21 +226,13 @@ const eventContentObj = {
 
 	setEventListener : function() {
 		$("._open").click(function() {
-			$(".store_details").css({
-				"height" : "auto",
-				"display" : "block"
-			});
-
+			$(".store_details").removeClass("close3");
 			$("._open").css("display", "none");
 			$("._close").css("display", "block");
 		});
 
 		$("._close").click(function() {
-			$(".store_details").css({
-				"height" : "73px",
-				"display" : "-webkit-box"
-			});
-
+			$(".store_details").addClass("close3");
 			$("._open").css("display", "block");
 			$("._close").css("display", "none");
 		});
@@ -265,8 +257,82 @@ const eventContentObj = {
 	}
 };
 
+// user reserve,comment object define
+const reservationObj = {
+	initReservation : function() {
+		this.requestAjax(urlParser.getProductId());
+	},
+
+	setEventListener : function() {
+		let bkBtn = document.querySelector(".bk_btn");
+		let reviewMoreBtn = document.querySelector(".btn_review_more");
+
+		bkBtn
+				.addEventListener(
+						"click",
+						function() {
+							location.href = `/reservation/reserve?id=${urlParser.getProductId()}`;
+						});
+
+		reviewMoreBtn
+				.addEventListener(
+						"click",
+						function() {
+							console.log(urlParser.getProductId());
+							location.href = `/reservation/review?id=${urlParser.getProductId()}`;
+						});
+	},
+
+	updateCommentGrade : function(JSONData) {
+		document.querySelector(".graph_value").style.width = `${JSONData["avgAndCnt"]["scoreAvg"]*20}%`;
+		document.querySelector(".user_comment_grade").innerText = JSONData["avgAndCnt"]["scoreAvg"];
+		document.querySelector(".join_count .green").innerText = `${JSONData["avgAndCnt"]["reviewCnt"]}건`;
+	},
+
+	updateUserComment : function(JSONData) {
+		let slicedData = JSONData["review"].reduce(function(init_val, cur_val,
+				idx, arr) {
+			if (idx < 3) {
+				if (cur_val["fileURL"] === "") {
+					cur_val["blind"] = "blind";
+				} else {
+					cur_val["blind"] = "";
+				}
+				cur_val["score"] = cur_val["score"].toFixed(1);
+				init_val["review"].push(cur_val);
+			}
+			return init_val;
+		}, {
+			"review" : []
+		});
+
+		let template = document.querySelector("#template-comment").innerText;
+		let bindTemplate = Handlebars.compile(template);
+		let ret = bindTemplate(slicedData);
+		let userCommentList = document.querySelector(".list_short_review");
+		userCommentList.innerHTML = ret;
+	},
+
+	requestAjax : function(id) {
+		let xhr = new XMLHttpRequest();
+		let params = `review?productId=${id}`;
+
+		xhr.open("GET", '/reservation/detailpage/api/' + params, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+		xhr.addEventListener("load", function() {
+			// 코드작성
+			reservationObj.setEventListener();
+			reservationObj.updateCommentGrade(JSON.parse(this.responseText));
+			reservationObj.updateUserComment(JSON.parse(this.responseText));
+		});
+		xhr.send();
+	}
+}
+
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function() {
 	promotionObj.initPromotion();
 	eventContentObj.initEventContent();
+	reservationObj.initReservation();
 });
