@@ -2,6 +2,7 @@ package kr.or.connect.reservation.service;
 
 import java.util.List;
 
+import kr.or.connect.reservation.dto.Display;
 import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.dto.Review;
@@ -17,4 +18,6 @@ public interface DetailpageService {
 	public ReviewAvgCnt getReviewAvgCnt(int productId);
 	
 	public List<Review> getUserReview(int productId);
+	
+	public Display getDisplayInfo(int displayInfoId);
 }

@@ -271,16 +271,16 @@
 
 <!-- display정보템플릿 -->
 <script type="text/template" id="template-display">
-	<h3 class="store_name">엔에이치엔티켓링크(주)</h3>
+	<h3 class="store_name">{{display.description}}</h3>
 		<div class="store_info">
 			<div class="store_addr_wrap">
 				<span class="fn fn-pin2"></span>
-				<p class="store_addr store_addr_bold">서울특별시 종로구 종로33길 15</p>
+				<p class="store_addr store_addr_bold">{{display.placeName}}</p>
 				<p class="store_addr">
 					<span class="addr_old">지번</span> 
-					<span class="addr_old_detail">서울특별시 종로구 연지동 270 </span>
+					<span class="addr_old_detail">{{display.placeLot}}</span>
 				/p>
-				<p class="store_addr addr_detail">두산아트센터 연강홀</p>
+				<p class="store_addr addr_detail">{{display.placeStreet}}</p>
 			</div>
 
 			<div class="lst_store_info_wrap">
@@ -292,7 +292,7 @@
 						</span> 
 
 						<span class="item_rt"> 
-							<a href="tel:02-548-0597" class="store_tel">02-548-0597</a>
+							<a href="tel:02-548-0597" class="store_tel">{{display.tel}}</a>
 						</span>
 					</li>
 				</ul>

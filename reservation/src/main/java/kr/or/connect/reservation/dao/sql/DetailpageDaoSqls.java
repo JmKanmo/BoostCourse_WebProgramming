@@ -19,4 +19,7 @@ public class DetailpageDaoSqls {
 			+ " FROM product prod, reservation_info ri, file_info fi RIGHT OUTER JOIN reservation_user_comment_image ruci"
 			+ " ON fi.id = ruci.file_id RIGHT OUTER JOIN reservation_user_comment ruc ON ruci.reservation_user_comment_id = ruc.id"
 			+ " WHERE prod.id = :productId and prod.id = ri.product_id and ruc.reservation_info_id = ri.id";
+
+	public static final String SELECT_DISPLAY_INFO = "SELECT prod.description, di.place_name, di.place_lot, di.place_street, di.tel"
+			+ " FROM display_info di, product prod WHERE di.id = :displayInfoId and di.product_id = prod.id";
 }

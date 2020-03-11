@@ -8,11 +8,11 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.connect.reservation.dao.sql.DetailpageDaoSqls;
+import kr.or.connect.reservation.dto.Display;
 import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.dto.Review;
@@ -21,10 +21,6 @@ import kr.or.connect.reservation.dto.ReviewAvgCnt;
 @Repository
 public class DetailpageDao {
 	private NamedParameterJdbcTemplate jdbc;
-	private RowMapper<Promotion> promotionMapper = BeanPropertyRowMapper.newInstance(Promotion.class);
-	private RowMapper<Product> productMapper = BeanPropertyRowMapper.newInstance(Product.class);
-	private RowMapper<ReviewAvgCnt> reviewAvgCntMapper = BeanPropertyRowMapper.newInstance(ReviewAvgCnt.class);
-	private RowMapper<Review> reviewMapper = BeanPropertyRowMapper.newInstance(Review.class);
 
 	public DetailpageDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -36,7 +32,8 @@ public class DetailpageDao {
 
 		try {
 			params.put("productId", productId);
-			ret = jdbc.query(DetailpageDaoSqls.SELECT_PRODUCT_BY_ID, params, productMapper);
+			ret = jdbc.query(DetailpageDaoSqls.SELECT_PRODUCT_BY_ID, params,
+					BeanPropertyRowMapper.newInstance(Product.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,7 +46,8 @@ public class DetailpageDao {
 
 		try {
 			params.put("productId", productId);
-			ret = jdbc.query(DetailpageDaoSqls.SELECT_PROMOTION_BY_ID, params, promotionMapper);
+			ret = jdbc.query(DetailpageDaoSqls.SELECT_PROMOTION_BY_ID, params,
+					BeanPropertyRowMapper.newInstance(Promotion.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -75,7 +73,22 @@ public class DetailpageDao {
 
 		try {
 			params.put("productId", productId);
-			ret = jdbc.queryForObject(DetailpageDaoSqls.USER_REVIEW_AVG_CNT, params, reviewAvgCntMapper);
+			ret = jdbc.queryForObject(DetailpageDaoSqls.USER_REVIEW_AVG_CNT, params,
+					BeanPropertyRowMapper.newInstance(ReviewAvgCnt.class));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+
+	public Display getDisplayInfo(int displayInfoId) {
+		Display ret = new Display();
+		Map<String, Integer> params = new HashMap<>();
+
+		try {
+			params.put("displayInfoId", displayInfoId);
+			ret = jdbc.queryForObject(DetailpageDaoSqls.SELECT_DISPLAY_INFO, params,
+					BeanPropertyRowMapper.newInstance(Display.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,7 +101,8 @@ public class DetailpageDao {
 
 		try {
 			params.put("productId", productId);
-			ret = jdbc.query(DetailpageDaoSqls.SELECT_USER_RIVIEW, params, reviewMapper);
+			ret = jdbc.query(DetailpageDaoSqls.SELECT_USER_RIVIEW, params,
+					BeanPropertyRowMapper.newInstance(Review.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

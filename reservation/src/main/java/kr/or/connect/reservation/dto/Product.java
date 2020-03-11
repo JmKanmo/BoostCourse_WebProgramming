@@ -4,6 +4,7 @@ public class Product {
 	private int id;
 	private String description = "";
 	private String placeName = "";
+	private int displayInfoId;
 	private String content = "";
 	private String saveFileName = "";
 
@@ -51,5 +52,13 @@ public class Product {
 	public String toString() {
 		return "Product [description=" + description + ", placeName=" + placeName + ", content=" + content
 				+ ", saveFileName=" + saveFileName + "]";
+	}
+
+	public int getDisplayInfoId() {
+		return displayInfoId;
+	}
+
+	public void setDisplayInfoId(int displayInfoId) {
+		this.displayInfoId = displayInfoId;
 	}
 }

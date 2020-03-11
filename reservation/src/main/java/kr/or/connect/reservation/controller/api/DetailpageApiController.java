@@ -44,4 +44,12 @@ public class DetailpageApiController {
 		ret.put("review", detailpageService.getUserReview(productId));
 		return ret;
 	}
+
+	@GetMapping(path = "/display")
+	public Map<String, Object> display(
+			@RequestParam(name = "displayInfoId", required = false, defaultValue = "0") int displayInfoId) {
+		Map<String, Object> ret = new HashMap<>();
+		ret.put("display", detailpageService.getDisplayInfo(displayInfoId));
+		return ret;
+	}
 }

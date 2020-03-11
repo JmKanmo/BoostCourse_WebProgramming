@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,9 +19,6 @@ import kr.or.connect.reservation.dto.Promotion;
 @Repository
 public class MainpageDao {
 	private NamedParameterJdbcTemplate jdbc;
-	private RowMapper<Promotion> promotionMapper = BeanPropertyRowMapper.newInstance(Promotion.class);
-	private RowMapper<Category> categoryMapper = BeanPropertyRowMapper.newInstance(Category.class);
-	private RowMapper<Product> productMapper = BeanPropertyRowMapper.newInstance(Product.class);
 
 	public MainpageDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -52,7 +48,8 @@ public class MainpageDao {
 		List<Promotion> ret = Collections.emptyList();
 
 		try {
-			ret = jdbc.query(MainpageDaoSqls.SELECT_PROMOTIONS, Collections.emptyMap(), promotionMapper);
+			ret = jdbc.query(MainpageDaoSqls.SELECT_PROMOTIONS, Collections.emptyMap(),
+					BeanPropertyRowMapper.newInstance(Promotion.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,7 +60,8 @@ public class MainpageDao {
 		List<Category> ret = Collections.emptyList();
 
 		try {
-			ret = jdbc.query(MainpageDaoSqls.SELECT_CATEGORY, Collections.emptyMap(), categoryMapper);
+			ret = jdbc.query(MainpageDaoSqls.SELECT_CATEGORY, Collections.emptyMap(),
+					BeanPropertyRowMapper.newInstance(Category.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,13 +77,15 @@ public class MainpageDao {
 				// 전체 상품정보 반환
 				params.put("turn", turn);
 				params.put("cnt", limit);
-				ret = jdbc.query(MainpageDaoSqls.SELECT_ALL_PRODUCTS, params, productMapper);
+				ret = jdbc.query(MainpageDaoSqls.SELECT_ALL_PRODUCTS, params,
+						BeanPropertyRowMapper.newInstance(Product.class));
 			} else {
 				// 카테고리별 상품정보 반환
 				params.put("id", categoryId);
 				params.put("turn", turn);
 				params.put("cnt", limit);
-				ret = jdbc.query(MainpageDaoSqls.SELECT_PRODUCTS_BY_CATEGORY, params, productMapper);
+				ret = jdbc.query(MainpageDaoSqls.SELECT_PRODUCTS_BY_CATEGORY, params,
+						BeanPropertyRowMapper.newInstance(Product.class));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

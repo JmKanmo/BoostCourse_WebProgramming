@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import kr.or.connect.reservation.dao.DetailpageDao;
+import kr.or.connect.reservation.dto.Display;
 import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.dto.Review;
@@ -47,5 +48,11 @@ public class DetailpageServiceImpl implements DetailpageService {
 	public List<Review> getUserReview(int productId) {
 		// TODO Auto-generated method stub
 		return detailpageDao.selectReview(productId);
+	}
+
+	@Override
+	public Display getDisplayInfo(int displayInfoId) {
+		// TODO Auto-generated method stub
+		return detailpageDao.getDisplayInfo(displayInfoId);
 	}
 }
