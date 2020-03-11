@@ -38,10 +38,10 @@ const eventTabObj = {
 	},
 
 	callAjax: function (evt) {
-		let clicked_idx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
+		let clickedIdx = parseInt(evt.target.closest("LI").getAttribute("data-category"));
 
-		if (clicked_idx != this.categoryIdx) {
-			this.requestAjax("products", clicked_idx);
+		if (clickedIdx != this.categoryIdx) {
+			this.requestAjax("products", clickedIdx);
 		}
 	},
 
@@ -99,7 +99,7 @@ const eventTabObj = {
 	},
 
 	getTemplate: function (jsonData) {
-		let sliced_data = [
+		let slicedData = [
 			{
 				"products": jsonData["products"].slice(0, 2)
 			}
@@ -111,8 +111,8 @@ const eventTabObj = {
 
 		let template = document.querySelector("#template-product-list").innerText;
 		let bindTemplate = Handlebars.compile(template);
-		let ret_data = [bindTemplate(sliced_data[0]), bindTemplate(sliced_data[1])];
-		return ret_data[0] + ret_data[1];
+		let retData = [bindTemplate(slicedData[0]), bindTemplate(slicedData[1])];
+		return retData[0] + retData[1];
 	}
 };
 

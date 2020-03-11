@@ -6,7 +6,7 @@ const urlParser = {
 		let id = params.get('id');
 		return id;
 	}
-}
+};
 
 // image promotion object define
 const promotionObj = {
@@ -291,7 +291,7 @@ const reservationObj = {
 
 	updateUserComment : function(JSONData) {
 		let slicedData = JSONData["review"].reduce(function(init_val, cur_val,
-				idx, arr) {
+				idx) {
 			if (idx < 3) {
 				if (cur_val["fileURL"] === "") {
 					cur_val["blind"] = "blind";
@@ -328,11 +328,91 @@ const reservationObj = {
 		});
 		xhr.send();
 	}
-}
+};
+
+// tab description obj
+const descTabObj = {
+	descTab : null,
+	detailDescription : null,
+	detailLocation : null,
+	inDescription : null,
+	locationInfoWrap : null,
+
+	initField : function() {
+		this.descTab = document.querySelector(".info_tab_lst");
+		this.detailDescription = document.querySelector(".detail_area_wrap");
+		this.detailLocation = document.querySelector(".detail_location");
+		this.inDescription = document.querySelector(".detail_info_lst .in_dsc");
+		this.locationInfoWrap = document.querySelector(".box_store_info");
+	},
+
+	setActiveTab : function(anchor) {
+		if (anchor.getAttribute("id") === "detailDesc") {
+			document.querySelector("#pathDesc").classList.remove("active");
+		} else {
+			document.querySelector("#detailDesc").classList.remove("active");
+		}
+		anchor.classList.add("active");
+	},
+
+	updateDescription : function(param) {
+		if (param === "상세정보") {
+			this.detailLocation.classList.add("hide");
+			this.detailDescription.classList.remove("hide");
+			this.requestAjax("product", urlParser.getProductId());
+		} else {
+			this.detailDescription.classList.add("hide");
+			this.detailLocation.classList.remove("hide");
+			this.requestAjax("display", urlParser.getProductId());
+		}
+	},
+
+	updateTemplate(target,jsonData){
+		if(target ==="product"){
+			this.inDescription.innerText = jsonData["content"];
+		}else{
+			// display정보를 통해 오시는길 템플릿 작성을 완성한다.
+			
+		}
+	},
+	
+	requestAjax : function(target, id) {
+		let xhr = new XMLHttpRequest();
+		let params = `${target}?productId=${id}`;
+
+		xhr.open("GET", '/reservation/detailpage/api/' + params, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+		xhr.addEventListener("load", function() {
+			descTabObj.updateTemplate(target,JSON.parse(this.responseText)["product"][0]);
+		});
+		xhr.send();
+	},
+
+	setEventListener : function() {
+		this.descTab.addEventListener("click", function(evt) {
+			// this.requestAjax(urlParser.getProductId());
+			if (evt.target.tagName === "SPAN") {
+				let anchor = evt.target.closest("A");
+				if(anchor.classList.contains("active") === false){
+					this.setActiveTab(anchor);
+					this.updateDescription(evt.target.innerText);	
+				}
+			}
+		}.bind(descTabObj));
+	},
+
+	initDescTab : function() {
+		this.initField();
+		this.setEventListener();
+		this.requestAjax("product", urlParser.getProductId());
+	}
+};
 
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function() {
 	promotionObj.initPromotion();
 	eventContentObj.initEventContent();
 	reservationObj.initReservation();
+	descTabObj.initDescTab();
 });

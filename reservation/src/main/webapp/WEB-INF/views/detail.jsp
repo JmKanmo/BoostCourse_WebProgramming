@@ -37,7 +37,7 @@
 		</div>
 		<div class="ct main">
 			<div>
-				<div class="section_visual">
+				<div id="top" class="section_visual">
 					<header>
 						<h1 class="logo">
 							<a href="/reservation/main" class="lnk_logo" title="네이버"> <span
@@ -152,9 +152,11 @@
 					<!-- [D] tab 선택 시 anchor에 active 추가 -->
 					<ul class="info_tab_lst">
 						<li class="item active _detail"><a href="#"
-							class="anchor active"> <span>상세정보</span>
+							class="anchor active" id="detailDesc" onclick="return false;">
+								<span>상세정보</span>
 						</a></li>
-						<li class="item _path"><a href="#" class="anchor"> <span>오시는길</span>
+						<li class="item _path"><a href="#" class="anchor"
+							id="pathDesc" onclick="return false;"> <span>오시는길</span>
 						</a></li>
 					</ul>
 					<!-- [D] 상세정보 외 다른 탭 선택 시 detail_area_wrap에 hide 추가 -->
@@ -189,26 +191,9 @@
 								<span class="img_border"></span> <span class="btn_map"><i
 									class="spr_book2 ico_mapview"></i></span>
 							</a>
-							<h3 class="store_name">엔에이치엔티켓링크(주)</h3>
-							<div class="store_info">
-								<div class="store_addr_wrap">
-									<span class="fn fn-pin2"></span>
-									<p class="store_addr store_addr_bold">서울특별시 종로구 종로33길 15</p>
-									<p class="store_addr">
-										<span class="addr_old">지번</span> <span class="addr_old_detail">서울특별시
-											종로구 연지동 270 </span>
-									</p>
-									<p class="store_addr addr_detail">두산아트센터 연강홀</p>
-								</div>
-								<div class="lst_store_info_wrap">
-									<ul class="lst_store_info">
-										<li class="item"><span class="item_lt"> <i
-												class="fn fn-call2"></i> <span class="sr_only">전화번호</span>
-										</span> <span class="item_rt"> <a href="tel:02-548-0597"
-												class="store_tel">02-548-0597</a></span></li>
-									</ul>
-								</div>
-							</div>
+
+							<!-- display정보 템플릿 위치 -->
+
 							<!-- [D] 모바일 브라우저에서 접근 시 column2 추가와 btn_navigation 요소 추가 -->
 							<div class="bottom_common_path column2">
 								<a href="#" class="btn_path"> <i class="fn fn-path-find2"></i>
@@ -225,7 +210,7 @@
 	</div>
 	<footer>
 		<div class="gototop">
-			<a href="#" class="lnk_top"> <span class="lnk_top_text">TOP</span>
+			<a href="#top" class="lnk_top"> <span class="lnk_top_text">TOP</span>
 			</a>
 		</div>
 		<div class="footer">
@@ -282,5 +267,36 @@
 			</div>
 		</li>
 	{{/review}}
+</script>
+
+<!-- display정보템플릿 -->
+<script type="text/template" id="template-display">
+	<h3 class="store_name">엔에이치엔티켓링크(주)</h3>
+		<div class="store_info">
+			<div class="store_addr_wrap">
+				<span class="fn fn-pin2"></span>
+				<p class="store_addr store_addr_bold">서울특별시 종로구 종로33길 15</p>
+				<p class="store_addr">
+					<span class="addr_old">지번</span> 
+					<span class="addr_old_detail">서울특별시 종로구 연지동 270 </span>
+				/p>
+				<p class="store_addr addr_detail">두산아트센터 연강홀</p>
+			</div>
+
+			<div class="lst_store_info_wrap">
+				<ul class="lst_store_info">
+					<li class="item">
+						<span class="item_lt"> 
+							<i class="fn fn-call2"></i> 
+							<span class="sr_only">전화번호</span>
+						</span> 
+
+						<span class="item_rt"> 
+							<a href="tel:02-548-0597" class="store_tel">02-548-0597</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
 </script>
 </html>
