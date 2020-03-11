@@ -278,7 +278,7 @@ const reservationObj = {
 			.addEventListener(
 				"click",
 				function () {
-					location.href = `/reservation/reserve?id=${urlParser.getProductId()}`;
+					location.href = `/reservation/reserve`;
 				});
 
 		reviewMoreBtn
