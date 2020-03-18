@@ -81,7 +81,7 @@ public class DetailpageDao {
 		return ret;
 	}
 
-	public Display getDisplayInfo(int displayInfoId) {
+	public Display selectDisplayInfo(int displayInfoId) {
 		Display ret = new Display();
 		Map<String, Integer> params = new HashMap<>();
 

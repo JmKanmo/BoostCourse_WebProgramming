@@ -2,6 +2,7 @@ package kr.or.connect.reservation.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.connect.reservation.dao.DetailpageDao;
@@ -14,11 +15,8 @@ import kr.or.connect.reservation.service.DetailpageService;
 
 @Service
 public class DetailpageServiceImpl implements DetailpageService {
+	@Autowired
 	private DetailpageDao detailpageDao;
-
-	public DetailpageServiceImpl(DetailpageDao detailpageDao) {
-		this.detailpageDao = detailpageDao;
-	}
 
 	@Override
 	public List<Product> getProduct(int id) {
@@ -53,6 +51,6 @@ public class DetailpageServiceImpl implements DetailpageService {
 	@Override
 	public Display getDisplayInfo(int displayInfoId) {
 		// TODO Auto-generated method stub
-		return detailpageDao.getDisplayInfo(displayInfoId);
+		return detailpageDao.selectDisplayInfo(displayInfoId);
 	}
 }
