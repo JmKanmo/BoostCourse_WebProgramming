@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="sql"/>
+		<item key="selection" value="getDisplayInfo"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="getDisplayInfo"/>
 			<item value="sql"/>
 			<item value="my-sql"/>
 			<item value="뒤로"/>
@@ -22,7 +23,6 @@
 			<item value="store_name"/>
 			<item value="has"/>
 			<item value="haas"/>
-			<item value="childNodes"/>
 		</list>
 		<list key="replacehistory">
 		</list>

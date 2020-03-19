@@ -9,25 +9,25 @@ import org.springframework.web.servlet.ModelAndView;
 public class PageController {
 
 	@GetMapping(path = "/main")
-	public ModelAndView mainpage(ModelAndView model) throws ParseException {
+	public ModelAndView mainPage(ModelAndView model) throws ParseException {
 		model.setViewName("main");
 		return model;
 	}
 
 	@GetMapping(path = "/detail")
-	public ModelAndView datailpage(ModelAndView model) throws ParseException {
+	public ModelAndView datailPage(ModelAndView model) throws ParseException {
 		model.setViewName("detail");
 		return model;
 	}
 
 	@GetMapping(path = "/reserve")
-	public ModelAndView reservepage(ModelAndView model) throws ParseException {
+	public ModelAndView reservationPage(ModelAndView model) throws ParseException {
 		model.setViewName("reserve");
 		return model;
 	}
 
 	@GetMapping(path = "/review")
-	public ModelAndView reviewpage(ModelAndView model) throws ParseException {
+	public ModelAndView reviewPage(ModelAndView model) throws ParseException {
 		model.setViewName("review");
 		return model;
 	}

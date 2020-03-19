@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.connect.guestbook.dto.GuestBook;
 import kr.or.connect.guestbook.service.GuestBookService;
@@ -21,6 +22,12 @@ public class GuestBookController {
 
 	public GuestBookController(GuestBookService guestbookService) {
 		this.guestbookService = guestbookService;
+	}
+
+	@GetMapping(path = "/index")
+	public ModelAndView mainpage(ModelAndView model) throws java.text.ParseException {
+		model.setViewName("index");
+		return model;
 	}
 
 	@GetMapping(path = "/list")
