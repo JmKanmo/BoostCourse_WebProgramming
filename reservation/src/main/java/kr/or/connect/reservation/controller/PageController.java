@@ -1,11 +1,9 @@
 package kr.or.connect.reservation.controller;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,20 +23,7 @@ public class PageController {
 	}
 
 	@GetMapping(path = "/reserve")
-	public ModelAndView reservationPage(ModelAndView model,
-			@CookieValue(value = "count", defaultValue = "1", required = true) String value,
-			HttpServletResponse response) throws ParseException {
-		try {
-			int i = Integer.parseInt(value);
-			value = Integer.toString(++i);
-		} catch (Exception ex) {
-			value = "1";
-		}
-		Cookie cookie = new Cookie("count", value);
-		cookie.setMaxAge(0); // 1년 동안 유지.
-		cookie.setPath("/"); // / 경로 이하에 모두 쿠키 적용.
-		response.addCookie(cookie);
-		model.addObject("cookieCount", value);
+	public ModelAndView reservationPage(ModelAndView model) {
 		model.setViewName("reserve");
 		return model;
 	}
@@ -46,6 +31,20 @@ public class PageController {
 	@GetMapping(path = "/review")
 	public ModelAndView reviewPage(ModelAndView model) throws ParseException {
 		model.setViewName("review");
+		return model;
+	}
+
+	@GetMapping(path = "/login")
+	public ModelAndView loginPage(ModelAndView model) throws ParseException {
+		model.setViewName("login");
+		return model;
+	}
+
+	@GetMapping(path = "/myreservation")
+	public ModelAndView myreservationPage(ModelAndView model, HttpServletRequest request) throws ParseException {
+		// dao를 통해, 요청 된 이메일의 예약내역이 있을경우, 세션에 정보저장
+		System.out.println(request.getParameter("resrv_email"));
+		model.setViewName("myreservation");
 		return model;
 	}
 }

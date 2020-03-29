@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="getDisplayInfo"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="img_bg_light"/>
+			<item value="//"/>
+			<item value="btn_my"/>
+			<item value="nebi25"/>
 			<item value="getDisplayInfo"/>
 			<item value="sql"/>
 			<item value="my-sql"/>
@@ -19,10 +23,6 @@
 			<item value="class=&quot;console.log(this.storeLocation.classList.c&quot;"/>
 			<item value="class=&quot;console.log(this.storeLocation.classList.contains(&quot;lst_store_info_wrap&quot;));&quot;"/>
 			<item value="store_info"/>
-			<item value="lst_store_info_wrap"/>
-			<item value="store_name"/>
-			<item value="has"/>
-			<item value="haas"/>
 		</list>
 		<list key="replacehistory">
 		</list>

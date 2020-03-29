@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -30,8 +30,16 @@
 					class="spr_bi ico_bk_logo">예약</span>
 				</a>
 			</h1>
-			<a class="btn_my"> <span title="예약확인">nebi25@naver</span>
-			</a> </header>
+			<c:choose>
+				<c:when test="${sessionScope.email != null}">
+					<a class="btn_my"> <span title="예약확인">${sessionScope.email}</span>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a class="btn_my" href="/reservation/login"> <span title="예약확인">예약확인</span>
+					</a>
+				</c:otherwise>
+			</c:choose> </header>
 		</div>
 		<hr>
 		<div class="event">

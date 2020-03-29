@@ -8,8 +8,8 @@ const urlParser = {
 	},
 
 	getDisplayInfoId: function () {
-		sch = location.search;
-		params = new URLSearchParams(sch);
+		let sch = location.search;
+		let params = new URLSearchParams(sch);
 		let id = params.get('displayInfoId');
 		return id;
 	}
