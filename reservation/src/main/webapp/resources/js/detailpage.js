@@ -1,8 +1,8 @@
 // URL parser object define
 const urlParser = {
 	getProductId: function () {
-		sch = location.search;
-		params = new URLSearchParams(sch);
+		let sch = location.search;
+		let params = new URLSearchParams(sch);
 		let id = params.get('id');
 		return id;
 	},

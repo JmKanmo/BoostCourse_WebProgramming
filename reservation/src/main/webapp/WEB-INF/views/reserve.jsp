@@ -4,16 +4,21 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-	<title>예약페이지</title>
-	<link href="./resources/css/style.css?ver=1.1" rel="stylesheet">
-	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
-		integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"
-		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="description"
+	content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+<title>예약페이지</title>
+<link href="./resources/css/style.css?ver=1.1" rel="stylesheet">
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+	integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,9 +27,10 @@
 		<div class="header fade">
 			<header class="header_tit">
 				<h1 class="logo">
-					<a href="./mainpage.html" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span>
+					<a href="./mainpage.html" class="lnk_logo" title="네이버"> <span
+						class="spr_bi ico_n_logo">네이버</span>
 					</a> <a href="./mainpage.html" class="lnk_logo" title="예약"> <span
-							class="spr_bi ico_bk_logo">예약</span>
+						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
 				<a href="#" class="btn_my"> <span title="예약확인">예약확인</span>
@@ -34,7 +40,8 @@
 		<div class="ct">
 			<div class="ct_wrap">
 				<div class="top_title">
-					<a href="javascript: window.history.back();" class="btn_back" title="이전 화면으로 이동"> <i class="fn fn-backward1"></i>
+					<a href="javascript: window.history.back();" class="btn_back"
+						title="이전 화면으로 이동"> <i class="fn fn-backward1"></i>
 					</a>
 					<h2>
 						<span class="title"></span>
@@ -43,16 +50,16 @@
 				<div class="group_visual">
 					<div class="container_visual" style="width: 414px;">
 						<ul class="visual_img">
-							<li class="item" style="width: 414px;"><img alt="" class="img_thumb"
-									src="https://ssl.phinf.net/naverbooking/20170217_264/1487312141947lTddT_JPEG/%B3%D7%C0%CC%B9%F6.jpg?type=ff1242_816">
+							<li class="item" style="width: 414px;"><img alt=""
+								class="img_thumb"
+								src="https://ssl.phinf.net/naverbooking/20170217_264/1487312141947lTddT_JPEG/%B3%D7%C0%CC%B9%F6.jpg?type=ff1242_816">
 								<span class="img_bg"></span>
 								<div class="preview_txt">
 									<h2 class="preview_txt_tit"></h2>
 									<em class="preview_txt_dsc">₩12,000 ~ </em><em
 										class="preview_txt_dsc">2017.2.17.(금)~2017.4.18.(화), 잔여티켓
 										2769매</em>
-								</div>
-							</li>
+								</div></li>
 						</ul>
 					</div>
 				</div>
@@ -80,10 +87,12 @@
 							<div class="count_control">
 								<!-- [D] 수량이 최소 값이 일때 ico_minus3, count_control_input에 disabled 각각 추가, 수량이 최대 값일 때는 ico_plus3에 disabled 추가 -->
 								<div class="clearfix">
-									<a href="#" class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기"> </a>
-									<input type="tel" class="count_control_input disabled" value="0" readonly
-										title="수량"> <a href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기">
-									</a>
+									<a href="#"
+										class="btn_plus_minus spr_book2 ico_minus3 disabled"
+										title="빼기"> </a> <input type="tel"
+										class="count_control_input disabled" value="0" readonly
+										title="수량"> <a href="#"
+										class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
 								</div>
 								<!-- [D] 금액이 0 이상이면 individual_price에 on_color 추가 -->
 								<div class="individual_price">
@@ -100,9 +109,10 @@
 						<div class="qty">
 							<div class="count_control">
 								<div class="clearfix">
-									<a href="#" class="btn_plus_minus spr_book2 ico_minus3" title="빼기"> </a> <input
-										type="tel" class="count_control_input" value="10" readonly title="수량"> <a
-										href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
+									<a href="#" class="btn_plus_minus spr_book2 ico_minus3"
+										title="빼기"> </a> <input type="tel" class="count_control_input"
+										value="10" readonly title="수량"> <a href="#"
+										class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
 								</div>
 								<div class="individual_price on_color">
 									<span class="total_price">68,000</span><span class="price_type">원</span>
@@ -118,9 +128,10 @@
 						<div class="qty">
 							<div class="count_control">
 								<div class="clearfix">
-									<a href="#" class="btn_plus_minus spr_book2 ico_minus3" title="빼기"> </a> <input
-										type="tel" class="count_control_input" value="3" readonly title="수량"> <a
-										href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
+									<a href="#" class="btn_plus_minus spr_book2 ico_minus3"
+										title="빼기"> </a> <input type="tel" class="count_control_input"
+										value="3" readonly title="수량"> <a href="#"
+										class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
 								</div>
 								<div class="individual_price on_color">
 									<span class="total_price">60,000</span><span class="price_type">원</span>
@@ -136,9 +147,10 @@
 						<div class="qty">
 							<div class="count_control">
 								<div class="clearfix">
-									<a href="#" class="btn_plus_minus spr_book2 ico_minus3" title="빼기"> </a> <input
-										type="tel" class="count_control_input" value="3" readonly title="수량"> <a
-										href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
+									<a href="#" class="btn_plus_minus spr_book2 ico_minus3"
+										title="빼기"> </a> <input type="tel" class="count_control_input"
+										value="3" readonly title="수량"> <a href="#"
+										class="btn_plus_minus spr_book2 ico_plus3" title="더하기"> </a>
 								</div>
 								<div class="individual_price on_color">
 									<span class="total_price">25,500</span><span class="price_type">원</span>
@@ -162,17 +174,17 @@
 							</div>
 							<form class="form_horizontal">
 								<div class="inline_form">
-									<label class="label" for="name"> <span class="spr_book ico_nessasary">필수</span>
-										<span>예매자</span>
+									<label class="label" for="name"> <span
+										class="spr_book ico_nessasary">필수</span> <span>예매자</span>
 									</label>
 									<div class="inline_control">
-										<input type="text" name="name" id="name" class="text" placeholder="네이버"
-											maxlength="17">
+										<input type="text" name="name" id="name" class="text"
+											placeholder="네이버" maxlength="17">
 									</div>
 								</div>
 								<div class="inline_form">
-									<label class="label" for="tel"> <span class="spr_book ico_nessasary">필수</span>
-										<span>연락처</span>
+									<label class="label" for="tel"> <span
+										class="spr_book ico_nessasary">필수</span> <span>연락처</span>
 									</label>
 									<div class="inline_control tel_wrap">
 										<input type="tel" name="tel" id="tel" class="tel" value=""
@@ -181,12 +193,12 @@
 									</div>
 								</div>
 								<div class="inline_form">
-									<label class="label" for="email"> <span class="spr_book ico_nessasary">필수</span>
-										<span>이메일</span>
+									<label class="label" for="email"> <span
+										class="spr_book ico_nessasary">필수</span> <span>이메일</span>
 									</label>
 									<div class="inline_control">
-										<input type="email" name="email" id="email" class="email" value=""
-											placeholder="crong@codesquad.kr" maxlength="50">
+										<input type="email" name="email" id="email" class="email"
+											value="" placeholder="crong@codesquad.kr" maxlength="50">
 									</div>
 								</div>
 								<div class="inline_form last">
@@ -202,8 +214,8 @@
 					</div>
 					<div class="section_booking_agreement">
 						<div class="agreement all">
-							<input type="checkbox" id="chk3" class="chk_agree"> <label for="chk3"
-								class="label chk_txt_label"> <span>이용자
+							<input type="checkbox" id="chk3" class="chk_agree"> <label
+								for="chk3" class="label chk_txt_label"> <span>이용자
 									약관 전체동의</span>
 							</label>
 							<div class="agreement_nessasary">
@@ -212,42 +224,39 @@
 						</div>
 						<!-- [D] 약관 보기 클릭 시 agreement에 open 클래스 추가 -->
 						<div class="agreement">
-							<span class="chk_txt_span"> <i class="spr_book ico_arr_ipc2"></i> <span>개인정보 수집 및 이용
-									동의</span>
+							<span class="chk_txt_span"> <i
+								class="spr_book ico_arr_ipc2"></i> <span>개인정보 수집 및 이용 동의</span>
 							</span> <a href="#" class="btn_agreement"> <span class="btn_text">보기</span>
 								<i class="fn fn-down2"></i>
 							</a>
 							<div class="useragreement_details">
-								&lt;개인정보 수집 및 이용 동의&gt;<br>
-								<br> 1. 수집항목 : [필수] 이름, 연락처, [선택] 이메일주소<br>
-								<br> 2. 수집 및 이용목적 : 사업자회원과 예약이용자의 원활한 거래 진행, 고객상담, 불만처리 등
-								민원 처리, 분쟁조정 해결을 위한 기록보존, 네이버 예약 이용 후 리뷰작성에 따른 네이버페이 포인트 지급 및 관련
-								안내<br>
-								<br> 3. 보관기간<br> - 회원탈퇴 등 개인정보 이용목적 달성 시까지 보관<br>
-								- 단, 상법 및 ‘전자상거래 등에서의 소비자 보호에 관한 법률’ 등 관련 법령에 의하여 일정 기간 보관이 필요한
-								경우에는 해당 기간 동안 보관함<br>
+								&lt;개인정보 수집 및 이용 동의&gt;<br> <br> 1. 수집항목 : [필수] 이름,
+								연락처, [선택] 이메일주소<br> <br> 2. 수집 및 이용목적 : 사업자회원과 예약이용자의
+								원활한 거래 진행, 고객상담, 불만처리 등 민원 처리, 분쟁조정 해결을 위한 기록보존, 네이버 예약 이용 후
+								리뷰작성에 따른 네이버페이 포인트 지급 및 관련 안내<br> <br> 3. 보관기간<br>
+								- 회원탈퇴 등 개인정보 이용목적 달성 시까지 보관<br> - 단, 상법 및 ‘전자상거래 등에서의 소비자
+								보호에 관한 법률’ 등 관련 법령에 의하여 일정 기간 보관이 필요한 경우에는 해당 기간 동안 보관함<br>
 								<br> 4. 동의 거부권 등에 대한 고지: 정보주체는 개인정보의 수집 및 이용 동의를 거부할 권리가
 								있으나, 이 경우 상품 및 서비스 예약이 제한될 수 있습니다.<br>
 							</div>
 						</div>
 						<!-- [D] 약관 보기 클릭 시 agreement에 open 클래스 추가 -->
 						<div class="agreement">
-							<span class="chk_txt_span"> <i class="spr_book ico_arr_ipc2"></i> <span>개인정보 제3자 제공
-									동의</span>
+							<span class="chk_txt_span"> <i
+								class="spr_book ico_arr_ipc2"></i> <span>개인정보 제3자 제공 동의</span>
 							</span> <a href="#" class="btn_agreement"> <span class="btn_text">보기</span>
 								<i class="fn fn-down2"></i>
 							</a>
 							<div class="useragreement_details custom_details_wrap">
 								<div class="custom_details">
-									&lt;개인정보 제3자 제공 동의&gt;<br>
-									<br> 1. 개인정보를 제공받는 자 : 미디어앤아트<br>
-									<br> 2. 제공하는 개인정보 항목 : [필수] 네이버 아이디, 이름, 연락처 [선택] 이메일 주소<br>
-									<br> 3. 개인정보를 제공받는 자의 이용목적 : 사업자회원과 예약이용자의 원활한 거래 진행,
-									고객상담, 불만처리 등 민원 처리, 서비스 이용에 따른 설문조사 및 혜택 제공, 분쟁조정 해결을 위한 기록보존<br>
-									<br> 4. 개인정보를 제공받는 자의 개인정보 보유 및 이용기간 : 개인정보 이용목적 달성 시 까지
-									보관합니다.<br>
-									<br> 5. 동의 거부권 등에 대한 고지 : 정보주체는 개인정보 제공 동의를 거부할 권리가 있으나, 이
-									경우 상품 및 서비스 예약이 제한될 수 있습니다.<br>
+									&lt;개인정보 제3자 제공 동의&gt;<br> <br> 1. 개인정보를 제공받는 자 :
+									미디어앤아트<br> <br> 2. 제공하는 개인정보 항목 : [필수] 네이버 아이디, 이름,
+									연락처 [선택] 이메일 주소<br> <br> 3. 개인정보를 제공받는 자의 이용목적 :
+									사업자회원과 예약이용자의 원활한 거래 진행, 고객상담, 불만처리 등 민원 처리, 서비스 이용에 따른 설문조사 및
+									혜택 제공, 분쟁조정 해결을 위한 기록보존<br> <br> 4. 개인정보를 제공받는 자의
+									개인정보 보유 및 이용기간 : 개인정보 이용목적 달성 시 까지 보관합니다.<br> <br> 5.
+									동의 거부권 등에 대한 고지 : 정보주체는 개인정보 제공 동의를 거부할 권리가 있으나, 이 경우 상품 및 서비스
+									예약이 제한될 수 있습니다.<br>
 								</div>
 							</div>
 						</div>
@@ -275,7 +284,8 @@
 			<span class="copyright">© NAVER Corp.</span>
 		</div>
 	</footer>
-	<script type="text/javascript" src="./resources/js/reservepage.js?ver=20200305"></script>
+	<script type="text/javascript"
+		src="./resources/js/reservepage.js?ver=20200305"></script>
 </body>
 
 </html>
