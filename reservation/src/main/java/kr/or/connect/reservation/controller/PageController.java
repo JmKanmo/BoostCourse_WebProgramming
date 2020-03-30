@@ -1,6 +1,7 @@
 package kr.or.connect.reservation.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,11 @@ public class PageController {
 	}
 
 	@GetMapping(path = "/myreservation")
-	public ModelAndView myreservationPage(ModelAndView model, HttpServletRequest request) throws ParseException {
-		// dao를 통해, 요청 된 이메일의 예약내역이 있을경우, 세션에 정보저장
-		System.out.println(request.getParameter("resrv_email"));
+	public ModelAndView myreservationPage(ModelAndView model, HttpServletRequest request, HttpSession session)
+			throws ParseException {
+		String resrvEmail = request.getParameter("resrv_email");
+		// 세션에 저장 된 이메일 정보가 없고 resrvEmail의 예약내역이 있을경우,세션에 정보저장
+		session.setAttribute("email", resrvEmail);
 		model.setViewName("myreservation");
 		return model;
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +26,25 @@
 		<div class="header fade">
 			<header class="header_tit">
 				<h1 class="logo">
-					<a href="./mainpage.html" class="lnk_logo" title="네이버"> <span
+					<a class="lnk_logo" href="/reservation/main" title="네이버"> <span
 						class="spr_bi ico_n_logo">네이버</span>
-					</a> <a href="./mainpage.html" class="lnk_logo" title="예약"> <span
+					</a> <a class="lnk_logo" title="예약"> <span
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<a href="#" class="btn_my"> <span title="예약확인">예약확인</span>
-				</a>
+				<c:choose>
+					<c:when test="${sessionScope.email != null}">
+						<a class="btn_my"
+							href="/reservation/myreservation?resrv_email=${sessionScope.email}">
+							<span title="예약확인">${sessionScope.email}</span>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a class="btn_my" href="/reservation/login"> <span
+							title="예약확인">예약확인</span>
+						</a>
+					</c:otherwise>
+				</c:choose>
 			</header>
 		</div>
 		<div class="ct main">
@@ -40,14 +52,25 @@
 				<div id="top" class="section_visual">
 					<header>
 						<h1 class="logo">
-							<a href="/reservation/main" class="lnk_logo" title="네이버"> <span
+							<a class="lnk_logo" href="/reservation/main" title="네이버"> <span
 								class="spr_bi ico_n_logo">네이버</span>
-							</a> <a href="/reservation/main" class="lnk_logo" title="예약"> <span
+							</a> <a class="lnk_logo" title="예약"> <span
 								class="spr_bi ico_bk_logo">예약</span>
 							</a>
 						</h1>
-						<a href="#" class="btn_my"> <span title="예약확인">nebi25@naver.com</span>
-						</a>
+						<c:choose>
+							<c:when test="${sessionScope.email != null}">
+								<a class="btn_my"
+									href="/reservation/myreservation?resrv_email=${sessionScope.email}">
+									<span title="예약확인">${sessionScope.email}</span>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a class="btn_my" href="/reservation/login"> <span
+									title="예약확인">예약확인</span>
+								</a>
+							</c:otherwise>
+						</c:choose>
 					</header>
 					<div class="pagination">
 						<div class="bg_pagination"></div>

@@ -32,7 +32,9 @@
 			</h1>
 			<c:choose>
 				<c:when test="${sessionScope.email != null}">
-					<a class="btn_my"> <span title="예약확인">${sessionScope.email}</span>
+					<a class="btn_my"
+						href="/reservation/myreservation?resrv_email=${sessionScope.email}">
+						<span title="예약확인">${sessionScope.email}</span>
 					</a>
 				</c:when>
 				<c:otherwise>
