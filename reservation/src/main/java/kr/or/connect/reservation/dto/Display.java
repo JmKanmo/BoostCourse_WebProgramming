@@ -1,11 +1,15 @@
 package kr.or.connect.reservation.dto;
 
 public class Display {
+	private String resrvDate = "";
 	private String description = "";
 	private String placeName = "";
 	private String placeLot = "";
 	private String placeStreet = "";
 	private String tel = "";
+	private String openingHours = "";
+	private String openingTerm = "";
+	private String saveFileName = "";
 
 	public String getDescription() {
 		return description;
@@ -47,9 +51,42 @@ public class Display {
 		this.tel = tel;
 	}
 
+	public String getOpeningHours() {
+		return openingHours;
+	}
+
+	public void setOpeningHours(String openingHours) {
+		this.openingHours = openingHours;
+	}
+
+	public String getOpeningTerm() {
+		return openingTerm;
+	}
+
+	public void setOpeningTerm(String openingTerm) {
+		this.openingTerm = openingTerm;
+	}
+
 	@Override
 	public String toString() {
 		return "Display [description=" + description + ", placeName=" + placeName + ", placeLot=" + placeLot
-				+ ", placeStreet=" + placeStreet + ", tel=" + tel + "]";
+				+ ", placeStreet=" + placeStreet + ", tel=" + tel + ", openingHours=" + openingHours + ", openingTerm="
+				+ openingTerm + "]";
+	}
+
+	public String getSaveFileName() {
+		return saveFileName;
+	}
+
+	public void setSaveFileName(String saveFileName) {
+		this.saveFileName = saveFileName;
+	}
+
+	public String getResrvDate() {
+		return resrvDate;
+	}
+
+	public void setResrvDate(String resrvDate) {
+		this.resrvDate = resrvDate;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,11 +15,8 @@ import kr.or.connect.reservation.service.MainpageService;
 @RestController
 @RequestMapping(path = "/mainpage/api")
 public class MainpageApiController {
+	@Autowired
 	private MainpageService mainpageService;
-
-	public MainpageApiController(MainpageService mainpageService) {
-		this.mainpageService = mainpageService;
-	}
 
 	@GetMapping(path = "/products")
 	public Map<String, Object> products(@RequestParam(name = "id", required = false, defaultValue = "0") int categoryId,

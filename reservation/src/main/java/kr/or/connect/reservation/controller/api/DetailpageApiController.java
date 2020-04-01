@@ -3,6 +3,7 @@ package kr.or.connect.reservation.controller.api;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,11 +14,8 @@ import kr.or.connect.reservation.service.DetailpageService;
 @RestController
 @RequestMapping(path = "/detailpage/api")
 public class DetailpageApiController {
+	@Autowired
 	private DetailpageService detailpageService;
-
-	public DetailpageApiController(DetailpageService detailpageService) {
-		this.detailpageService = detailpageService;
-	}
 
 	@GetMapping(path = "/promotion")
 	public Map<String, Object> promotion(
