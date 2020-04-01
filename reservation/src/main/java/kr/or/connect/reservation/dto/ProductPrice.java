@@ -4,6 +4,7 @@ public class ProductPrice {
 	private String priceTypeName = "";
 	private int price;
 	private double discountRate;
+	private double discountedPrice;
 
 	public String getPriceTypeName() {
 		return priceTypeName;
@@ -33,5 +34,13 @@ public class ProductPrice {
 	public String toString() {
 		return "ProductPrice [priceTypeName=" + priceTypeName + ", price=" + price + ", discountRate=" + discountRate
 				+ "]";
+	}
+
+	public double getDiscountedPrice() {
+		return discountedPrice;
+	}
+
+	public void setDiscountedPrice(double discountedPrice) {
+		this.discountedPrice = discountedPrice;
 	}
 }

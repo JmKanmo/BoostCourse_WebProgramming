@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.springframework.context.annotation.PropertySource"/>
-<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
-<fullyQualifiedTypeName name="org.springframework.context.support.PropertySourcesPlaceholderConfigurer"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-<fullyQualifiedTypeName name="kr.or.connect.guestbook.dto.Promotion"/>
-<fullyQualifiedTypeName name="kr.or.connect.guestbook.dto.Product"/>
-<fullyQualifiedTypeName name="javax.sql.DataSource"/>
-<fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
-<fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
-<fullyQualifiedTypeName name="kr.or.connect.reservation.config.ApplicationConfig"/>
-<fullyQualifiedTypeName name="kr.or.connect.reservation.dao.ReservationDao"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dao.MainpageDao"/>
@@ -29,7 +18,6 @@
 <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
 <fullyQualifiedTypeName name="org.springframework.core.env.Environment"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="java.io.StringWriter"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.exception.GlobalExceptionHandler"/>
@@ -38,7 +26,6 @@
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dto.Product"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dto.Promotion"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dao.DetailpageDao"/>
@@ -52,7 +39,6 @@
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dto.ReviewAvgCnt"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dto.Review"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
@@ -60,4 +46,18 @@
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CookieValue"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.argresolver.SessionInfo"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.argresolver.HandlerMethodArgumentResolver"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.argresolver.SessionInfoArgumentResolver"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.dto.Display"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.dao.ReservepageDao"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.service.ReservepageService"/>
+<fullyQualifiedTypeName name="org.springframework.dao.EmptyResultDataAccessException"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.dao.sql.ReservepageDaoSqls"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.dto.ProductPrice"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
