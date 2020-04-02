@@ -36,10 +36,11 @@ public class DetailpageApiController {
 
 	@GetMapping(path = "/review")
 	public Map<String, Object> review(
-			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId) {
+			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId,
+			@RequestParam(name = "displayInfoId", required = false, defaultValue = "0") int displayInfoId) {
 		Map<String, Object> ret = new HashMap<>();
-		ret.put("avgAndCnt", detailpageService.getReviewAvgCnt(productId));
-		ret.put("review", detailpageService.getUserReview(productId));
+		ret.put("avgAndCnt", detailpageService.getReviewAvgCnt(productId, displayInfoId));
+		ret.put("review", detailpageService.getUserReview(productId, displayInfoId));
 		return ret;
 	}
 

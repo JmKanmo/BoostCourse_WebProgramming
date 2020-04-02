@@ -168,7 +168,7 @@
 		</translater-modal>
 	</app>
 		<script type="text/javascript"
-		src="./resources/js/loginpage.js?ver=20200305"></script>
+		src="./resources/js/loginpage.js?ver=1.1"></script>
 </body>
 
 </html>

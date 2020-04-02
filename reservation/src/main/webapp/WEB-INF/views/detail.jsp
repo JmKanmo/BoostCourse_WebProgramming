@@ -245,7 +245,7 @@
 	</footer>
 	<div id="photoviwer"></div>
 	<script type="text/javascript"
-		src="./resources/js/detailpage.js?ver=20200305"></script>
+		src="./resources/js/detailpage.js?ver=1.1"></script>
 </body>
 <!-- 이미지 프로모션 템플릿  -->
 <script type="text/template" id="template-promotion">

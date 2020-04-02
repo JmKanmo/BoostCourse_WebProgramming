@@ -15,9 +15,9 @@ public interface DetailpageService {
 
 	public int getEtcImageCount(int productId);
 
-	public ReviewAvgCnt getReviewAvgCnt(int productId);
+	public ReviewAvgCnt getReviewAvgCnt(int productId, int displayInfoId);
 	
-	public List<Review> getUserReview(int productId);
+	public List<Review> getUserReview(int productId, int displayInfoId);
 	
 	public Display getDisplayInfo(int displayInfoId);
 }

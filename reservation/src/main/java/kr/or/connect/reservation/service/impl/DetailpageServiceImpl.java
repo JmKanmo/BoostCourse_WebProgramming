@@ -37,15 +37,15 @@ public class DetailpageServiceImpl implements DetailpageService {
 	}
 
 	@Override
-	public ReviewAvgCnt getReviewAvgCnt(int productId) {
+	public ReviewAvgCnt getReviewAvgCnt(int productId, int displayInfoId) {
 		// TODO Auto-generated method stub
-		return detailpageDao.getUserReviewAvgCnt(productId);
+		return detailpageDao.getUserReviewAvgCnt(productId, displayInfoId);
 	}
 
 	@Override
-	public List<Review> getUserReview(int productId) {
+	public List<Review> getUserReview(int productId, int displayInfoId) {
 		// TODO Auto-generated method stub
-		return detailpageDao.selectReview(productId);
+		return detailpageDao.selectReview(productId, displayInfoId);
 	}
 
 	@Override

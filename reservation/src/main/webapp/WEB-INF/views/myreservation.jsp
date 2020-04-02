@@ -487,6 +487,6 @@
 	</div>
 	<!--// 취소 팝업 -->
 	<script type="text/javascript"
-		src="./resources/js/myreservationpage.js?ver=20200305"></script>
+		src="./resources/js/myreservationpage.js?ver=1.1"></script>
 </body>
 </html>

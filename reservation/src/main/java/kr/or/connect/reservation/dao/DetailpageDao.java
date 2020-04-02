@@ -67,12 +67,13 @@ public class DetailpageDao {
 		return ret;
 	}
 
-	public ReviewAvgCnt getUserReviewAvgCnt(int productId) {
+	public ReviewAvgCnt getUserReviewAvgCnt(int productId, int displayInfoId) {
 		ReviewAvgCnt ret = new ReviewAvgCnt();
 		Map<String, Integer> params = new HashMap<>();
 
 		try {
 			params.put("productId", productId);
+			params.put("displayInfoId", displayInfoId);
 			ret = jdbc.queryForObject(DetailpageDaoSqls.USER_REVIEW_AVG_CNT, params,
 					BeanPropertyRowMapper.newInstance(ReviewAvgCnt.class));
 		} catch (Exception e) {
@@ -95,12 +96,13 @@ public class DetailpageDao {
 		return ret;
 	}
 
-	public List<Review> selectReview(int productId) {
+	public List<Review> selectReview(int productId, int displayInfoId) {
 		Map<String, Integer> params = new HashMap<>();
 		List<Review> ret = Collections.emptyList();
 
 		try {
 			params.put("productId", productId);
+			params.put("displayInfoId", displayInfoId);
 			ret = jdbc.query(DetailpageDaoSqls.SELECT_USER_RIVIEW, params,
 					BeanPropertyRowMapper.newInstance(Review.class));
 		} catch (Exception e) {

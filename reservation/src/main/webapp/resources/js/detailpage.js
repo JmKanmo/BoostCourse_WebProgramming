@@ -285,7 +285,7 @@ const reservationObj = {
 			.addEventListener(
 				"click",
 				function () {
-					location.href = `/reservation/review?id=${urlParser.getProductId()}`;
+					location.href = `/reservation/review?productId=${urlParser.getProductId()}&displayInfoId=${urlParser.getDisplayInfoId()}`;
 				});
 	},
 
@@ -321,7 +321,7 @@ const reservationObj = {
 
 	requestAjax: function (id) {
 		let xhr = new XMLHttpRequest();
-		let params = `review?productId=${id}`;
+		let params = `review?productId=${urlParser.getProductId()}&displayInfoId=${urlParser.getDisplayInfoId()}`;
 
 		xhr.open("GET", '/reservation/detailpage/api/' + params, true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

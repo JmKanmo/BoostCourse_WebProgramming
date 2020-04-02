@@ -114,7 +114,7 @@
 	</footer>
 
 	<script type="text/javascript"
-		src="./resources/js/mainpage.js?ver=20200305"></script>
+		src="./resources/js/mainpage.js?ver=1.1"></script>
 </body>
 
 <!-- 이미지 프로모션 템플릿 -->

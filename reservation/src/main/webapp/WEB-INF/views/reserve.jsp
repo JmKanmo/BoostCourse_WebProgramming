@@ -179,7 +179,7 @@
 		</div>
 	</footer>
 	<script type="text/javascript"
-		src="./resources/js/reservepage.js?ver=20200305"></script>
+		src="./resources/js/reservepage.js?ver=1.1"></script>
 </body>
 <!-- intro image list template script-->
 <script type="text/template" id="template-introImageList">

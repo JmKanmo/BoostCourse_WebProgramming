@@ -3,9 +3,16 @@ const urlParser = {
 	getProductId : function() {
 		let sch = location.search;
 		let params = new URLSearchParams(sch);
-		let id = params.get('id');
+		let id = params.get('productId');
 		return id;
 	},
+
+	getDisplayInfoId : function() {
+		let sch = location.search;
+		let params = new URLSearchParams(sch);
+		let id = params.get('displayInfoId');
+		return id;
+	}
 };
 
 // user comment object define
@@ -46,7 +53,7 @@ const commentObj = {
 
 	requestAjax : function(id) {
 		let xhr = new XMLHttpRequest();
-		let params = `review?productId=${id}`;
+		let params = `review?productId=${id}&displayInfoId=${urlParser.getDisplayInfoId()}`;
 
 		xhr.open("GET", '/reservation/detailpage/api/' + params, true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

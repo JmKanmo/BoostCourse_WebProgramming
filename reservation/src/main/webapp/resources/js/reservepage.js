@@ -43,15 +43,34 @@ class ContentManager{
 	}
 	
 	setEventListener(){
-		this.ticketBody.addEventListener("click", function(evt){
+		this.ticketBody.addEventListener("click", function(evt){			
+			let ticketCount = evt.target.closest(".clearfix").querySelector("input");
+			let ticketPrice = evt.target.closest(".count_control").querySelector(".total_price");
+			let discountedPrice = parseInt(evt.target.closest(".qty").querySelector(".product_dsc").innerText.split(' ')[0].slice(0,-1));
+			
 			if(evt.target.classList.contains("ico_plus3")){
 				// plus btn clicked
-				let a = evt.target.closest(".clearfix").querySelector("input");
-				console.log(a);
+				ticketCount.value = parseInt(ticketCount.value)+1;
+				ticketPrice.innerText = parseInt(ticketPrice.innerText) + discountedPrice;
+				this.ticketPurchase.querySelector("#totalCount").innerText = parseInt(this.ticketPurchase.querySelector("#totalCount").innerText) + 1;
+				evt.target.closest(".clearfix").querySelector(".ico_minus3").classList.remove("disabled");
+				evt.target.closest(".count_control").querySelector(".individual_price").classList.add("on_color");
+				ticketCount.classList.remove("disabled");
 			}else{
 				// minus btn clicked
+				if(parseInt(ticketCount.value)-1 < 0){
+					evt.target.classList.add("disabled");
+					ticketCount.classList.add("disabled");	
+				}else{
+					ticketCount.value = parseInt(ticketCount.value) - 1;
+					ticketPrice.innerText = parseInt(ticketPrice.innerText) - discountedPrice;
+					this.ticketPurchase.querySelector("#totalCount").innerText = parseInt(this.ticketPurchase.querySelector("#totalCount").innerText) - 1;
+					if(parseInt(ticketPrice.innerText) <= 0){
+						evt.target.closest(".count_control").querySelector(".individual_price").classList.remove("on_color");
+					}
+				}	
 			}	
-		});
+		}.bind(this));
 	}
 	
 	updateContent(jsonData){

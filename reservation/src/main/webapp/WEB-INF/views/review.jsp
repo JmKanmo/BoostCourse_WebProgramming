@@ -84,7 +84,7 @@
 		</div>
 	</footer>
 	<script type="text/javascript"
-		src="./resources/js/reviewpage.js?ver=20200305"></script>
+		src="./resources/js/reviewpage.js?ver=1.1"></script>
 </body>
 <!-- 한줄평 템플릿 -->
 <script type="text/template" id="template-comment">
