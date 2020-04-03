@@ -1326,6 +1326,42 @@ button {
 	padding-left: 10px;
 }
 
+.form_horizontal .inline_form .inline_control.email_wrap {
+	position: relative;
+}
+
+.inline_form .inline_control.email_wrap .warning_msg {
+	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #ffffff;
+	visibility: hidden;
+	height: 26px;
+	line-height: 26px;
+	width: 98%;
+	color: red;
+	padding-left: 10px;
+}
+
+.form_horizontal .inline_form .inline_control.name_wrap {
+	position: relative;
+}
+
+.inline_form .inline_control.name_wrap .warning_msg {
+	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #ffffff;
+	visibility: hidden;
+	height: 26px;
+	line-height: 26px;
+	width: 98%;
+	color: red;
+	padding-left: 10px;
+}
+
 .container_visual {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;

@@ -71,14 +71,16 @@
 							<div class="agreement_nessasary help_txt">
 								<span class="spr_book ico_nessasary"></span> <span>필수입력</span>
 							</div>
-							<form class="form_horizontal">
+							<form class="form_horizontal" name="resrvForm" action="" method="POST">
 								<div class="inline_form">
 									<label class="label" for="name"> <span
 										class="spr_book ico_nessasary">필수</span> <span>예매자</span>
 									</label>
-									<div class="inline_control">
+									<div class="inline_control name_wrap">
 										<input type="text" name="name" id="name" class="text"
-											placeholder="네이버" maxlength="17">
+											placeholder="이름을 입력하세요" maxlength="17"> 
+											<div class="warning_msg">형식이 틀렸거나 너무 짧아요</div>
+											<input type="hidden" name="resrvName" value="" />
 									</div>
 								</div>
 								<div class="inline_form">
@@ -89,26 +91,34 @@
 										<input type="tel" name="tel" id="tel" class="tel" value=""
 											placeholder="휴대폰 입력 시 예매내역 문자발송">
 										<div class="warning_msg">형식이 틀렸거나 너무 짧아요</div>
+										<input type="hidden" name="resrvTel" value="" />
 									</div>
 								</div>
 								<div class="inline_form">
 									<label class="label" for="email"> <span
 										class="spr_book ico_nessasary">필수</span> <span>이메일</span>
 									</label>
-									<div class="inline_control">
+									<div class="inline_control email_wrap">
 										<input type="email" name="email" id="email" class="email"
-											value="" placeholder="crong@codesquad.kr" maxlength="50">
+											value="" placeholder="이메일을 입력하세요" maxlength="50">
+										<div class="warning_msg">형식이 틀렸거나 너무 짧아요</div>
+										<input type="hidden" name="resrvEmail" value="" />
 									</div>
 								</div>
 								<div class="inline_form last ticket_purchase">
 									<!-- ticket purchase template script -->
 								</div>
+								<input type="hidden" name="resrvDate" value="" /> <input
+									type="hidden" name="productId" value="" /> <input
+									type="hidden" name="displayInfoId" value="" /> <input
+									type="hidden" name="totalTicket" value="" /><input
+									type="hidden" name="productPriceId" value="" />
 							</form>
 						</div>
 					</div>
 					<div class="section_booking_agreement">
 						<div class="agreement all">
-							<input type="checkbox" id="chk3" class="chk_agree"> <label
+							<input type="checkbox" id="chk3" class="chk_agree" value = "off"> <label
 								for="chk3" class="label chk_txt_label"> <span>이용자
 									약관 전체동의</span>
 							</label>
@@ -246,7 +256,7 @@
 	<label class="label" for="message">예매내용</label>
 	<div class="inline_control">
 		<p class="inline_txt selected">
-			{{display.resrvDate}}, 총 <span id="totalCount">0</span>매
+			{{display.resrvDate}}, 총 <span totalPrice = "${0}" id="totalCount">0</span>매
 		</p>
 	</div>
 </script>
