@@ -130,7 +130,7 @@
 						<div class="agreement">
 							<span class="chk_txt_span"> <i
 								class="spr_book ico_arr_ipc2"></i> <span>개인정보 수집 및 이용 동의</span>
-							</span> <a href="#" class="btn_agreement"> <span class="btn_text">보기</span>
+							</span> <a href="#" class="btn_agreement" onclick="return false"> <span class="btn_text">보기</span>
 								<i class="fn fn-down2"></i>
 							</a>
 							<div class="useragreement_details">
@@ -148,7 +148,7 @@
 						<div class="agreement">
 							<span class="chk_txt_span"> <i
 								class="spr_book ico_arr_ipc2"></i> <span>개인정보 제3자 제공 동의</span>
-							</span> <a href="#" class="btn_agreement"> <span class="btn_text">보기</span>
+							</span> <a href="#" class="btn_agreement" onclick="return false"> <span class="btn_text">보기</span>
 								<i class="fn fn-down2"></i>
 							</a>
 							<div class="useragreement_details custom_details_wrap">
@@ -221,7 +221,7 @@
 
 <script type="text/template" id="template-ticketBox">
 	{{#price}}
-	<div class="qty">
+	<div id = "{{@index}}" class="qty">
 		<div class="count_control">
 		<!-- [D] 수량이 최소 값이 일때 ico_minus3, count_control_input에 disabled 각각 추가, 수량이 최대 값일 때는 ico_plus3에 disabled 추가 -->
 			<div class="clearfix">
@@ -256,7 +256,7 @@
 	<label class="label" for="message">예매내용</label>
 	<div class="inline_control">
 		<p class="inline_txt selected">
-			{{display.resrvDate}}, 총 <span totalPrice = "${0}" id="totalCount">0</span>매
+			{{display.resrvDate}}, 총 <span id="totalCount">0</span>매, <span id="totalPrice">0</span>원
 		</p>
 	</div>
 </script>
