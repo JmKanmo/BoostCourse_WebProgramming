@@ -5,10 +5,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.connect.reservation.dto.Reservation;
+import kr.or.connect.reservation.dto.ReservationPrice;
 import kr.or.connect.reservation.service.ReservepageService;
 
 @RestController
@@ -25,5 +29,14 @@ public class ReservepageApiController {
 		ret.put("display", reservepageService.getDisplayInfo(productId, displayInfoId));
 		ret.put("price", reservepageService.getProductPriceInfo(productId));
 		return ret;
+	}
+
+	@PostMapping(path = "/reservations")
+	public boolean reservations(@ModelAttribute Reservation reservation) {
+		System.out.println();
+		for (ReservationPrice elem : reservation.getReservationPrice()) {
+			System.out.println(elem.toString());
+		}
+		return true;
 	}
 }

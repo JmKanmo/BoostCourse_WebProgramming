@@ -1,6 +1,7 @@
 package kr.or.connect.reservation.dto;
 
 public class ProductPrice {
+	private int id;
 	private String priceTypeName = "";
 	private int price;
 	private double discountRate;
@@ -42,5 +43,13 @@ public class ProductPrice {
 
 	public void setDiscountedPrice(double discountedPrice) {
 		this.discountedPrice = discountedPrice;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

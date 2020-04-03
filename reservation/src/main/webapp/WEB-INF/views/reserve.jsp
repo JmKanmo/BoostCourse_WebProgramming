@@ -71,16 +71,16 @@
 							<div class="agreement_nessasary help_txt">
 								<span class="spr_book ico_nessasary"></span> <span>필수입력</span>
 							</div>
-							<form class="form_horizontal" name="resrvForm" action="" method="POST">
+							<form class="form_horizontal" name="resrvForm"
+								action="/reservepage/reservations" method="POST">
 								<div class="inline_form">
 									<label class="label" for="name"> <span
 										class="spr_book ico_nessasary">필수</span> <span>예매자</span>
 									</label>
 									<div class="inline_control name_wrap">
 										<input type="text" name="name" id="name" class="text"
-											placeholder="이름을 입력하세요" maxlength="17"> 
-											<div class="warning_msg">형식이 틀렸거나 너무 짧아요</div>
-											<input type="hidden" name="resrvName" value="" />
+											placeholder="이름을 입력하세요" maxlength="17">
+										<div class="warning_msg">형식이 틀렸거나 너무 짧아요</div>
 									</div>
 								</div>
 								<div class="inline_form">
@@ -91,7 +91,6 @@
 										<input type="tel" name="tel" id="tel" class="tel" value=""
 											placeholder="휴대폰 입력 시 예매내역 문자발송">
 										<div class="warning_msg">형식이 틀렸거나 너무 짧아요</div>
-										<input type="hidden" name="resrvTel" value="" />
 									</div>
 								</div>
 								<div class="inline_form">
@@ -102,24 +101,48 @@
 										<input type="email" name="email" id="email" class="email"
 											value="" placeholder="이메일을 입력하세요" maxlength="50">
 										<div class="warning_msg">형식이 틀렸거나 너무 짧아요</div>
-										<input type="hidden" name="resrvEmail" value="" />
 									</div>
 								</div>
 								<div class="inline_form last ticket_purchase">
 									<!-- ticket purchase template script -->
 								</div>
-								<input type="hidden" name="resrvDate" value="" /> <input
-									type="hidden" name="productId" value="" /> <input
-									type="hidden" name="displayInfoId" value="" /> <input
-									type="hidden" name="totalTicket" value="" /><input
-									type="hidden" name="productPriceId" value="" />
+								<input type="hidden" name="id" value="0" /> <input
+									type="hidden" name="productId" value="0" /> <input
+									type="hidden" name="displayInfoId" value="0" /> <input
+									type="hidden" name="reservationName" value="" /> <input
+									type="hidden" name="reservationTel" value="" /> <input
+									type="hidden" name="reservationEmail" value="" /> <input
+									type="hidden" name="reservationDate" value="" /> <input
+									type="hidden" name="cancelFlag" value="0" /> <input
+									type="hidden" name="createDate" value="" /><input
+									type="hidden" name="modifyDate" value="" /> <input
+									type="hidden" name="reservationPrice[0].id" value="0" /><input
+									type="hidden" name="reservationPrice[0].reservationInfoId"
+									value="0" /><input type="hidden"
+									name="reservationPrice[0].productPriceId" value="0" /><input
+									type="hidden" name="reservationPrice[0].count" value="0" /> <input
+									type="hidden" name="reservationPrice[1].id" value="0" /><input
+									type="hidden" name="reservationPrice[1].reservationInfoId"
+									value="0" /><input type="hidden"
+									name="reservationPrice[1].productPriceId" value="0" /><input
+									type="hidden" name="reservationPrice[1].count" value="0" /> <input
+									type="hidden" name="reservationPrice[2].id" value="0" /><input
+									type="hidden" name="reservationPrice[2].reservationInfoId"
+									value="0" /><input type="hidden"
+									name="reservationPrice[2].productPriceId" value="0" /><input
+									type="hidden" name="reservationPrice[2].count" value="0" /><input
+									type="hidden" name="reservationPrice[3].id" value="0" /><input
+									type="hidden" name="reservationPrice[3].reservationInfoId"
+									value="0" /><input type="hidden"
+									name="reservationPrice[3].productPriceId" value="0" /><input
+									type="hidden" name="reservationPrice[3].count" value="0" />
 							</form>
 						</div>
 					</div>
 					<div class="section_booking_agreement">
 						<div class="agreement all">
-							<input type="checkbox" id="chk3" class="chk_agree" value = "off"> <label
-								for="chk3" class="label chk_txt_label"> <span>이용자
+							<input type="checkbox" id="chk3" class="chk_agree" value="off">
+							<label for="chk3" class="label chk_txt_label"> <span>이용자
 									약관 전체동의</span>
 							</label>
 							<div class="agreement_nessasary">
@@ -130,8 +153,8 @@
 						<div class="agreement">
 							<span class="chk_txt_span"> <i
 								class="spr_book ico_arr_ipc2"></i> <span>개인정보 수집 및 이용 동의</span>
-							</span> <a href="#" class="btn_agreement" onclick="return false"> <span class="btn_text">보기</span>
-								<i class="fn fn-down2"></i>
+							</span> <a href="#" class="btn_agreement" onclick="return false"> <span
+								class="btn_text">보기</span> <i class="fn fn-down2"></i>
 							</a>
 							<div class="useragreement_details">
 								&lt;개인정보 수집 및 이용 동의&gt;<br> <br> 1. 수집항목 : [필수] 이름,
@@ -148,8 +171,8 @@
 						<div class="agreement">
 							<span class="chk_txt_span"> <i
 								class="spr_book ico_arr_ipc2"></i> <span>개인정보 제3자 제공 동의</span>
-							</span> <a href="#" class="btn_agreement" onclick="return false"> <span class="btn_text">보기</span>
-								<i class="fn fn-down2"></i>
+							</span> <a href="#" class="btn_agreement" onclick="return false"> <span
+								class="btn_text">보기</span> <i class="fn fn-down2"></i>
 							</a>
 							<div class="useragreement_details custom_details_wrap">
 								<div class="custom_details">

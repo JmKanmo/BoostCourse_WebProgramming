@@ -16,17 +16,29 @@ class UrlParser {
 };
 
 // product display content manager class define
-class DisplayManager {
+class DisplayManager extends UrlParser {
 	constructor() {
+		super();
 		this.imgList = document.querySelector(".visual_img");
 		this.storeDetails = document.querySelector(".store_details");
 		this.ticketBody = document.querySelector(".ticket_body");
 		this.ticketPurchase = document.querySelector(".ticket_purchase");
 		this.purchaseInfo = { "priceInfo": null, "totalCnt": 0, "totalPrice": 0 };
+		this.resrvPriceInfo = [];
 	}
 
 	initDisplayInfo(productId, displayInfoId) {
 		this.requestAjax(productId, displayInfoId);
+	}
+
+	initResrvPriceInfo(priceInfo) {
+		this.purchaseInfo["priceInfo"] = priceInfo;
+		priceInfo.forEach(elem => {
+			this.resrvPriceInfo.push({
+				"id": elem.id,
+				"count": 0
+			});
+		});
 	}
 
 	requestAjax(productId, displayInfoId) {
@@ -37,7 +49,7 @@ class DisplayManager {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
-			this.purchaseInfo["priceInfo"] = JSON.parse(xhr.responseText)["price"];
+			this.initResrvPriceInfo(JSON.parse(xhr.responseText)["price"]);
 			this.updateTemplate(JSON.parse(xhr.responseText));
 			this.setTicketCountListener();
 		}.bind(this));
@@ -62,6 +74,7 @@ class DisplayManager {
 					ticketCount.classList.remove("disabled");
 					this.purchaseInfo["totalCnt"] = this.purchaseInfo["totalCnt"] + 1;
 					this.purchaseInfo["totalPrice"] = this.purchaseInfo["totalPrice"] + discountedPrice;
+					this.resrvPriceInfo[evt.target.closest(".qty").id].count++;
 				} else {
 					// minus button clicked
 					if (parseInt(ticketCount.value) - 1 < 0) {
@@ -72,6 +85,7 @@ class DisplayManager {
 							ticketCount.value = parseInt(ticketCount.value) - 1;
 							ticketPrice.innerText = parseInt(ticketPrice.innerText) - discountedPrice;
 							this.purchaseInfo["totalCnt"] = this.purchaseInfo["totalCnt"] - 1;
+							this.resrvPriceInfo[evt.target.closest(".qty").id].count--;
 							this.purchaseInfo["totalPrice"] = this.purchaseInfo["totalPrice"] - discountedPrice;
 							if (parseInt(ticketPrice.innerText) <= 0) {
 								evt.target.closest(".count_control").querySelector(".individual_price").classList.remove("on_color");
@@ -114,9 +128,9 @@ class ReservationManager extends DisplayManager {
 		super();
 		this.resrvForm = document.forms["resrvForm"];
 		this.resrvAgreement = document.querySelector(".section_booking_agreement");
-		this.resrvInputs = [["name", /^[가-힣a-zA-Z]+$/, "name_wrap", "resrvName"],
-		["tel", /^\d{2,3}-\d{3,4}-\d{4}$/, "tel_wrap", "resrvTel"],
-		["email", /^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*.[a-z]{2,3}$/i, "email_wrap", "resrvEmail"]];
+		this.resrvInputs = [["name", /^[가-힣a-zA-Z]+$/, "name_wrap", "reservationName"],
+		["tel", /^\d{2,3}-\d{3,4}-\d{4}$/, "tel_wrap", "reservationTel"],
+		["email", /^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*.[a-z]{2,3}$/i, "email_wrap", "reservationEmail"]];
 		this.resrvBtn = document.querySelector(".bk_btn");
 	}
 
@@ -138,6 +152,28 @@ class ReservationManager extends DisplayManager {
 		});
 	}
 
+	setDataHiddenInput() {
+		this.resrvForm["productId"].value = this.getProductId();
+		this.resrvForm["displayInfoId"].value = this.getDisplayInfoId();
+		for (let i = 0; i < this.resrvPriceInfo.length; i++) {
+			this.resrvForm[`reservationPrice[${i}].productPriceId`].value = this.resrvPriceInfo[i]["id"];
+			this.resrvForm[`reservationPrice[${i}].count`].value = this.resrvPriceInfo[i]["count"];
+		}
+	}
+
+	submitReservationData() {
+		this.setDataHiddenInput();
+		let queryString = $("form[name = resrvForm]").serialize();
+		let params = `reservations?${queryString}`;
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", '/reservation/reservepage/api/' + params, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		xhr.addEventListener("load", function () {
+			alert("등록 완료");
+		});
+		xhr.send();
+	}
+
 	setValidationCheckListener() {
 		this.resrvBtn.addEventListener("click", function () {
 			if (this.resrvBtn.closest("div").classList.contains("disable") != true) {
@@ -146,7 +182,7 @@ class ReservationManager extends DisplayManager {
 
 				this.resrvInputs.some((input) => {
 					if (this.resrvForm[input[0]].value != this.resrvForm[input[3]].value || this.resrvForm[input[3]].value == "") {
-						failed += '예매정보 일부가 올바르지않거나 비었습니다.\n';
+						failed += '예매자 정보 일부가 올바르지않거나 비었습니다.\n';
 						flag = false;
 						return true;
 					}
@@ -176,8 +212,7 @@ class ReservationManager extends DisplayManager {
 				if (!flag) {
 					alert(failed);
 				} else {
-					alert("등록 완료");
-					// 서버에 데이터보내기 함수호출
+					this.submitReservationData();
 				}
 			}
 		}.bind(this));
@@ -208,6 +243,7 @@ class ReservationManager extends DisplayManager {
 	}
 
 	initReservationForm() {
+		this.initDisplayInfo(this.getProductId(), this.getDisplayInfoId());
 		this.setRegularExpCheckListener();
 		this.setAgreementClickListener();
 		this.setValidationCheckListener();
@@ -216,8 +252,6 @@ class ReservationManager extends DisplayManager {
 
 // Execute all functions
 document.addEventListener("DOMContentLoaded", function () {
-	const urlParser = new UrlParser();
 	const reservationManager = new ReservationManager();
-	reservationManager.initDisplayInfo(urlParser.getProductId(), urlParser.getDisplayInfoId());
 	reservationManager.initReservationForm();
 });
