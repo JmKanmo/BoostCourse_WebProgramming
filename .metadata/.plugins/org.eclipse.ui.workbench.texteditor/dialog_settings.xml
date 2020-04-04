@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="bkBtn"/>
+		<item key="selection" value="super"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="bkBtn"/>
+			<item value="super"/>
 			<item value="console.log"/>
-			<item value=".bk_btn"/>
-			<item value="예매하기"/>
-			<item value="이용완료"/>
-			<item value="package kr.or.connect.reservation.dto;"/>
-			<item value="urlParser"/>
+			<item value=".id"/>
+			<item value="예매정보"/>
+			<item value="예매정"/>
+			<item value="예매자"/>
+			<item value="resrvEmail"/>
+			<item value="resrvTel"/>
+			<item value="resrvName"/>
+			<item value="resrv"/>
+			<item value="submit"/>
+			<item value="&lt;form"/>
+			<item value="bk_btn"/>
 			<item value="getProductId"/>
-			<item value="getDispl"/>
-			<item value="/reser"/>
-			<item value="./reser"/>
-			<item value="./re"/>
-			<item value="/fonts/NanumGothicBold.woff?1703172120 "/>
+			<item value="input"/>
 		</list>
 		<list key="replacehistory">
 		</list>

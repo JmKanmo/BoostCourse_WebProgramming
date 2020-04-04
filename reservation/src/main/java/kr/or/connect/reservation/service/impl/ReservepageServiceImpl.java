@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.or.connect.reservation.dao.ReservepageDao;
 import kr.or.connect.reservation.dto.Display;
 import kr.or.connect.reservation.dto.ProductPrice;
+import kr.or.connect.reservation.dto.Reservation;
 import kr.or.connect.reservation.service.ReservepageService;
 
 @Service
@@ -25,5 +26,11 @@ public class ReservepageServiceImpl implements ReservepageService {
 	public List<ProductPrice> getProductPriceInfo(int productId) {
 		// TODO Auto-generated method stub
 		return reservepageDao.selectProductPriceInfo(productId);
+	}
+
+	@Override
+	public int addReservation(Reservation reservation) {
+		// TODO Auto-generated method stub
+		return reservepageDao.insertReservation(reservation);
 	}
 }

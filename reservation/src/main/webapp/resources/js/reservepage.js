@@ -16,9 +16,9 @@ class UrlParser {
 };
 
 // product display content manager class define
-class DisplayManager extends UrlParser {
+class DisplayManager {
 	constructor() {
-		super();
+		this.urlParser = new UrlParser();
 		this.imgList = document.querySelector(".visual_img");
 		this.storeDetails = document.querySelector(".store_details");
 		this.ticketBody = document.querySelector(".ticket_body");
@@ -152,9 +152,11 @@ class ReservationManager extends DisplayManager {
 		});
 	}
 
-	setDataHiddenInput() {
-		this.resrvForm["productId"].value = this.getProductId();
-		this.resrvForm["displayInfoId"].value = this.getDisplayInfoId();
+	setHiddenDataInput() {
+		this.resrvForm["productId"].value = this.urlParser.getProductId();
+		this.resrvForm["displayInfoId"].value = this.urlParser.getDisplayInfoId();
+		this.resrvForm["reservationDate"].value = document.querySelector("#resrvDate").innerText;
+		
 		for (let i = 0; i < this.resrvPriceInfo.length; i++) {
 			this.resrvForm[`reservationPrice[${i}].productPriceId`].value = this.resrvPriceInfo[i]["id"];
 			this.resrvForm[`reservationPrice[${i}].count`].value = this.resrvPriceInfo[i]["count"];
@@ -162,7 +164,7 @@ class ReservationManager extends DisplayManager {
 	}
 
 	submitReservationData() {
-		this.setDataHiddenInput();
+		this.setHiddenDataInput();
 		let queryString = $("form[name = resrvForm]").serialize();
 		let params = `reservations?${queryString}`;
 		let xhr = new XMLHttpRequest();
@@ -170,6 +172,7 @@ class ReservationManager extends DisplayManager {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 		xhr.addEventListener("load", function () {
 			alert("등록 완료");
+			window.location.href = "/reservation/main";
 		});
 		xhr.send();
 	}
@@ -182,7 +185,7 @@ class ReservationManager extends DisplayManager {
 
 				this.resrvInputs.some((input) => {
 					if (this.resrvForm[input[0]].value != this.resrvForm[input[3]].value || this.resrvForm[input[3]].value == "") {
-						failed += '예매자 정보 일부가 올바르지않거나 비었습니다.\n';
+						failed += '# 예매자 정보 일부가 올바르지않거나 비었습니다.\n';
 						flag = false;
 						return true;
 					}
@@ -190,19 +193,19 @@ class ReservationManager extends DisplayManager {
 
 				if (this.purchaseInfo["totalCnt"] != parseInt(this.ticketPurchase.querySelector("#totalCount").innerText)
 					|| this.purchaseInfo["totalPrice"] != parseInt(this.ticketPurchase.querySelector("#totalPrice").innerText)) {
-					failed += '티켓 총 개수,가격 정보가 올바르지않습니다.\n';
+					failed += '# 티켓 총 개수,가격 정보가 올바르지않습니다.\n';
 					flag = false;
 				}
 
 				if (this.purchaseInfo["totalCnt"] <= 0 || this.purchaseInfo["totalPrice"] <= 0) {
-					failed += '티켓을 적어도 한장 예매해야합니다.\n';
+					failed += '# 티켓을 적어도 한장 예매해야합니다.\n';
 					flag = false;
 				}
 
 				for (let i = 0, j = 0, nodes = this.ticketBody.childNodes; i < nodes.length; i++) {
 					if (nodes[i].tagName === "DIV") {
 						if (nodes[i].id != j++) {
-							failed += '티켓가격표정보가 올바르지않습니다.\n';
+							failed += '# 티켓가격표정보가 올바르지않습니다.\n';
 							flag = false;
 							break;
 						}
@@ -243,7 +246,7 @@ class ReservationManager extends DisplayManager {
 	}
 
 	initReservationForm() {
-		this.initDisplayInfo(this.getProductId(), this.getDisplayInfoId());
+		this.initDisplayInfo(this.urlParser.getProductId(), this.urlParser.getDisplayInfoId());
 		this.setRegularExpCheckListener();
 		this.setAgreementClickListener();
 		this.setValidationCheckListener();

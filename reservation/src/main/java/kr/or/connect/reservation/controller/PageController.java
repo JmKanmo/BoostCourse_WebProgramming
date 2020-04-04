@@ -46,7 +46,8 @@ public class PageController {
 			throws ParseException {
 		String resrvEmail = request.getParameter("resrv_email");
 		// 세션에 저장 된 이메일 정보가 없고 resrvEmail의 예약내역이 있을경우,세션에 정보저장
-		session.setAttribute("email", resrvEmail);
+		// session.setAttribute("email", resrvEmail);
+		// session.removeAttribute("email");
 		model.setViewName("myreservation");
 		return model;
 	}

@@ -279,7 +279,7 @@
 	<label class="label" for="message">예매내용</label>
 	<div class="inline_control">
 		<p class="inline_txt selected">
-			{{display.resrvDate}}, 총 <span id="totalCount">0</span>매, <span id="totalPrice">0</span>원
+			<span id="resrvDate">{{display.resrvDate}}</span>, 총 <span id="totalCount">0</span>매, <span id="totalPrice">0</span>원
 		</p>
 	</div>
 </script>

@@ -1,5 +1,7 @@
 package kr.or.connect.reservation.controller.api;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.connect.reservation.dto.Reservation;
-import kr.or.connect.reservation.dto.ReservationPrice;
 import kr.or.connect.reservation.service.ReservepageService;
 
 @RestController
@@ -32,11 +33,9 @@ public class ReservepageApiController {
 	}
 
 	@PostMapping(path = "/reservations")
-	public boolean reservations(@ModelAttribute Reservation reservation) {
-		System.out.println();
-		for (ReservationPrice elem : reservation.getReservationPrice()) {
-			System.out.println(elem.toString());
-		}
-		return true;
+	public int reservations(@ModelAttribute Reservation reservation) {
+		reservation.setCreateDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now()));
+		reservation.setModifyDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now()));
+		return reservepageService.addReservation(reservation);
 	}
 }
