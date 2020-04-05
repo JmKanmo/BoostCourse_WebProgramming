@@ -4,12 +4,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.or.connect.reservation.service.MyReservationpageService;
+
 @Controller
 public class PageController {
+	@Autowired
+	private MyReservationpageService myReservationpageService;
 
 	@GetMapping(path = "/main")
 	public ModelAndView mainPage(ModelAndView model) throws ParseException {
@@ -45,9 +50,11 @@ public class PageController {
 	public ModelAndView myreservationPage(ModelAndView model, HttpServletRequest request, HttpSession session)
 			throws ParseException {
 		String resrvEmail = request.getParameter("resrv_email");
-		// 세션에 저장 된 이메일 정보가 없고 resrvEmail의 예약내역이 있을경우,세션에 정보저장
-		// session.setAttribute("email", resrvEmail);
-		// session.removeAttribute("email");
+
+		if (session.getAttribute("email") == null && myReservationpageService.getReservationCount(resrvEmail) > 0) {
+			session.setAttribute("email", resrvEmail);
+			System.out.println("세션에 이메일정보 저장");
+		}
 		model.setViewName("myreservation");
 		return model;
 	}

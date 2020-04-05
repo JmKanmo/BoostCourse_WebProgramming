@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.ReservepageDao;
 import kr.or.connect.reservation.dto.Display;
@@ -29,6 +30,7 @@ public class ReservepageServiceImpl implements ReservepageService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public int addReservation(Reservation reservation) {
 		// TODO Auto-generated method stub
 		return reservepageDao.insertReservation(reservation);

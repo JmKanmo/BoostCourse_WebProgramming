@@ -45,6 +45,10 @@ public class test {
 
 	@Test
 	public void test3() throws ParseException, SQLException {
-		
+		RestTemplate restTemplate = new RestTemplate();
+		String ret = restTemplate.getForObject("http://localhost:8080/myreservationpage/api/history", String.class);
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObj = (JSONObject) parser.parse(ret);		
+		System.out.println(jsonObj);
 	}
 }
