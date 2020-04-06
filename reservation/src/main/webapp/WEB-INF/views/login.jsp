@@ -41,7 +41,7 @@
 			<!---->
 			<div>
 				<form name="confirm_form" class="ng-pristine ng-valid" id="form1"
-					method="POST" action="/reservation/myreservation"
+					action="/reservation/myreservation"
 					onsubmit="return validateForm()">
 					<h2 class="login_header_sub border_bottom">
 						<span translate="CM-NON_MEMBER_BK_CONFIRMATION">비회원 예약확인</span>
@@ -49,14 +49,12 @@
 					<div class="login_form">
 						<label class="label_form" for="resrv_id"
 							translate="CM-BOOKING_NUMBER">예약자 이메일 입력</label> <span
-							class="warning_msg">양식에 어긋난 이메일입니다.</span><span class="pass_msg">양식에
-							맞는 이메일입니다.</span> <input type="text"
+							class="warning_msg">양식에 어긋난 이메일입니다.</span> <input type="text"
 							class="login_input ng-pristine ng-untouched ng-valid ng-empty"
 							id="resrv_id" name="resrv_email" aria-invalid="false"
 							placeholder="이메일을 입력하세요." title="예매자이메일">
 					</div>
-					<button type="submit" form="form1"
-						class="login_btn confirm disable" disabled>
+					<button type="submit" form="form1" class="login_btn confirm">
 						<span translate="CM-MY_BOOKING_CHECK">내 예약 확인</span>
 					</button>
 				</form>

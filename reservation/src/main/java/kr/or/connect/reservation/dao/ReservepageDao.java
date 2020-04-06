@@ -61,6 +61,8 @@ public class ReservepageDao {
 	}
 
 	private int insertReservationPrice(List<ReservationPrice> list, int reservationInfoId) {
+		int ret = 0;
+
 		try {
 			this.insertAction = new SimpleJdbcInsert(this.dataSoruce).withTableName("reservation_info_price")
 					.usingGeneratedKeyColumns("id");
@@ -68,14 +70,14 @@ public class ReservepageDao {
 				if (reservationPrice.getCount() > 0) {
 					reservationPrice.setReservationInfoId(reservationInfoId);
 					SqlParameterSource params = new BeanPropertySqlParameterSource(reservationPrice);
-					this.insertAction.executeAndReturnKey(params).intValue();
+					ret = this.insertAction.executeAndReturnKey(params).intValue();
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
 		}
-		return 1;
+		return ret;
 	}
 
 	public int insertReservation(Reservation reservation) {

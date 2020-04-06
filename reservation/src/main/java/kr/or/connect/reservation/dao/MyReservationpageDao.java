@@ -61,4 +61,18 @@ public class MyReservationpageDao {
 			return -1;
 		}
 	}
+
+	public int updateCancelFlag(int revervationInfoId) {
+		int ret = 0;
+		Map<String, Integer> params = new HashMap<>();
+
+		try {
+			params.put("reservation_info_id", revervationInfoId);
+			ret = jdbc.update(MyReservationDaoSqls.UPDATE_CANCEL_FLAG, params);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		return ret;
+	}
 }

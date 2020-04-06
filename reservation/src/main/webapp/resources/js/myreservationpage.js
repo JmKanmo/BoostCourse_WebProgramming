@@ -16,9 +16,34 @@ class HistoryManager {
 		this.historyCardList = document.querySelector(".list_cards");
 	}
 
-	requestAjax(resrvEmail) {
+	setButtonClickListener() {
+		this.historyCardList.addEventListener("click", function (evt) {
+			let cancelScope = evt.target.closest("#cancelScope");
+			// reviewScope(예매자 리뷰) 추후에 이곳에 추가
+
+			if (cancelScope) {
+				let reservationInfoId = cancelScope.getAttribute("reservationid");
+				this.cancelReservation(reservationInfoId);
+			}
+		}.bind(this));
+	}
+
+	cancelReservation(reservationInfoId) {
 		let xhr = new XMLHttpRequest();
-		let params = `history?resrvEmail=${resrvEmail}`;
+		let params = `reservations?reservationInfoId=${reservationInfoId}`;
+
+		xhr.open("PUT", '/reservation/myreservationpage/api/' + params, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+		xhr.addEventListener("load", function () {
+			this.requestHistoryInfo(this.urlParser.getResrvEmail());
+		}.bind(this));
+		xhr.send();
+	}
+
+	requestHistoryInfo(resrvEmail) {
+		let xhr = new XMLHttpRequest();
+		let params = `reservations?resrvEmail=${resrvEmail}`;
 
 		xhr.open("GET", '/reservation/myreservationpage/api/' + params, true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -67,10 +92,10 @@ class HistoryManager {
 			}
 		});
 
-		Handlebars.registerHelper("purchasePrice", function (price,cnt) {
-			return price*cnt;
+		Handlebars.registerHelper("purchasePrice", function (price, cnt) {
+			return price * cnt;
 		});
-		
+
 		let bindTemplate = Handlebars.compile(document.querySelector("#template-summary").innerText);
 		this.summaryBoard.innerHTML = bindTemplate(jsonData);
 		bindTemplate = Handlebars.compile(document.querySelector("#template-history").innerText);
@@ -78,7 +103,8 @@ class HistoryManager {
 	}
 
 	initReservationHistory() {
-		this.requestAjax(this.urlParser.getResrvEmail());
+		this.requestHistoryInfo(this.urlParser.getResrvEmail());
+		this.setButtonClickListener();
 	}
 }
 

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +38,12 @@ public class MyReservationpageApiController {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 			Date resrvDate = dateFormat.parse(bookingHistory.getReservationDate());
 			Date curDate = new Date();
-			int diff = curDate.compareTo(resrvDate);
+			Calendar startCal = Calendar.getInstance();
+			Calendar endCal = Calendar.getInstance();
+			startCal.setTime(curDate);
+			endCal.setTime(resrvDate);
+			long diffMillis = startCal.getTimeInMillis() - endCal.getTimeInMillis();
+			int diff = (int) (diffMillis / (24 * 60 * 60 * 1000));
 
 			if (diff > 0) {
 				return Status.USED;
@@ -46,7 +53,7 @@ public class MyReservationpageApiController {
 		}
 	}
 
-	@GetMapping(path = "/history")
+	@GetMapping(path = "/reservations")
 	public Map<String, Object> history(
 			@RequestParam(name = "resrvEmail", required = false, defaultValue = "") String resrvEmail)
 			throws ParseException {
@@ -81,5 +88,11 @@ public class MyReservationpageApiController {
 		ret.put("usedHistory", usedHistory);
 		ret.put("canceldHistory", canceldHistory);
 		return ret;
+	}
+
+	@PutMapping(path = "/reservations")
+	public int cancel(
+			@RequestParam(name = "reservationInfoId", required = false, defaultValue = "") int reservationInfoId) {
+		return myReservationpageService.cancelReservation(reservationInfoId);
 	}
 }

@@ -11,4 +11,6 @@ public class MyReservationDaoSqls {
 			+ " WHERE B.product_price_id = pp.id";
 
 	public static final String SELECT_RESERVATION_COUNT = "SELECT COUNT(*) FROM reservation_info ri where ri.reservation_email = :email";
+
+	public static final String UPDATE_CANCEL_FLAG = "UPDATE reservation_info SET cancel_flag = 1 WHERE id = :reservation_info_id";
 }

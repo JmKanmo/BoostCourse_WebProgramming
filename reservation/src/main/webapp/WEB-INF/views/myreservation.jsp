@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -22,16 +23,24 @@
 					</a> <a class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<a href="/reservation/myreservation?resrv_email=${sessionScope.email}" class="btn_my"> <span title="내예약"
-						class="viewReservation">${sessionScope.email}</span>
-				</a>
+				<c:choose>
+					<c:when test="${sessionScope.email != null}">
+						<a class="btn_my" href="/reservation/myreservation?resrv_email=${sessionScope.email}">
+							<span title="예약확인">${sessionScope.email}</span>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a class="btn_my" href="#"> <span title="예약확인">내역없음</span>
+						</a>
+					</c:otherwise>
+				</c:choose>
 			</header>
 		</div>
 		<hr>
 		<div class="ct">
 			<div class="section_my">
 				<!-- 예약 현황 -->
-				<div class="my_summary">
+				<div class="my_summary" id="top">
 					<ul class="summary_board">
 						<!-- summary-template -->
 					</ul>
@@ -50,7 +59,7 @@
 	</div>
 	<footer>
 		<div class="gototop">
-			<a href="#" class="lnk_top"> <span class="lnk_top_text">TOP</span>
+			<a href="#top" class="lnk_top"> <span class="lnk_top_text">TOP</span>
 			</a>
 		</div>
 		<div id="footer" class="footer">
@@ -183,7 +192,7 @@
 								</em>
 							</div>
 							<!-- [D] 예약 신청중, 예약 확정 만 취소가능, 취소 버튼 클릭 시 취소 팝업 활성화 -->
-							<div class="booking_cancel">
+							<div class="booking_cancel" id="cancelScope" reservationId={{reservationId}}>
 								<button class="btn">
 									<span>취소</span>
 								</button>
@@ -260,7 +269,7 @@
 									<span>{{ticketPrice}}</span> <span class="unit">원</span>
 								</em>
 							</div>
-							<div class="booking_cancel">
+							<div class="booking_cancel" id="reviewScope" reservationId={{reservationId}}>
 								<a href="./reviewWrite.html"><button class="btn">
 										<span>예매자 리뷰 남기기</span>
 									</button></a>

@@ -7,6 +7,10 @@
 
  	<display-name>Spring JavaConfig Sample</display-name>
 	
+	<session-config>
+	<session-timeout>15</session-timeout>
+	</session-config>
+	
 	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext

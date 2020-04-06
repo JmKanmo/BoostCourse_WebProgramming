@@ -63,6 +63,7 @@ public class DetailpageDao {
 			ret = jdbc.queryForObject(DetailpageDaoSqls.ETC_IMAGE_COUNT_BY_ID, params, Integer.class);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return -1;
 		}
 		return ret;
 	}

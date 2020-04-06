@@ -9,4 +9,5 @@ public interface MyReservationpageService {
 	List<BookingHistory> getBookingHistory(String email);
 	List<TicketHistory> getTicketHistory(int reservationInfoId);
 	int getReservationCount(String email);
+	int cancelReservation(int reservationInfoId);
 }

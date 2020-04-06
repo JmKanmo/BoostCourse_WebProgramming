@@ -16684,10 +16684,6 @@ select {
 	box-sizing: border-box
 }
 
-.disable {
-	opacity: 0.5;
-}
-
 .adminbooking_login, .booking_login .login_form .login_input {
 	-webkit-box-sizing: border-box;
 	width: 100%;
@@ -16753,15 +16749,6 @@ select {
 	right: 0;
 	top: 8px;
 	color: red;
-	font-size: 12px;
-	display: none;
-}
-
-.login_form .pass_msg {
-	position: absolute;
-	right: 0;
-	top: 8px;
-	color: green;
 	font-size: 12px;
 	display: none;
 }

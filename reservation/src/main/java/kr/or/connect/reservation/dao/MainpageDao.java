@@ -40,6 +40,7 @@ public class MainpageDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return -1;
 		}
 		return ret;
 	}
