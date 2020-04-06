@@ -22,9 +22,9 @@ public class MyReservationpageServiceImpl implements MyReservationpageService {
 	}
 
 	@Override
-	public List<TicketHistory> getTicketHistory(int reservation_info_id) {
+	public List<TicketHistory> getTicketHistory(int reservationInfoId) {
 		// TODO Auto-generated method stub
-		return myReservationpageDao.selectTicketHistory(reservation_info_id);
+		return myReservationpageDao.selectTicketHistory(reservationInfoId);
 	}
 
 	@Override

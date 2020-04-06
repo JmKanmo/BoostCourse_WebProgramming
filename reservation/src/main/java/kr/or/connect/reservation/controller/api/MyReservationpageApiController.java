@@ -1,5 +1,10 @@
 package kr.or.connect.reservation.controller.api;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,20 +25,61 @@ public class MyReservationpageApiController {
 	@Autowired
 	private MyReservationpageService myReservationpageService;
 
+	private enum Status {
+		CANCEL, SCHEDULED, USED
+	}
+
+	private Status classifyHistory(BookingHistory bookingHistory) throws ParseException {
+		if (bookingHistory.getCancelFlag() == 1) {
+			return Status.CANCEL;
+		} else {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+			Date resrvDate = dateFormat.parse(bookingHistory.getReservationDate());
+			Date curDate = new Date();
+			int diff = curDate.compareTo(resrvDate);
+
+			if (diff > 0) {
+				return Status.USED;
+			} else {
+				return Status.SCHEDULED;
+			}
+		}
+	}
+
 	@GetMapping(path = "/history")
 	public Map<String, Object> history(
-			@RequestParam(name = "resrv_email", required = false, defaultValue = "") String resrvEmail) {
+			@RequestParam(name = "resrvEmail", required = false, defaultValue = "") String resrvEmail)
+			throws ParseException {
 		Map<String, Object> ret = new HashMap<>();
-		List<BookingHistory> bookingHistoryList = myReservationpageService.getBookingHistory(resrvEmail);
+		List<BookingHistory> totalHistoryList = myReservationpageService.getBookingHistory(resrvEmail);
+		List<BookingHistory> canceldHistory = new ArrayList<>();
+		List<BookingHistory> scheduledHistory = new ArrayList<>();
+		List<BookingHistory> usedHistory = new ArrayList<>();
 
-		for (int i = 0; i < bookingHistoryList.size(); i++) {
-			BookingHistory bookingHistory = bookingHistoryList.get(i);
+		for (int i = 0; i < totalHistoryList.size(); i++) {
+			BookingHistory bookingHistory = totalHistoryList.get(i);
 			List<TicketHistory> ticketHistory = myReservationpageService
 					.getTicketHistory(bookingHistory.getReservationId());
 			bookingHistory.setTicketHistory(ticketHistory);
-			bookingHistoryList.set(i, bookingHistory);
+			Status classifiedRes = this.classifyHistory(bookingHistory);
+
+			switch (classifiedRes) {
+			case CANCEL:
+				canceldHistory.add(bookingHistory);
+				break;
+
+			case USED:
+				usedHistory.add(bookingHistory);
+				break;
+
+			case SCHEDULED:
+				scheduledHistory.add(bookingHistory);
+				break;
+			}
 		}
-		ret.put("bookingHistory", bookingHistoryList);
+		ret.put("scheduledHistory", scheduledHistory);
+		ret.put("usedHistory", usedHistory);
+		ret.put("canceldHistory", canceldHistory);
 		return ret;
 	}
 }

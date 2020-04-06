@@ -53,7 +53,6 @@ public class PageController {
 
 		if (session.getAttribute("email") == null && myReservationpageService.getReservationCount(resrvEmail) > 0) {
 			session.setAttribute("email", resrvEmail);
-			System.out.println("세션에 이메일정보 저장");
 		}
 		model.setViewName("myreservation");
 		return model;
