@@ -350,6 +350,7 @@
 		<h1 class="pop_tit">
 			<span>{{bookingHistory.description}}</span>
 			<small class="sm">{{bookingHistory.openingTerm}}</small>
+			<small class="sm">예약일: {{splitDate bookingHistory.reservationDate}}</small>
 			<small class="sm">구매티켓수: {{bookingHistory.ticketCount}}장</small>
 			<small class="sm">구매금액: {{bookingHistory.ticketPrice}}원</small>
 		</h1>

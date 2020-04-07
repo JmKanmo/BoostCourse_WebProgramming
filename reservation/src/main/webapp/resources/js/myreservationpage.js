@@ -52,7 +52,11 @@ class HistoryManager {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
-			this.requestHistoryInfoByEmail(this.urlParser.getResrvEmail());
+			if (xhr.responseText === 1) {
+				this.requestHistoryInfoByEmail(this.urlParser.getResrvEmail());
+			} else {
+				alert('오류가 발생해 작업에 실패하였습니다.');
+			}
 		}.bind(this));
 		xhr.send();
 	}

@@ -172,8 +172,12 @@ class ReservationManager extends DisplayManager {
 		xhr.open("POST", '/reservation/reservepage/api/' + params, true);
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 		xhr.addEventListener("load", function () {
-			alert("등록 완료");
-			window.location.href = "/reservation/main";
+			if (this.responseText === 1) {
+				alert("등록 완료");
+				window.location.href = "/reservation/main";
+			} else {
+				alert('오류가 발생해 작업에 실패하였습니다.');
+			}
 		});
 		xhr.send();
 	}
