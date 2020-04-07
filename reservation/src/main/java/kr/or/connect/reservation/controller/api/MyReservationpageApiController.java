@@ -54,7 +54,7 @@ public class MyReservationpageApiController {
 	}
 
 	@GetMapping(path = "/reservations")
-	public Map<String, Object> history(
+	public Map<String, Object> historyByEmail(
 			@RequestParam(name = "resrvEmail", required = false, defaultValue = "") String resrvEmail)
 			throws ParseException {
 		Map<String, Object> ret = new HashMap<>();
@@ -87,6 +87,15 @@ public class MyReservationpageApiController {
 		ret.put("scheduledHistory", scheduledHistory);
 		ret.put("usedHistory", usedHistory);
 		ret.put("canceldHistory", canceldHistory);
+		return ret;
+	}
+
+	@GetMapping(path = "/reservations/id")
+	public Map<String, Object> historyById(
+			@RequestParam(name = "reservationId", required = false, defaultValue = "") int reservationId) {
+		Map<String, Object> ret = new HashMap<>();
+		BookingHistory bookingHistory = myReservationpageService.getBookingHistory(reservationId);
+		ret.put("bookingHistory", bookingHistory);
 		return ret;
 	}
 

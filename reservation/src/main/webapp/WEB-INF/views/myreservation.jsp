@@ -72,27 +72,7 @@
 	<!-- 취소 팝업 -->
 	<!-- [D] 활성화 display:block, 아니오 버튼 or 닫기 버튼 클릭 시 숨김 display:none; -->
 	<div class="popup_booking_wrapper" style="display: none;">
-		<div class="dimm_dark" style="display: block"></div>
-		<div class="popup_booking refund">
-			<h1 class="pop_tit">
-				<span>서비스명/상품명</span> <small class="sm">2000.0.00.(월)2000.0.00.(일)</small>
-			</h1>
-			<div class="nomember_alert">
-				<p>취소하시겠습니까?</p>
-			</div>
-			<div class="pop_bottom_btnarea">
-				<div class="btn_gray">
-					<a href="#" class="btn_bottom"><span>아니오</span></a>
-				</div>
-				<div class="btn_green">
-					<a href="#" class="btn_bottom"><span>예</span></a>
-				</div>
-			</div>
-			<!-- 닫기 -->
-			<a href="#" class="popup_btn_close" title="close"> <i class="spr_book2 ico_cls"></i>
-			</a>
-			<!--// 닫기 -->
-		</div>
+		<!-- popUp-template -->
 	</div>
 	<!--// 취소 팝업 -->
 	<script type="text/javascript" src="./resources/js/myreservationpage.js?ver=1.1"></script>
@@ -133,6 +113,7 @@
 		</li>
 </script>
 
+<!-- history template -->
 <script type="text/template" id="template-history">
 	<!-- 이용예정 history -->
 	<li class="card confirmed" id="confirmed_tag">
@@ -234,7 +215,7 @@
 		{{else}}
 		{{#usedHistory}}
 		<article class="card_item">
-			<a href="#" class="link_booking_details">
+			<a href="#used_tag" class="link_booking_details">
 				<div class="card_body">
 					<div class="left"></div>
 					<div class="middle">
@@ -311,7 +292,7 @@
 		{{else}}
 		{{#canceldHistory}}
 		<article class="card_item">
-			<a href="#" class="link_booking_details">
+			<a href="#canceled_tag" class="link_booking_details">
 				<div class="card_body">
 					<div class="left"></div>
 					<div class="middle">
@@ -361,5 +342,33 @@
 		{{/if}}
 	</li>
 </script>
+
+<!-- popUp template -->
+<<script type="text/template" id="template-popup">
+	<div class="dimm_dark" style="display: block"></div>
+	<div class="popup_booking refund">
+		<h1 class="pop_tit">
+			<span>{{bookingHistory.description}}</span>
+			<small class="sm">{{bookingHistory.openingTerm}}</small>
+			<small class="sm">구매티켓수: {{bookingHistory.ticketCount}}장</small>
+			<small class="sm">구매금액: {{bookingHistory.ticketPrice}}원</small>
+		</h1>
+		<div class="nomember_alert">
+			<p>취소하시겠습니까?</p>
+		</div>
+		<div class="pop_bottom_btnarea">
+			<div class="btn_gray">
+				<a href="#" class="btn_bottom"><span>아니오</span></a>
+			</div>
+			<div class="btn_green" reservationId={{bookingHistory.reservationId}}>
+				<a href="#" class="btn_bottom"><span>예</span></a>
+			</div>
+		</div>
+		<!-- 닫기 -->
+		<a href="#" class="popup_btn_close" title="close"> <i class="spr_book2 ico_cls"></i>
+		</a>
+		<!--// 닫기 -->
+	</div>
+	</script>
 
 </html>

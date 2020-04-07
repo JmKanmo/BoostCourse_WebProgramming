@@ -14,16 +14,32 @@ class HistoryManager {
 		this.urlParser = new UrlParser();
 		this.summaryBoard = document.querySelector(".summary_board");
 		this.historyCardList = document.querySelector(".list_cards");
+		this.popup = document.querySelector(".popup_booking_wrapper");
+	}
+
+	setPopupClickListener() {
+		this.popup.addEventListener("click", function (evt) {
+			if (evt.target.tagName === 'I') {
+				this.popup.style.display = "none";
+			}
+			else if (evt.target.tagName === 'A' || evt.target.tagName === 'SPAN') {
+				if (evt.target.innerText === '예') {
+					let reservationInfoId = evt.target.closest("div").getAttribute("reservationid");
+					this.cancelReservation(reservationInfoId);
+					this.popup.style.display = "none";
+				} else if (evt.target.innerText === '아니오') {
+					this.popup.style.display = "none";
+				}
+			}
+		}.bind(this));
 	}
 
 	setButtonClickListener() {
 		this.historyCardList.addEventListener("click", function (evt) {
-			let cancelScope = evt.target.closest("#cancelScope");
-			// reviewScope(예매자 리뷰) 추후에 이곳에 추가
-
-			if (cancelScope) {
-				let reservationInfoId = cancelScope.getAttribute("reservationid");
-				this.cancelReservation(reservationInfoId);
+			// click cancel button
+			if (evt.target.closest(".booking_cancel")) {
+				this.requestHistoryById(evt.target.closest(".booking_cancel").getAttribute('reservationid'));
+				this.popup.style.display = "block";
 			}
 		}.bind(this));
 	}
@@ -36,12 +52,12 @@ class HistoryManager {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
-			this.requestHistoryInfo(this.urlParser.getResrvEmail());
+			this.requestHistoryInfoByEmail(this.urlParser.getResrvEmail());
 		}.bind(this));
 		xhr.send();
 	}
 
-	requestHistoryInfo(resrvEmail) {
+	requestHistoryInfoByEmail(resrvEmail) {
 		let xhr = new XMLHttpRequest();
 		let params = `reservations?resrvEmail=${resrvEmail}`;
 
@@ -49,12 +65,30 @@ class HistoryManager {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 		xhr.addEventListener("load", function () {
-			this.updateTemplate(JSON.parse(xhr.responseText));
+			this.updateHistoryTemplate(JSON.parse(xhr.responseText));
 		}.bind(this));
 		xhr.send();
 	}
 
-	updateTemplate(jsonData) {
+	requestHistoryById(reservationId) {
+		let xhr = new XMLHttpRequest();
+		let params = `reservations/id?reservationId=${reservationId}`;
+
+		xhr.open("GET", '/reservation/myreservationpage/api/' + params, true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+		xhr.addEventListener("load", function () {
+			this.updatePopupTemplate(JSON.parse(xhr.responseText));
+		}.bind(this));
+		xhr.send();
+	}
+
+	updatePopupTemplate(jsonData) {
+		let bindTemplate = Handlebars.compile(document.querySelector("#template-popup").innerText);
+		this.popup.innerHTML = bindTemplate(jsonData);
+	}
+
+	updateHistoryTemplate(jsonData) {
 		Handlebars.registerHelper("stateType", function (index) {
 			switch (index) {
 				case 0:
@@ -103,8 +137,9 @@ class HistoryManager {
 	}
 
 	initReservationHistory() {
-		this.requestHistoryInfo(this.urlParser.getResrvEmail());
+		this.requestHistoryInfoByEmail(this.urlParser.getResrvEmail());
 		this.setButtonClickListener();
+		this.setPopupClickListener();
 	}
 }
 

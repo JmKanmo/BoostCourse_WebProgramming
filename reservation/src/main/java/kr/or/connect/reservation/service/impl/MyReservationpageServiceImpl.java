@@ -40,4 +40,10 @@ public class MyReservationpageServiceImpl implements MyReservationpageService {
 		// TODO Auto-generated method stub
 		return myReservationpageDao.updateCancelFlag(reservationInfoId);
 	}
+
+	@Override
+	public BookingHistory getBookingHistory(int reservationId) {
+		// TODO Auto-generated method stub
+		return myReservationpageDao.selectBookingHistory(reservationId);
+	}
 }

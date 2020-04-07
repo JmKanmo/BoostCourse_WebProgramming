@@ -7,7 +7,12 @@ import kr.or.connect.reservation.dto.TicketHistory;
 
 public interface MyReservationpageService {
 	List<BookingHistory> getBookingHistory(String email);
+
+	BookingHistory getBookingHistory(int reservationId);
+
 	List<TicketHistory> getTicketHistory(int reservationInfoId);
+
 	int getReservationCount(String email);
+
 	int cancelReservation(int reservationInfoId);
 }

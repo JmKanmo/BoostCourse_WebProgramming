@@ -29,7 +29,21 @@ public class MyReservationpageDao {
 
 		try {
 			params.put("email", email);
-			ret = jdbc.query(MyReservationDaoSqls.SELECT_BOOKING_HISTORY, params,
+			ret = jdbc.query(MyReservationDaoSqls.SELECT_BOOKING_HISTORY_BY_EMAIL, params,
+					BeanPropertyRowMapper.newInstance(BookingHistory.class));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+
+	public BookingHistory selectBookingHistory(int reservationId) {
+		BookingHistory ret = new BookingHistory();
+		Map<String, Integer> params = new HashMap<>();
+
+		try {
+			params.put("reservationId", reservationId);
+			ret = jdbc.queryForObject(MyReservationDaoSqls.SELECT_BOOKING_HISTORY_BY_ID, params,
 					BeanPropertyRowMapper.newInstance(BookingHistory.class));
 		} catch (Exception e) {
 			e.printStackTrace();
