@@ -119,10 +119,18 @@ class HistoryManager {
 
 		Handlebars.registerHelper("convertPriceType", function (priceType) {
 			switch (priceType) {
-				case "A": return "성인";
-				case "Y": return "청소년";
-				case "B": return "유아";
-				case "S": return "세트1";
+			case "A": return "성인";
+			case "Y": return "청소년";
+			case "B": return "유아";
+			case "S": return "세트";
+			case "D": return "장애인";
+			case "C": return "지역주민";
+			case "E": return "얼리버드";
+			case "V": return "VIP석";
+			case "R": return "R석";
+			case "B": return "B석";
+			case "S": return "S석";
+			case "D": return "평일";
 			}
 		});
 

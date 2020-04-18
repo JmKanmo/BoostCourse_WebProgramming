@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="오류가 발생해"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="오류가 발생해"/>
 			<item value="console."/>
 			<item value="confirmed_tag"/>
 			<item value="closest"/>
@@ -22,7 +23,6 @@
 			<item value="} 예약"/>
 			<item value="}예약"/>
 			<item value="예약"/>
-			<item value="login_btn "/>
 		</list>
 		<list key="replacehistory">
 		</list>

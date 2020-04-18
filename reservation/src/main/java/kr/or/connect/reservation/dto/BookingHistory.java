@@ -5,7 +5,6 @@ import java.util.List;
 public class BookingHistory {
 	private int ticketPrice;
 	private int ticketCount;
-	private String openingTerm = "";
 	private String placeName = "";
 	private String placeLot = "";
 	private String placeStreet = "";
@@ -30,14 +29,6 @@ public class BookingHistory {
 
 	public void setTicketCount(int ticketCount) {
 		this.ticketCount = ticketCount;
-	}
-
-	public String getOpeningTerm() {
-		return openingTerm;
-	}
-
-	public void setOpeningTerm(String openingTerm) {
-		this.openingTerm = openingTerm;
 	}
 
 	public String getPlaceName() {
@@ -106,10 +97,10 @@ public class BookingHistory {
 
 	@Override
 	public String toString() {
-		return "BookingHistory [ticketPrice=" + ticketPrice + ", ticketCount=" + ticketCount + ", openingTerm="
-				+ openingTerm + ", placeName=" + placeName + ", placeLot=" + placeLot + ", placeStreet=" + placeStreet
-				+ ", productId=" + productId + ", description=" + description + ", reservationId=" + reservationId
-				+ ", cancelFlag=" + cancelFlag + ", reservationDate=" + reservationDate + "]";
+		return "BookingHistory [ticketPrice=" + ticketPrice + ", ticketCount=" + ticketCount + ", placeName="
+				+ placeName + ", placeLot=" + placeLot + ", placeStreet=" + placeStreet + ", productId=" + productId
+				+ ", description=" + description + ", reservationId=" + reservationId + ", cancelFlag=" + cancelFlag
+				+ ", reservationDate=" + reservationDate + ", ticketHistory=" + ticketHistory + "]";
 	}
 
 	public List<TicketHistory> getTicketHistory() {

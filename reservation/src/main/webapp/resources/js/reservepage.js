@@ -22,6 +22,7 @@ class DisplayManager {
 		this.storeDetails = document.querySelector(".store_details");
 		this.ticketBody = document.querySelector(".ticket_body");
 		this.ticketPurchase = document.querySelector(".ticket_purchase");
+		this.hiddenInputDiv = document.querySelector("#hiddenInput_div");
 		this.purchaseInfo = { "priceInfo": null, "totalCnt": 0, "totalPrice": 0 };
 		this.resrvPriceInfo = [];
 	}
@@ -55,17 +56,23 @@ class DisplayManager {
 	}
 
 	updateTemplate(jsonData) {
-		Handlebars.registerHelper("prices", function (index) {
-			return jsonData["price"][index]["price"];
-		});
 		Handlebars.registerHelper("priceType", function (type) {
 			switch (type) {
 				case "A": return "성인";
 				case "Y": return "청소년";
 				case "B": return "유아";
-				case "S": return "세트1";
+				case "S": return "세트";
+				case "D": return "장애인";
+				case "C": return "지역주민";
+				case "E": return "얼리버드";
+				case "V": return "VIP석";
+				case "R": return "R석";
+				case "B": return "B석";
+				case "S": return "S석";
+				case "D": return "평일";
 			}
 		});
+		
 		let bindTemplate = Handlebars.compile(document.querySelector("#template-introImageList").innerText);
 		this.imgList.innerHTML = bindTemplate(jsonData);
 		bindTemplate = Handlebars.compile(document.querySelector("#template-displayInfo").innerText);
@@ -74,6 +81,8 @@ class DisplayManager {
 		this.ticketBody.innerHTML = bindTemplate(jsonData);
 		bindTemplate = Handlebars.compile(document.querySelector("#template-ticketPurchase").innerText);
 		this.ticketPurchase.innerHTML = bindTemplate(jsonData);
+		bindTemplate = Handlebars.compile(document.querySelector("#template-hiddenInput").innerText);
+		this.hiddenInputDiv.innerHTML = bindTemplate(jsonData);
 	}
 }
 
@@ -82,8 +91,8 @@ class ReservationManager extends DisplayManager {
 	constructor() {
 		super();
 		this.urlParser = new UrlParser();
-		this.resrvForm = document.forms["resrvForm"];
 		this.resrvAgreement = document.querySelector(".section_booking_agreement");
+		this.resrvForm = document.forms["resrvForm"];
 		this.resrvInputs = [["name", /^[가-힣a-zA-Z]+$/, "name_wrap", "reservationName"],
 		["tel", /^\d{2,3}-\d{3,4}-\d{4}$/, "tel_wrap", "reservationTel"],
 		["email", /^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*.[a-z]{2,3}$/i, "email_wrap", "reservationEmail"]];

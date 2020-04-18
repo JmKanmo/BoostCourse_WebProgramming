@@ -145,8 +145,8 @@
 							<em class="booking_number">No.{{reservationId}}</em>
 							<h4 class="tit">{{description}}</h4>
 							<ul class="detail">
-								<li class="item"><span class="item_tit">일정</span> <em class="item_dsc">
-										{{openingTerm}} <br> {{splitDate reservationDate}} 예약 </em></li>
+								<li class="item"><span class="item_tit">일정</span>  
+									{{splitDate reservationDate}} 예약 </em></li>
 								<li class="item"><span class="item_tit">내역</span> <em class="item_dsc">
 										{{#ticketHistory}}
 										{{convertPriceType priceTypeName}} ({{price}}원) {{count}}장 =>
@@ -223,8 +223,8 @@
 							<em class="booking_number">No.{{reservationId}}</em>
 							<h4 class="tit">{{description}}</h4>
 							<ul class="detail">
-								<li class="item"><span class="item_tit">일정</span> <em class="item_dsc">
-										{{openingTerm}} <br> {{splitDate reservationDate}} 예약 </em></li>
+								<li class="item"><span class="item_tit">일정</span>  
+								{{splitDate reservationDate}} 예약 </em></li>
 								<li class="item"><span class="item_tit">내역</span> <em class="item_dsc">
 										{{#ticketHistory}}
 										{{convertPriceType priceTypeName}} ({{price}}원) {{count}}장 =>
@@ -300,8 +300,8 @@
 							<em class="booking_number">No.{{reservationId}}</em>
 							<h4 class="tit">{{description}}</h4>
 							<ul class="detail">
-								<li class="item"><span class="item_tit">일정</span> <em class="item_dsc">
-										{{openingTerm}} <br> {{splitDate reservationDate}} 예약 </em></li>
+								<li class="item"><span class="item_tit">일정</span>  
+								{{splitDate reservationDate}} 예약 </em></li>
 								<li class="item"><span class="item_tit">내역</span> <em class="item_dsc">
 										{{#ticketHistory}}
 										{{convertPriceType priceTypeName}} ({{price}}원) {{count}}장 =>
@@ -349,7 +349,6 @@
 	<div class="popup_booking refund">
 		<h1 class="pop_tit">
 			<span>{{bookingHistory.description}}</span>
-			<small class="sm">{{bookingHistory.openingTerm}}</small>
 			<small class="sm">예약일: {{splitDate bookingHistory.reservationDate}}</small>
 			<small class="sm">구매티켓수: {{bookingHistory.ticketCount}}장</small>
 			<small class="sm">구매금액: {{bookingHistory.ticketPrice}}원</small>

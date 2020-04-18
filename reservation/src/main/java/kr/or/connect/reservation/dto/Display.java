@@ -8,7 +8,6 @@ public class Display {
 	private String placeStreet = "";
 	private String tel = "";
 	private String openingHours = "";
-	private String openingTerm = "";
 	private String saveFileName = "";
 
 	public String getDescription() {
@@ -59,19 +58,11 @@ public class Display {
 		this.openingHours = openingHours;
 	}
 
-	public String getOpeningTerm() {
-		return openingTerm;
-	}
-
-	public void setOpeningTerm(String openingTerm) {
-		this.openingTerm = openingTerm;
-	}
-
 	@Override
 	public String toString() {
-		return "Display [description=" + description + ", placeName=" + placeName + ", placeLot=" + placeLot
-				+ ", placeStreet=" + placeStreet + ", tel=" + tel + ", openingHours=" + openingHours + ", openingTerm="
-				+ openingTerm + "]";
+		return "Display [resrvDate=" + resrvDate + ", description=" + description + ", placeName=" + placeName
+				+ ", placeLot=" + placeLot + ", placeStreet=" + placeStreet + ", tel=" + tel + ", openingHours="
+				+ openingHours + ", saveFileName=" + saveFileName + "]";
 	}
 
 	public String getSaveFileName() {

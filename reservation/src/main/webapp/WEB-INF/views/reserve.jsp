@@ -106,36 +106,8 @@
 								<div class="inline_form last ticket_purchase">
 									<!-- ticket purchase template script -->
 								</div>
-								<input type="hidden" name="id" value="0" /> <input
-									type="hidden" name="productId" value="0" /> <input
-									type="hidden" name="displayInfoId" value="0" /> <input
-									type="hidden" name="reservationName" value="" /> <input
-									type="hidden" name="reservationTel" value="" /> <input
-									type="hidden" name="reservationEmail" value="" /> <input
-									type="hidden" name="reservationDate" value="" /> <input
-									type="hidden" name="cancelFlag" value="0" /> <input
-									type="hidden" name="createDate" value="" /><input
-									type="hidden" name="modifyDate" value="" /> <input
-									type="hidden" name="reservationPrice[0].id" value="0" /><input
-									type="hidden" name="reservationPrice[0].reservationInfoId"
-									value="0" /><input type="hidden"
-									name="reservationPrice[0].productPriceId" value="0" /><input
-									type="hidden" name="reservationPrice[0].count" value="0" /> <input
-									type="hidden" name="reservationPrice[1].id" value="0" /><input
-									type="hidden" name="reservationPrice[1].reservationInfoId"
-									value="0" /><input type="hidden"
-									name="reservationPrice[1].productPriceId" value="0" /><input
-									type="hidden" name="reservationPrice[1].count" value="0" /> <input
-									type="hidden" name="reservationPrice[2].id" value="0" /><input
-									type="hidden" name="reservationPrice[2].reservationInfoId"
-									value="0" /><input type="hidden"
-									name="reservationPrice[2].productPriceId" value="0" /><input
-									type="hidden" name="reservationPrice[2].count" value="0" /><input
-									type="hidden" name="reservationPrice[3].id" value="0" /><input
-									type="hidden" name="reservationPrice[3].reservationInfoId"
-									value="0" /><input type="hidden"
-									name="reservationPrice[3].productPriceId" value="0" /><input
-									type="hidden" name="reservationPrice[3].count" value="0" />
+								<div id = "hiddenInput_div"></div>
+								<!-- hidden-input template script -->
 							</form>
 						</div>
 					</div>
@@ -226,19 +198,21 @@
 						<em class="preview_txt_dsc">₩{{price}} ~ </em>
 					{{/if}}
 				{{/price}}
-				<em class="preview_txt_dsc">{{display.openingTerm}}, 잔여티켓:제한없음</em>
+				<em class="preview_txt_dsc">잔여티켓:제한없음</em>
 			</div>
 	</li>
 </script>
 
 <script type="text/template" id="template-displayInfo">
 	<h3 class="in_tit"></h3>
-	<p class="dsc"> 장소 : {{display.placeName}} <br> 기간 : {{display.openingTerm}} </p>
+	<p class="dsc"> 장소 : {{display.placeName}} <br> </p>
 	<h3 class="in_tit">관람시간</h3>
 	<p class="dsc"> {{display.openingHours}}</p>
 	<h3 class="in_tit">요금(원가)</h3>
 	<p class="dsc"> 
-	▶ 성인(만 19~64세) {{prices 0}}원 <br><br> ▶ 청소년(만 13~18세) {{prices 1}}원 <br><br> ▶ 어린이(만 4~12세) {{prices 2}}원  <br><br> ▶ 세트1(2인 이상) {{prices 3}}원 
+	{{#price}}
+	▶ {{priceType priceTypeName}} {{price}}원 <br>
+	{{/price}}
 	</p>
 </script>
 
@@ -283,4 +257,25 @@
 		</p>
 	</div>
 </script>
+
+<script type="text/template" id="template-hiddenInput">
+	<input type="hidden" name="id" value="0"/> 
+	<input type="hidden" name="productId" value="0"/> 
+	<input type="hidden" name="displayInfoId" value="0"/> 
+	<input type="hidden" name="reservationName" value=""/> 
+	<input type="hidden" name="reservationTel" value=""/> 
+	<input type="hidden" name="reservationEmail" value=""/> 
+	<input type="hidden" name="reservationDate" value=""/> 
+	<input type="hidden" name="cancelFlag" value="0"/> 
+	<input type="hidden" name="createDate" value=""/>
+	<input type="hidden" name="modifyDate" value=""/> 
+
+	{{#price}}
+		<input type="hidden" name="reservationPrice[{{@index}}].id" value="0"/>
+		<input type="hidden" name="reservationPrice[{{@index}}].reservationInfoId" value="0"/>
+		<input type="hidden" name="reservationPrice[{{@index}}].productPriceId" value="0"/>
+		<input type="hidden" name="reservationPrice[{{@index}}].count" value="0"/> 
+	{{/price}}
+</script>
+
 </html>
