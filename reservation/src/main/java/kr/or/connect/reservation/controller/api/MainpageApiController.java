@@ -19,7 +19,7 @@ public class MainpageApiController {
 	private MainpageService mainpageService;
 
 	@GetMapping(path = "/products")
-	public Map<String, Object> products(@RequestParam(name = "id", required = false, defaultValue = "0") int categoryId,
+	public Map<String, Object> getProducts(@RequestParam(name = "id", required = false, defaultValue = "0") int categoryId,
 			@RequestParam(name = "turn", required = false, defaultValue = "0") int turn,
 			@RequestParam(name = "limit", required = false, defaultValue = "4") int limit) {
 		Map<String, Object> ret = new HashMap<>();
@@ -29,12 +29,12 @@ public class MainpageApiController {
 	}
 
 	@GetMapping(path = "/categories")
-	public Map<String, Object> categories() {
+	public Map<String, Object> getCategories() {
 		return Collections.singletonMap("categories", mainpageService.getCategory());
 	}
 
 	@GetMapping(path = "/promotions")
-	public Map<String, Object> promotions() {
+	public Map<String, Object> getPromotions() {
 		return Collections.singletonMap("promotions", mainpageService.getPromotion());
 	}
 }

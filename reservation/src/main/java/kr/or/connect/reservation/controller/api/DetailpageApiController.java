@@ -18,7 +18,7 @@ public class DetailpageApiController {
 	private DetailpageService detailpageService;
 
 	@GetMapping(path = "/promotion")
-	public Map<String, Object> promotion(
+	public Map<String, Object> getPromotion(
 			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId) {
 		Map<String, Object> ret = new HashMap<>();
 		ret.put("image", detailpageService.getPromotion(productId));
@@ -27,7 +27,7 @@ public class DetailpageApiController {
 	}
 
 	@GetMapping(path = "/product")
-	public Map<String, Object> product(
+	public Map<String, Object> getProduct(
 			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId) {
 		Map<String, Object> ret = new HashMap<>();
 		ret.put("product", detailpageService.getProduct(productId));
@@ -35,7 +35,7 @@ public class DetailpageApiController {
 	}
 
 	@GetMapping(path = "/review")
-	public Map<String, Object> review(
+	public Map<String, Object> getReview(
 			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId,
 			@RequestParam(name = "displayInfoId", required = false, defaultValue = "0") int displayInfoId) {
 		Map<String, Object> ret = new HashMap<>();
@@ -45,7 +45,7 @@ public class DetailpageApiController {
 	}
 
 	@GetMapping(path = "/display")
-	public Map<String, Object> display(
+	public Map<String, Object> getDisplay(
 			@RequestParam(name = "displayInfoId", required = false, defaultValue = "0") int displayInfoId) {
 		Map<String, Object> ret = new HashMap<>();
 		ret.put("display", detailpageService.getDisplayInfo(displayInfoId));

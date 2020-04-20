@@ -8,6 +8,14 @@ public class Product {
 	private String content = "";
 	private String saveFileName = "";
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -24,12 +32,12 @@ public class Product {
 		this.placeName = placeName;
 	}
 
-	public int getId() {
-		return id;
+	public int getDisplayInfoId() {
+		return displayInfoId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDisplayInfoId(int displayInfoId) {
+		this.displayInfoId = displayInfoId;
 	}
 
 	public String getContent() {
@@ -50,15 +58,8 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [description=" + description + ", placeName=" + placeName + ", content=" + content
-				+ ", saveFileName=" + saveFileName + "]";
+		return "Product [id=" + id + ", description=" + description + ", placeName=" + placeName + ", displayInfoId="
+				+ displayInfoId + ", content=" + content + ", saveFileName=" + saveFileName + "]";
 	}
 
-	public int getDisplayInfoId() {
-		return displayInfoId;
-	}
-
-	public void setDisplayInfoId(int displayInfoId) {
-		this.displayInfoId = displayInfoId;
-	}
 }

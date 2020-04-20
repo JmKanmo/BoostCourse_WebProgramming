@@ -23,7 +23,7 @@ public class ReservepageApiController {
 	private ReservepageService reservepageService;
 
 	@GetMapping(path = "/display")
-	public Map<String, Object> display(
+	public Map<String, Object> getDisplay(
 			@RequestParam(name = "productId", required = false, defaultValue = "0") int productId,
 			@RequestParam(name = "displayInfoId", required = false, defaultValue = "0") int displayInfoId) {
 		Map<String, Object> ret = new HashMap<>();
@@ -33,7 +33,7 @@ public class ReservepageApiController {
 	}
 
 	@PostMapping(path = "/reservations")
-	public int reservations(@ModelAttribute Reservation reservation) {
+	public int reserve(@ModelAttribute Reservation reservation) {
 		reservation.setCreateDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now()));
 		reservation.setModifyDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now()));
 		return reservepageService.addReservation(reservation);

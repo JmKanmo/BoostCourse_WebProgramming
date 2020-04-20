@@ -54,7 +54,7 @@ public class MyReservationpageApiController {
 	}
 
 	@GetMapping(path = "/reservations")
-	public Map<String, Object> historyByEmail(
+	public Map<String, Object> getHistoryByEmail(
 			@RequestParam(name = "resrvEmail", required = false, defaultValue = "") String resrvEmail)
 			throws ParseException {
 		Map<String, Object> ret = new HashMap<>();
@@ -63,8 +63,7 @@ public class MyReservationpageApiController {
 		List<BookingHistory> scheduledHistory = new ArrayList<>();
 		List<BookingHistory> usedHistory = new ArrayList<>();
 
-		for (int i = 0; i < totalHistoryList.size(); i++) {
-			BookingHistory bookingHistory = totalHistoryList.get(i);
+		for (BookingHistory bookingHistory : totalHistoryList) {
 			List<TicketHistory> ticketHistory = myReservationpageService
 					.getTicketHistory(bookingHistory.getReservationId());
 			bookingHistory.setTicketHistory(ticketHistory);
@@ -91,7 +90,7 @@ public class MyReservationpageApiController {
 	}
 
 	@GetMapping(path = "/reservations/id")
-	public Map<String, Object> historyById(
+	public Map<String, Object> getHistoryById(
 			@RequestParam(name = "reservationId", required = false, defaultValue = "") int reservationId) {
 		Map<String, Object> ret = new HashMap<>();
 		BookingHistory bookingHistory = myReservationpageService.getBookingHistory(reservationId);
@@ -100,7 +99,7 @@ public class MyReservationpageApiController {
 	}
 
 	@PutMapping(path = "/reservations")
-	public int cancel(
+	public int cancelReservation(
 			@RequestParam(name = "reservationInfoId", required = false, defaultValue = "") int reservationInfoId) {
 		return myReservationpageService.cancelReservation(reservationInfoId);
 	}
