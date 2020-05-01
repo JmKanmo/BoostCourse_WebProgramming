@@ -1,10 +1,13 @@
 package kr.or.connect.mvcexam.dto;
 
+import java.io.File;
+
 public class User {
 	private String name;
 	private String email;
 	private int age;
-
+	private File reviewImg;
+	
 	public String getName() {
 		return name;
 	}
@@ -32,5 +35,13 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", email=" + email + ", age=" + age + "]";
+	}
+
+	public File getReviewImg() {
+		return reviewImg;
+	}
+
+	public void setReviewImg(File reviewImg) {
+		this.reviewImg = reviewImg;
 	}
 }

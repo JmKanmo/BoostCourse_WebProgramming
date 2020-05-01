@@ -24,5 +24,4 @@ public class GoodsController {
 		model.addAttribute("path", path);
 		return "goodsById";
 	}
-
 }
