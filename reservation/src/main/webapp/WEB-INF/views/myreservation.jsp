@@ -5,13 +5,17 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-	<title>예약내역페이지</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
-		integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous"></script>
-	<link href="./resources/css/style.css?ver=1.1" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="description"
+	content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+<title>예약내역페이지</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+	integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU="
+	crossorigin="anonymous"></script>
+<link href="./resources/css/style.css?ver=1.1" rel="stylesheet">
 </head>
 
 <body>
@@ -19,13 +23,16 @@
 		<div class="header">
 			<header class="header_tit">
 				<h1 class="logo">
-					<a href="/reservation/main" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span>
-					</a> <a class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span>
+					<a href="/reservation/main" class="lnk_logo" title="네이버"> <span
+						class="spr_bi ico_n_logo">네이버</span>
+					</a> <a class="lnk_logo" title="예약"> <span
+						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
 				<c:choose>
 					<c:when test="${sessionScope.email != null}">
-						<a class="btn_my" href="/reservation/myreservation?resrv_email=${sessionScope.email}">
+						<a class="btn_my"
+							href="/reservation/myreservation?resrv_email=${sessionScope.email}">
 							<span title="예약확인">${sessionScope.email}</span>
 						</a>
 					</c:when>
@@ -49,7 +56,8 @@
 
 				<!-- 내 예약 리스트 -->
 				<div class="wrap_mylist">
-					<ul class="list_cards" ng-if="bookedLists.length > 0" id="total_tag">
+					<ul class="list_cards" ng-if="bookedLists.length > 0"
+						id="total_tag">
 						<!-- history-template -->
 					</ul>
 				</div>
@@ -75,7 +83,8 @@
 		<!-- popUp-template -->
 	</div>
 	<!--// 취소 팝업 -->
-	<script type="text/javascript" src="./resources/js/myreservationpage.js?ver=1.1"></script>
+	<script type="text/javascript"
+		src="./resources/js/myreservationpage.js?ver=1.1"></script>
 </body>
 <!-- summary template -->
 <script type="text/template" id="template-summary">
@@ -251,7 +260,7 @@
 								</em>
 							</div>
 							<div class="booking_cancel" id="reviewScope" reservationId={{reservationId}}>
-								<a href="./reviewWrite.html"><button class="btn">
+								<a href="#" onclick="return false"><button class="btn">
 										<span>예매자 리뷰 남기기</span>
 									</button></a>
 							</div>
@@ -343,8 +352,8 @@
 	</li>
 </script>
 
-<!-- popUp template -->
-<<script type="text/template" id="template-popup">
+<!-- cancel popUp template -->
+<script type="text/template" id="cancel-template-popup">
 	<div class="dimm_dark" style="display: block"></div>
 	<div class="popup_booking refund">
 		<h1 class="pop_tit">
@@ -356,7 +365,35 @@
 		<div class="nomember_alert">
 			<p>취소하시겠습니까?</p>
 		</div>
-		<div class="pop_bottom_btnarea">
+		<div class="pop_bottom_btnarea" id="cancel">
+			<div class="btn_gray">
+				<a href="#" class="btn_bottom"><span>아니오</span></a>
+			</div>
+			<div class="btn_green" reservationId={{bookingHistory.reservationId}}>
+				<a href="#" class="btn_bottom"><span>예</span></a>
+			</div>
+		</div>
+		<!-- 닫기 -->
+		<a href="#" class="popup_btn_close" title="close"> <i class="spr_book2 ico_cls"></i>
+		</a>
+		<!--// 닫기 -->
+	</div>
+	</script>
+
+<!-- review popUp template -->
+<script type="text/template" id="review-template-popup">
+	<div class="dimm_dark" style="display: block"></div>
+	<div class="popup_booking refund">
+		<h1 class="pop_tit">
+			<span>{{bookingHistory.description}}</span>
+			<small class="sm">예약일: {{splitDate bookingHistory.reservationDate}}</small>
+			<small class="sm">구매티켓수: {{bookingHistory.ticketCount}}장</small>
+			<small class="sm">구매금액: {{bookingHistory.ticketPrice}}원</small>
+		</h1>
+		<div class="nomember_alert">
+			<p>리뷰를 남기러 가시겠습니까?</p>
+		</div>
+		<div class="pop_bottom_btnarea" id="review">
 			<div class="btn_gray">
 				<a href="#" class="btn_bottom"><span>아니오</span></a>
 			</div>

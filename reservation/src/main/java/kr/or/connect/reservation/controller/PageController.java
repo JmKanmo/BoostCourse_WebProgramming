@@ -57,4 +57,10 @@ public class PageController {
 		model.setViewName("myreservation");
 		return model;
 	}
+
+	@GetMapping(path = "/reviewWrite")
+	public ModelAndView reviewWritePage(ModelAndView model) throws ParseException {
+		model.setViewName("reviewWrite");
+		return model;
+	}
 }
