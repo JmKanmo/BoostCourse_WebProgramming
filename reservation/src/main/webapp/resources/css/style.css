@@ -428,7 +428,7 @@ hr {
 
 .spr_book {
 	display: inline-block;
-	background-image: url(../img/spr_book.png);
+	background-image: url(/tmp/img/spr_book.png);
 	background-size: 400px 400px;
 	vertical-align: top;
 	text-indent: 100%;
@@ -488,7 +488,7 @@ hr {
 }
 
 .spr_book2 {
-	background-image: url(../img/spr_book2.png);
+	background-image: url(/tmp/img/spr_book2.png);
 	background-size: 330px 400px
 }
 
@@ -593,7 +593,7 @@ hr {
 }
 
 .spr_bi {
-	background-image: url(../img/spr_bi.png);
+	background-image: url(/tmp/img/spr_bi.png);
 	background-size: 130px 120px
 }
 
@@ -647,7 +647,7 @@ input[type=checkbox].chk_agree+.label:before {
 	overflow: hidden;
 	display: inline-block;
 	color: transparent;
-	background-image: url(../img/spr_book2.png);
+	background-image: url(/tmp/img/spr_book2.png);
 	background-size: 330px 400px;
 	vertical-align: top
 }
@@ -941,7 +941,7 @@ button {
 	left: 0;
 	width: 9px;
 	height: 11px;
-	background-image: url(../img/spr_book2.png);
+	background-image: url(/tmp/img/spr_book2.png);
 	background-size: 330px 400px;
 	background-repeat: no-repeat;
 	background-position: -299px -26px;
@@ -2565,7 +2565,7 @@ button {
 
 .section_review_list .grade_area .graph_mask, .section_review_list .grade_area .graph_value,
 	.section_review_list .short_review_area .review_info .grade:before {
-	background-image: url(../img/spr_comment.png);
+	background-image: url(/tmp/img/spr_comment.png);
 	background-repeat: no-repeat;
 	background-size: 90px 130px
 }
@@ -3991,7 +3991,7 @@ button {
 	width: 35px;
 	height: 32px;
 	margin-left: -38px;
-	background-image: url('../img/spr_comment.png');
+	background-image: url(/tmp/img/spr_comment.png);
 	background-repeat: no-repeat;
 	background-size: 90px 130px;
 	background-position: 0 -92px;

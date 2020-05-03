@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="spr_bi"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="C:"/>
-			<item value="location."/>
-			<item value="this.urlPar"/>
-			<item value="this."/>
-			<item value="location"/>
-			<item value="reviewPopup"/>
-			<item value="setPopupClickListener"/>
-			<item value="contain"/>
-			<item value="contains"/>
-			<item value="reviewScope"/>
-			<item value="취소"/>
-			<item value="예매"/>
-			<item value="booking_cancel"/>
-			<item value="예매자 리뷰"/>
-			<item value="onClick"/>
+			<item value="spr_bi"/>
+			<item value="ico_n_logo"/>
+			<item value="spr_bi.png "/>
+			<item value="http://localhost:8080/reservation/resources/img/spr_bi.png "/>
+			<item value="save"/>
+			<item value="imgLoad"/>
+			<item value="imgLord"/>
+			<item value="saveFileName"/>
+			<item value="fi.id AS fileId"/>
+			<item value="fi.id"/>
+			<item value="save_file_name"/>
+			<item value="save_file"/>
+			<item value="save_filke"/>
+			<item value="Logger"/>
+			<item value=":"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1246"/>
-		<item key="DIALOG_Y_ORIGIN" value="297"/>
+		<item key="DIALOG_X_ORIGIN" value="806"/>
+		<item key="DIALOG_Y_ORIGIN" value="585"/>
 		<item key="DIALOG_WIDTH" value="340"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="kr.or.connect.reservation.service.ReservepageService"/>
-<fullyQualifiedTypeName name="org.springframework.dao.EmptyResultDataAccessException"/>
-<fullyQualifiedTypeName name="kr.or.connect.reservation.dao.sql.ReservepageDaoSqls"/>
-<fullyQualifiedTypeName name="kr.or.connect.reservation.dto.ProductPrice"/>
-<fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
 <fullyQualifiedTypeName name="org.springframework.jdbc.core.simple.SimpleJdbcInsert"/>
 <fullyQualifiedTypeName name="org.springframework.jdbc.core.namedparam.SqlParameterSource"/>
@@ -12,7 +7,6 @@
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dto.Reservation"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dto.ReservationPrice"/>
 <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.dao.MyReservationpageDao"/>
 <fullyQualifiedTypeName name="kr.or.connect.reservation.controller.api.MyReservationpageApiController"/>
@@ -40,7 +34,6 @@
 <fullyQualifiedTypeName name="lombok.Getter"/>
 <fullyQualifiedTypeName name="lombok.Builder"/>
 <fullyQualifiedTypeName name="lombok.Builder.Default"/>
-<fullyQualifiedTypeName name="lombok.Data"/>
 <fullyQualifiedTypeName name="java.util.logging.Logger"/>
 <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
 <fullyQualifiedTypeName name="org.slf4j.Logger"/>
@@ -60,4 +53,11 @@
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.dao.sql.ReviewWritepageDaoSqls"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.dao.ReviewWritepageDao"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="kr.or.connect.reservation.service.ReviewWritepageService"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="lombok.Data"/>
 </qualifiedTypeNameHistroy>

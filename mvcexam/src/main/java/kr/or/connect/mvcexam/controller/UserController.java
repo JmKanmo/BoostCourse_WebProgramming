@@ -42,8 +42,8 @@ public class UserController {
 			while ((readCount = is.read(buffer)) != -1) {
 				fos.write(buffer, 0, readCount);
 			}
-			logger.debug("file:{}, email:{}, age:{}", file.getOriginalFilename(), multi.getParameter("email"),
-					multi.getParameter("age"));
+//			logger.debug("file:{}, email:{}, age:{}", file.getOriginalFilename(), multi.getParameter("email"),
+//					multi.getParameter("age"));
 		} catch (Exception ex) {
 			throw new RuntimeException("file Save Error");
 		}

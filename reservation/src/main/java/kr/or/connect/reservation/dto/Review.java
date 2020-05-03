@@ -9,5 +9,5 @@ public class Review {
 	private double score;
 	private String comment = "";
 	private String modify_date = "";
-	private String fileURL = "";
+	private int fileId;
 }

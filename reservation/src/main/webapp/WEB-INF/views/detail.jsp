@@ -251,7 +251,7 @@
 <script type="text/template" id="template-promotion">
 	{{#image}}
 	<li class="item" style="width:100%;height:100%">
-		<img alt="" class="img_thumb" src=./resources/{{saveFileName}}> 
+		<img alt="" class="img_thumb" src="imgLoad.do?imageId={{fileId}}"> 
 		<span class="img_bg"></span>
 		<div class="visual_txt">
 			<div class="visual_txt_inn" style="height:100%">
@@ -272,7 +272,7 @@
 				<div class="review_area">
 					<div class="thumb_area">
 						<a href="#" class="thumb {{blind}}" onclick="return false;"> 
-							<img width="90" height="90" class="img_vertical_top" alt="리뷰이미지" src= {{fileURL}} >
+							<img width="90" height="90" class="img_vertical_top" alt="사진없음" src="imgLoad.do?imageId={{fileId}}">
 						</a> 
 						<span class="img_count" style="display: none;">1</span>
 					</div>

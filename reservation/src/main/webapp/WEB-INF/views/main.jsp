@@ -120,7 +120,7 @@
 <script type="text/template" id="template-promotion">
 	{{#promotions}}	
 	<li class="item"> 
-		<img src = {{saveFileName}} style = "width: 100%; height: 100%;" alt = ""> 
+		<img src="imgLoad.do?imageId={{fileId}}" style = "width: 100%; height: 100%;" alt = ""> 
 	</li>
 	{{/promotions}}
 </script>
@@ -143,7 +143,7 @@
 		<li class="item">
 			<a href="/reservation/detail?id={{id}}&displayInfoId={{displayInfoId}}" class="item_book">
 				<div class="item_preview"> 
-					<img alt="" class="img_thumb" src= {{saveFileName}}>
+					<img alt="" class="img_thumb" src="imgLoad.do?imageId={{fileId}}">
 					<span class="img_border"></span>
 				</div>
 	

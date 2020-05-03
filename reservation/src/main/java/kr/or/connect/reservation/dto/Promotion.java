@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Promotion {
-	private String saveFileName;
+	private int fileId;
 	private String description = "";
 }

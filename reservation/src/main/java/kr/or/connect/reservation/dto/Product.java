@@ -9,5 +9,5 @@ public class Product {
 	private String placeName = "";
 	private int displayInfoId;
 	private String content = "";
-	private String saveFileName = "";
+	private int fileId;
 }
