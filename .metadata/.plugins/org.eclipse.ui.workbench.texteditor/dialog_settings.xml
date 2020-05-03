@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;"/>
-			<item value="input[0]"/>
-			<item value="세트1"/>
-			<item value="item_dsc"/>
-			<item value="opening"/>
-			<item value="var"/>
-			<item value="resrvForm"/>
-			<item value="ticketPurchase"/>
+			<item value="C:"/>
+			<item value="location."/>
+			<item value="this.urlPar"/>
+			<item value="this."/>
+			<item value="location"/>
+			<item value="reviewPopup"/>
+			<item value="setPopupClickListener"/>
+			<item value="contain"/>
+			<item value="contains"/>
+			<item value="reviewScope"/>
+			<item value="취소"/>
+			<item value="예매"/>
+			<item value="booking_cancel"/>
+			<item value="예매자 리뷰"/>
+			<item value="onClick"/>
 		</list>
 		<list key="replacehistory">
 		</list>

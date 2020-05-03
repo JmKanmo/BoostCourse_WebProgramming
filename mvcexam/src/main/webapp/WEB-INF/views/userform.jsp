@@ -15,9 +15,11 @@
 			name="age" /> <br> <input type="submit" value="확인" /> <input
 			type="file" id="img_file" name="file" accept="image/*"
 			multiple="multiple">
-		<div id = "file_list">
-			<img class="thumb_img" style = "width:300px; height:300px;" src="" alt="" />
+		<div id="file_list">
+			<img class="thumb_img" style="width: 300px; height: 300px;" src=""
+				alt="" />
 		</div>
+		<img src="imgLoad.do" alt="" />
 	</form>
 
 	<script>
