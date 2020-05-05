@@ -31,7 +31,7 @@ public class UserController {
 	@PostMapping("/regist")
 	public String upload(MultipartHttpServletRequest multi) {
 		MultipartFile file = multi.getFile("file");
-
+		System.out.println("hello");
 		try (
 				// 윈도우일 경우
 				FileOutputStream fos = new FileOutputStream("c:/tmp/" + file.getOriginalFilename());
@@ -42,8 +42,8 @@ public class UserController {
 			while ((readCount = is.read(buffer)) != -1) {
 				fos.write(buffer, 0, readCount);
 			}
-//			logger.debug("file:{}, email:{}, age:{}", file.getOriginalFilename(), multi.getParameter("email"),
-//					multi.getParameter("age"));
+			logger.debug("file:{}, email:{}, age:{}, temp:{}", file.getOriginalFilename(), multi.getParameter("email"),
+					multi.getParameter("age"), multi.getParameter("tempData"));
 		} catch (Exception ex) {
 			throw new RuntimeException("file Save Error");
 		}

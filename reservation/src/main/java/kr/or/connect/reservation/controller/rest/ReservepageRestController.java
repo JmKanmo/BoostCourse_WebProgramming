@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.controller.api;
+package kr.or.connect.reservation.controller.rest;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +18,7 @@ import kr.or.connect.reservation.service.ReservepageService;
 
 @RestController
 @RequestMapping(path = "/reservepage/api")
-public class ReservepageApiController {
+public class ReservepageRestController {
 	@Autowired
 	private ReservepageService reservepageService;
 

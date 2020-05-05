@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.controller.api;
+package kr.or.connect.reservation.controller.rest;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -23,7 +23,7 @@ import kr.or.connect.reservation.service.MyReservationpageService;
 
 @RestController
 @RequestMapping(path = "/myreservationpage/api")
-public class MyReservationpageApiController {
+public class MyReservationpageRestController {
 	@Autowired
 	private MyReservationpageService myReservationpageService;
 

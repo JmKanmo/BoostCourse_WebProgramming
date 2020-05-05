@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.controller.api;
+package kr.or.connect.reservation.controller.rest;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import kr.or.connect.reservation.service.MainpageService;
 
 @RestController
 @RequestMapping(path = "/mainpage/api")
-public class MainpageApiController {
+public class MainpageRestController {
 	@Autowired
 	private MainpageService mainpageService;
 

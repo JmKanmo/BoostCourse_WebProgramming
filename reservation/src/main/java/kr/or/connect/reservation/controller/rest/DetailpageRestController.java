@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.controller.api;
+package kr.or.connect.reservation.controller.rest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import kr.or.connect.reservation.service.DetailpageService;
 
 @RestController
 @RequestMapping(path = "/detailpage/api")
-public class DetailpageApiController {
+public class DetailpageRestController {
 	@Autowired
 	private DetailpageService detailpageService;
 

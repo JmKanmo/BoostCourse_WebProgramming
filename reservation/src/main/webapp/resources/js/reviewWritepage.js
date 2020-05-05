@@ -186,7 +186,7 @@ class PicRegistController {
       function (evt) {
         const image = evt.target.files[0];
         this.imageFile = image;
-        
+
         if (!this.validImage(image)) {
           alert("이미지는 jpg, png형식만 가능합니다.");
           return;
@@ -198,10 +198,13 @@ class PicRegistController {
       }.bind(this)
     );
 
-    this.delBtn.addEventListener("click", function (evt) {
-      evt.target.closest(".item").style.display = "none";
-      this.imageFile = null;
-    }.bind(this));
+    this.delBtn.addEventListener(
+      "click",
+      function (evt) {
+        evt.target.closest(".item").style.display = "none";
+        this.imageFile = null;
+      }.bind(this)
+    );
   }
 
   getImageFile() {
@@ -216,44 +219,42 @@ class ReviewFormController {
     this.ratingController = new RatingController();
     this.reviewContentController = new ReviewContentController();
     this.picRegistController = new PicRegistController();
-    this.submitBtn = document.querySelector(".bk_btn");
+    this.submitForm = document.querySelector("#reviewForm");
   }
 
   initReviewFormController() {
     this.ratingController.initRatingController();
     this.reviewContentController.initReviewContentController();
     this.picRegistController.initPicRegistController();
-    this.submitDataController();
+    this.initSubmitFormController();
   }
 
-  requestAjax(jsonData) {
-    let queryString = $("form[name = resrvForm]").serialize();
-    let params = `reservations?${queryString}`;
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/reservation/reservepage/api/" + params, true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.addEventListener("load", function () {
-      alert("등록 완료");
-      window.location.href = "/reservation/main";
-    });
-    xhr.send();
-  }
+  initSubmitFormController() {
+    let checkBeforeSubmit = () => {
+      let jsonData = {
+        resrvId: this.urlParser.getReservationId(),
+        resrvEmail: this.urlParser.getResrvEmail(),
+        productId: this.urlParser.getProductId(),
+        starGrade: this.ratingController.getStarGrade(),
+        reviewContent: this.reviewContentController.getReviewContent(),
+        imageFile: this.picRegistController.getImageFile(),
+      };
+      
+      if (!jsonData["reviewContent"]) {
+        alert(
+          `텍스트는 ${this.reviewContentController.reviewTextMin}자이상 ${this.reviewContentController.reviewTextLimit}자이하로 작성하셔야합니다.`
+        );
+        return false;
+      } else {
+        alert("리뷰가 등록됩니다.");
+        this.submitForm["reviewData"].value = jsonData;
+        return true;
+      }
+    };
 
-  submitDataController() {
-    this.submitBtn.addEventListener(
-      "click",
-      function () {
-        let jsonData = {
-          resrvId: this.urlParser.getReservationId(),
-          resrvEmail: this.urlParser.getResrvEmail(),
-          productId: this.urlParser.getProductId(),
-          starGrade: this.ratingController.getStarGrade(),
-          reviewContent: this.reviewContentController.getReviewContent(),
-          imageFile: this.picRegistController.getImageFile(),
-        };
-        console.log(jsonData);
-      }.bind(this)
-    );
+    this.submitForm.onsubmit = function () {
+      return checkBeforeSubmit();
+    };
   }
 }
 
