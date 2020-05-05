@@ -397,7 +397,7 @@
 			<div class="btn_gray">
 				<a href="#" class="btn_bottom"><span>아니오</span></a>
 			</div>
-			<div class="btn_green" reservationId={{bookingHistory.reservationId}}>
+			<div class="btn_green" reservationId={{bookingHistory.reservationId}} productId = {{bookingHistory.productId}}>
 				<a href="#" class="btn_bottom"><span>예</span></a>
 			</div>
 		</div>

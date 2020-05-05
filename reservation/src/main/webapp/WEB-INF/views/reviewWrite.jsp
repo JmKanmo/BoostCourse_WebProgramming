@@ -35,9 +35,9 @@
 		</div>
 		<div class="ct">
 			<div class="ct_wrap">
-				<div class="top_title review_header">
-					<a href="./myreservation.html" class="btn_back" title="이전 화면으로 이동">
-						<i class="fn fn-backward1"></i>
+				<div class="top_title review_header" id="top">
+					<a href="javascript: window.history.back();" class="btn_back"
+						title="이전 화면으로 이동"> <i class="fn fn-backward1"></i>
 					</a>
 					<h2>
 						<span class="title">클림트 인사이드</span>
@@ -85,9 +85,12 @@
 							<i class="fn fn-image1" aria-hidden="true"></i> <span
 							class="text_add_photo">사진 추가</span>
 						</label> <input type="file" class="hidden_input"
-							id="reviewImageFileOpenInput" accept="image/*" multiple>
+							id="reviewImageFileOpenInput" name="imageFile"
+							accept="image/jpeg,image/jpg,image/png">
 						<div class="guide_review">
-							<span>0</span>/400 <span>(최소5자이상)</span>
+							<span class="textCount">0</span>/<span class="textLimit">400</span>
+							<span>(최소<span class="textMin">5</span>자이상)
+							</span>
 						</div>
 					</div>
 
@@ -97,15 +100,12 @@
 							<ul class="lst_thumb">
 								<li class="item" style="display: none;"><a href="#"
 									class="anchor"> <span class="spr_book ico_del">삭제</span>
-								</a> <img
-									src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300"
-									width="130" alt="" class="item_thumb"> <span
+								</a> <img src="" width="130" alt="대체이미지" class="item_thumb"> <span
 									class="img_border"></span></li>
 							</ul>
 						</div>
 					</div>
 					<!-- //리뷰 포토 -->
-
 				</div>
 				<!-- //리뷰 작성 푸터 -->
 
@@ -121,7 +121,7 @@
 	</div>
 	<footer>
 	<div class="gototop">
-		<a href="#" class="lnk_top"> <span class="lnk_top_text">TOP</span>
+		<a href="#top" class="lnk_top"> <span class="lnk_top_text">TOP</span>
 		</a>
 	</div>
 	<div id="footer" class="footer">
@@ -130,11 +130,7 @@
 		<span class="copyright">© NAVER Corp.</span>
 	</div>
 	</footer>
-	<script type="text/javascript" src="./resources/js/reviewWritepage.js?ver=1.1"></script>
+	<script type="text/javascript"
+		src="./resources/js/reviewWritepage.js?ver=1.1"></script>
 </body>
-
-<!-- 상품정보카드 템플릿-->
-<script type="text/template" id="">
-	
-</script>
 </html>

@@ -2904,7 +2904,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_header .left {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_hl.png);
+	background-image: url(/tmp/img/bg_card_hl.png);
 	background-size: 12px 54px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -2916,7 +2916,7 @@ button {
 	position: relative;
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_hm.gif);
+	background-image: url(/tmp/img/bg_card_hm.gif);
 	background-size: auto 54px;
 	background-repeat: repeat-x;
 	width: 100%;
@@ -2944,7 +2944,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_header .right {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_hr.png);
+	background-image: url(/tmp/img/bg_card_hr.png);
 	background-size: 12px 54px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -2985,7 +2985,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_body .left {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_bl.png);
+	background-image: url(/tmp/img/bg_card_bl.png);
 	background-size: 12px 2px;
 	background-repeat: repeat-y;
 	width: 12px;
@@ -3125,7 +3125,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_body .right {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_br.png);
+	background-image: url(/tmp/img/bg_card_br.png);
 	background-size: 12px 2px;
 	background-repeat: repeat-y;
 	width: 12px;
@@ -3140,7 +3140,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_footer .left {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_fl.png);
+	background-image: url(/tmp/img/bg_card_fl.png);
 	background-size: 12px 2px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -3151,7 +3151,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_footer .middle {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_fm.png);
+	background-image: url(/tmp/img/bg_card_fm.png);
 	background-size: 100% 2px;
 	background-repeat: no-repeat;
 	width: 100%;
@@ -3162,7 +3162,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_footer .right {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_fr.png);
+	background-image: url(/tmp/img/bg_card_fr.png);
 	background-size: 12px 2px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -3177,29 +3177,29 @@ button {
 
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .left
 	{
-	background-image: url(../img/bg_card2_hl.png)
+	background-image: url(/tmp/img/bg_card2_hl.png)
 }
 
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .middle
 	{
-	background-image: url(../img/bg_card2_hm.gif)
+	background-image: url(/tmp/img/bg_card2_hm.gif)
 }
 
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .right
 	{
-	background-image: url(../img/bg_card2_hr.png)
+	background-image: url(/tmp/img/bg_card2_hr.png)
 }
 
 .section_my .wrap_mylist .list_cards .card.used .card_header .left {
-	background-image: url(../img/bg_card3_hl.png)
+	background-image: url(/tmp/img/bg_card3_hl.png)
 }
 
 .section_my .wrap_mylist .list_cards .card.used .card_header .middle {
-	background-image: url(../img/bg_card3_hm.gif)
+	background-image: url(/tmp/img/bg_card3_hm.gif)
 }
 
 .section_my .wrap_mylist .list_cards .card.used .card_header .right {
-	background-image: url(../img/bg_card3_hr.png)
+	background-image: url(/tmp/img/bg_card3_hr.png)
 }
 
 .event {

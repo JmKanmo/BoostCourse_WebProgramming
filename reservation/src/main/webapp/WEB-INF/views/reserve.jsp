@@ -189,7 +189,7 @@
 <!-- intro image list template script-->
 <script type="text/template" id="template-introImageList">
 	<li class="item" style="width: 414px;">
-		<img alt="" class="img_thumb" src="{{display.saveFileName}}">
+		<img alt="" class="img_thumb" src="imgLoad.do?imageId={{display.fileId}}">
 			<span class="img_bg"></span>
 			<div class="preview_txt">
 				<h2 class="preview_txt_tit">{{display.description}}</h2>

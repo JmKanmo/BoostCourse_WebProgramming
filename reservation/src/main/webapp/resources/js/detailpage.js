@@ -398,6 +398,14 @@ const descTabObj = {
   },
 
   updateTemplate(target, jsonData) {
+    Handlebars.registerHelper("blind", function (imageId) {
+      if (imageId === 0) {
+        return "blind";
+      } else {
+        return "";
+      }
+    });
+
     if (target === "product") {
       this.inDescription.innerText = jsonData["product"][0]["content"];
     } else {

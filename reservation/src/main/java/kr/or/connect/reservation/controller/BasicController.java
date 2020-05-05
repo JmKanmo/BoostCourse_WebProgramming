@@ -38,7 +38,7 @@ public class BasicController {
 	}
 
 	@GetMapping(path = "/reserve")
-	public ModelAndView reservationPage(ModelAndView model) {
+	public ModelAndView reservationPage(ModelAndView model) throws ParseException {
 		model.setViewName("reserve");
 		return model;
 	}
@@ -77,6 +77,7 @@ public class BasicController {
 	public void imgLoad(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Integer imageId = Integer.parseInt(req.getParameter("imageId"));
 		if (imageId.equals(0)) {
+			// 요청 이미지가 없으면 load를 수행하지않고 종료
 			return;
 		}
 		String[] splited = reviewWritepageService.selectImage(imageId).split("/");

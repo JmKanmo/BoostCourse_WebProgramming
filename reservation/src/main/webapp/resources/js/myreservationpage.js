@@ -45,7 +45,10 @@ class HistoryManager {
               let resrvId = evt.target
                 .closest(".btn_green")
                 .getAttribute("reservationid");
-              location.href = `/reservation/reviewWrite?resrv_email=${resrvEmail}&reservationid=${resrvId}`;
+              let productId = evt.target
+                .closest(".btn_green")
+                .getAttribute("productId");
+              location.href = `/reservation/reviewWrite?resrv_email=${resrvEmail}&reservationid=${resrvId}&productId=${productId}`;
             }
           } else if (evt.target.innerText === "아니오") {
             this.popup.style.display = "none";

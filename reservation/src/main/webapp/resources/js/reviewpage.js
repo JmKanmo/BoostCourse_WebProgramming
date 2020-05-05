@@ -51,6 +51,14 @@ const commentObj = {
       }
     );
 
+    Handlebars.registerHelper("blind", function (imageId) {
+      if (imageId === 0) {
+        return "blind";
+      } else {
+        return "";
+      }
+    });
+
     let template = document.querySelector("#template-comment").innerText;
     let bindTemplate = Handlebars.compile(template);
     let ret = bindTemplate(slicedData);

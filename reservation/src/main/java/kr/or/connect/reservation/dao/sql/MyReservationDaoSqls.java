@@ -6,7 +6,7 @@ public class MyReservationDaoSqls {
 			+ " (SELECT SUM(rip.count*pp.price) ticket_price,rip.reservation_info_id FROM reservation_info_price rip,product_price pp, reservation_info ri WHERE rip.product_price_id = pp.id and ri.id = rip.reservation_info_id GROUP BY ri.id) pv"
 			+ " WHERE resrv.id = pv.reservation_info_id and di.id = resrv.display_info_id and resrv.product_id = prod.id and resrv.id = rip.reservation_info_id GROUP BY resrv.id ORDER BY resrv.reservation_date";
 
-	public static final String SELECT_BOOKING_HISTORY_BY_ID = "SELECT pv.ticket_price, SUM(rip.count) ticket_count, resrv.id reservationId, prod.description, resrv.reservation_date"
+	public static final String SELECT_BOOKING_HISTORY_BY_ID = "SELECT pv.ticket_price, prod.id AS productId, SUM(rip.count) ticket_count, resrv.id reservationId, prod.description, resrv.reservation_date"
 			+ " FROM display_info di, product prod, reservation_info_price rip, reservation_info resrv, (SELECT SUM(rip.count*pp.price) ticket_price,rip.reservation_info_id FROM reservation_info_price rip,product_price pp, reservation_info ri"
 			+ " WHERE rip.product_price_id = pp.id and ri.id = rip.reservation_info_id GROUP BY ri.id) pv WHERE resrv.id = :reservationId and"
 			+ " resrv.display_info_id = di.id and resrv.id = pv.reservation_info_id and resrv.product_id = prod.id and resrv.id = rip.reservation_info_id GROUP BY resrv.id";

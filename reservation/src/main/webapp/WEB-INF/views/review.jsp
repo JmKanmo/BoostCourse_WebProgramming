@@ -93,8 +93,8 @@
 			<div>
 				<div class="review_area">
 					<div class="thumb_area">
-						<a href="#" class="thumb {{blind}}" onclick="return false;"> 
-							<img width="90" height="90" class="img_vertical_top" alt="리뷰이미지" src= {{fileURL}} >
+						<a href="#" class="thumb {{blind fileId}}" onclick="return false;"> 
+							<img width="90" height="90" class="img_vertical_top" alt="사진없음" src="imgLoad.do?imageId={{fileId}}" >
 						</a> 
 						<span class="img_count" style="display: none;">1</span>
 					</div>
