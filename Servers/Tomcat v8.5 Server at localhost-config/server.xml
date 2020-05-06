@@ -104,7 +104,7 @@
 
 				
 				<Context docBase="C:\\tmp" path="/tmp" reloadable="true"/>
-			<Context docBase="mvcexam" path="/guestbook" reloadable="true" source="org.eclipse.jst.jee.server:mvcexam"/><Context docBase="reservation" path="/reservation" reloadable="true" source="org.eclipse.jst.jee.server:reservation"/></Host>
+			<Context docBase="reservation" path="/reservation" reloadable="true" source="org.eclipse.jst.jee.server:reservation"/></Host>
 		</Engine>
 	</Service>
 </Server>

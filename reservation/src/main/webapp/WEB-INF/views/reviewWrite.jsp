@@ -43,7 +43,7 @@
 						<span class="title">클림트 인사이드</span>
 					</h2>
 				</div>
-				<form action="/reservation/reviewwritepage/api/regist" method="post" id="reviewForm"
+				<form action="/reservation/reservations" method="post" id="reviewForm"
 					enctype="multipart/form-data" onsubmit="return false;">
 					<!-- 리뷰 별점 -->
 					<div class="write_act">
@@ -110,9 +110,9 @@
 						<!-- //리뷰 포토 -->
 					</div>
 					<!-- //리뷰 작성 푸터 -->
-					<!-- hidden input -->
-					<input type="hidden" id="reviewDataInput" name="reviewData"
-						value="" />
+					<div id="hiddenInputBox">
+						<!-- hidden input -->
+					</div>
 					<!-- 리뷰 등록 -->
 					<div class="box_bk_btn">
 						<button type="submit" class="bk_btn">
@@ -138,4 +138,12 @@
 	<script type="text/javascript"
 		src="./resources/js/reviewWritepage.js?ver=1.1"></script>
 </body>
+<!-- hidden input template -->
+<script type="text/template" id="hidden-input-template">
+	<input type="hidden" name="resrvId" value=""/>
+	<input type="hidden" name="resrvEmail" value=""/>
+	<input type="hidden" name="productId" value=""/>
+	<input type="hidden" name="starGrade" value=""/>
+	<input type="hidden" name="reviewContent" value=""/>
+</script>
 </html>

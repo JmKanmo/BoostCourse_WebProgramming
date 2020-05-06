@@ -104,7 +104,7 @@
 
 				
 				<Context docBase="C:\Users\JunmoKang\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\\tmp" path="/tmp" reloadable="true"/>
-			<Context docBase="C:\Users\JunmoKang\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvcexam" path="/guestbook" reloadable="true" source="org.eclipse.jst.jee.server:mvcexam"/><Context docBase="C:\Users\JunmoKang\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reservation" path="/reservation" reloadable="true" source="org.eclipse.jst.jee.server:reservation"/></Host>
+			<Context docBase="C:\Users\JunmoKang\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\reservation" path="/reservation" reloadable="true" source="org.eclipse.jst.jee.server:reservation"/></Host>
 		</Engine>
 	</Service>
 </Server>

@@ -1,31 +1,20 @@
 package kr.or.connect.reservation.controller;
 
-import java.io.File;
-import java.nio.file.Files;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.connect.reservation.service.MyReservationpageService;
-import kr.or.connect.reservation.service.ReviewWritepageService;
 
 @Controller
-public class BasicController {
+public class PageController {
 	@Autowired
 	private MyReservationpageService myReservationpageService;
-
-	@Autowired
-	private ReviewWritepageService reviewWritepageService;
 
 	@GetMapping(path = "/main")
 	public ModelAndView mainPage(ModelAndView model) throws ParseException {
@@ -73,26 +62,5 @@ public class BasicController {
 	public ModelAndView reviewWritePage(ModelAndView model) throws ParseException {
 		model.setViewName("reviewWrite");
 		return model;
-	}
-
-	@RequestMapping(value = "imgLoad.do")
-	public void imgLoad(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		Integer imageId = Integer.parseInt(req.getParameter("imageId"));
-		if (imageId.equals(0)) {
-			// 요청 이미지가 없으면 load를 수행하지않고 종료
-			return;
-		}
-		String[] splited = reviewWritepageService.selectImage(imageId).split("/");
-		String imagePath = "C:\\tmp\\" + splited[0] + "\\";
-		File file = new File(imagePath, splited[1]);
-		res.setHeader("Content-Length", String.valueOf(file.length()));
-		res.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
-		Files.copy(file.toPath(), res.getOutputStream());
-	}
-
-	@PostMapping("/regist")
-	public String upload(MultipartHttpServletRequest multiParams) {
-		// 코드작성하기
-		return "index";
 	}
 }

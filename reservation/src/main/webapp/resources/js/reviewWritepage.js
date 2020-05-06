@@ -168,6 +168,9 @@ class PicRegistController {
     this.reviewPhotoBox = document.querySelector(".review_photos");
     this.delBtn = document.querySelector(".ico_del");
     this.imageFile = null;
+    this.imageFileInputTag = document.querySelector(
+      "#reviewImageFileOpenInput"
+    );
   }
 
   initPicRegistController() {
@@ -181,7 +184,7 @@ class PicRegistController {
   }
 
   setPicRegistEventListener() {
-    document.querySelector("#reviewImageFileOpenInput").addEventListener(
+    this.imageFileInputTag.addEventListener(
       "change",
       function (evt) {
         const image = evt.target.files[0];
@@ -203,12 +206,9 @@ class PicRegistController {
       function (evt) {
         evt.target.closest(".item").style.display = "none";
         this.imageFile = null;
+        this.imageFileInputTag.value = "";
       }.bind(this)
     );
-  }
-
-  getImageFile() {
-    return this.imageFile;
   }
 }
 
@@ -229,25 +229,31 @@ class ReviewFormController {
     this.initSubmitFormController();
   }
 
+  updateHiddenInputTemplate() {
+    let bindTemplate = Handlebars.compile(
+      document.querySelector("#hidden-input-template").innerText
+    );
+    document.querySelector("#hiddenInputBox").innerHTML = bindTemplate();
+    this.submitForm["resrvId"].value = this.urlParser.getReservationId();
+    this.submitForm["resrvEmail"].value = this.urlParser.getResrvEmail();
+    this.submitForm["productId"].value = this.urlParser.getProductId();
+    this.submitForm["starGrade"].value = this.ratingController.getStarGrade();
+    this.submitForm[
+      "reviewContent"
+    ].value = this.reviewContentController.getReviewContent();
+  }
+
   initSubmitFormController() {
     let checkBeforeSubmit = () => {
-      let jsonData = {
-        resrvId: this.urlParser.getReservationId(),
-        resrvEmail: this.urlParser.getResrvEmail(),
-        productId: this.urlParser.getProductId(),
-        starGrade: this.ratingController.getStarGrade(),
-        reviewContent: this.reviewContentController.getReviewContent(),
-        imageFile: this.picRegistController.getImageFile(),
-      };
-      
-      if (!jsonData["reviewContent"]) {
+      this.updateHiddenInputTemplate();
+
+      if (!this.submitForm["reviewContent"].value) {
         alert(
           `텍스트는 ${this.reviewContentController.reviewTextMin}자이상 ${this.reviewContentController.reviewTextLimit}자이하로 작성하셔야합니다.`
         );
         return false;
       } else {
         alert("리뷰가 등록됩니다.");
-        this.submitForm["reviewData"].value = jsonData;
         return true;
       }
     };
