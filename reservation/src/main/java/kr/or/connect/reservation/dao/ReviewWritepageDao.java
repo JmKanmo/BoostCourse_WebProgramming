@@ -46,9 +46,9 @@ public class ReviewWritepageDao {
 		int ret = 0;
 
 		try {
-			ReservationUserCommentImage reservationUserCommentImage = new ReservationUserCommentImage.Builder()
-					.reservationInfoId_(reservationInfoId).reservationUserCommentId_(reservationUserCommentId)
-					.fileId_(fileId).build();
+			ReservationUserCommentImage reservationUserCommentImage = ReservationUserCommentImage.builder()
+					.reservationInfoId(reservationInfoId).reservationUserCommentId(reservationUserCommentId)
+					.fileId(fileId).build();
 
 			SqlParameterSource params = new BeanPropertySqlParameterSource(reservationUserCommentImage);
 			this.insertAction = new SimpleJdbcInsert(this.dataSoruce).withTableName("reservation_user_comment_image")
@@ -83,9 +83,9 @@ public class ReviewWritepageDao {
 	public int insertReservationUserComment(ReviewData reviewData) {
 		int ret = 0;
 		try {
-			ReservationUserComment reservationUserComment = new ReservationUserComment.Builder()
-					.productId_(reviewData.getProductId()).reservationInfoId_((reviewData.getReservationId()))
-					.score_(reviewData.getScore()).comment_(reviewData.getComment()).build();
+			ReservationUserComment reservationUserComment = ReservationUserComment.builder()
+					.productId(reviewData.getProductId()).reservationInfoId((reviewData.getReservationId()))
+					.score(reviewData.getScore()).comment(reviewData.getComment()).build();
 
 			SqlParameterSource params = new BeanPropertySqlParameterSource(reservationUserComment);
 			this.insertAction = new SimpleJdbcInsert(this.dataSoruce).withTableName("reservation_user_comment")

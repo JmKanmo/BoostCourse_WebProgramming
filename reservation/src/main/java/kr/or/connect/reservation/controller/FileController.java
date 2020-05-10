@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,27 @@ public class FileController {
 	@Autowired
 	private ReviewWritepageService reviewWritepageService;
 
+	@Autowired
+	private Environment env;
+
+	private String byEnvironment(String before) {
+		String key = before + "." + env.getProperty("environment");
+		return env.getProperty(key);
+	}
+
+	private ReviewData getFormattedReviewData(MultipartHttpServletRequest param, MultipartFile file, String uuid)
+			throws Exception {
+		ReviewData ret = ReviewData.builder().reservationId(Integer.valueOf(param.getParameter("resrvId")))
+				.productId(Integer.valueOf(param.getParameter("productId")))
+				.score(Double.valueOf(param.getParameter("starGrade")))
+				.comment(String.valueOf(param.getParameter("reviewContent")))
+				.fileName((uuid + String.valueOf(file.getOriginalFilename())))
+				.saveFileName("img/" + uuid + String.valueOf(file.getOriginalFilename()))
+				.contentType(String.valueOf(file.getContentType())).build();
+
+		return ret;
+	}
+
 	@RequestMapping(value = "imgLoad.do")
 	public void imgLoad(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		Integer imageId = Integer.parseInt(req.getParameter("imageId"));
@@ -32,24 +54,11 @@ public class FileController {
 			return;
 		}
 		String[] splited = reviewWritepageService.selectImage(imageId).split("/");
-		String imagePath = "C:\\tmp\\" + splited[0] + "\\";
+		String imagePath = byEnvironment("imageload.path") + splited[0] + "\\";
 		File file = new File(imagePath, splited[1]);
 		res.setHeader("Content-Length", String.valueOf(file.length()));
 		res.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
 		Files.copy(file.toPath(), res.getOutputStream());
-	}
-
-	private ReviewData getFormattedReviewData(MultipartHttpServletRequest param, MultipartFile file, String uuid)
-			throws Exception {
-		ReviewData ret = new ReviewData.Builder().reservationId_(Integer.valueOf(param.getParameter("resrvId")))
-				.productId_(Integer.valueOf(param.getParameter("productId")))
-				.score_(Double.valueOf(param.getParameter("starGrade")))
-				.comment_(String.valueOf(param.getParameter("reviewContent")))
-				.fileName_((uuid + String.valueOf(file.getOriginalFilename())))
-				.saveFileName_("img/" + uuid + String.valueOf(file.getOriginalFilename()))
-				.conetentType_(String.valueOf(file.getContentType())).build();
-
-		return ret;
 	}
 
 	@PostMapping("/reservations")
@@ -59,14 +68,14 @@ public class FileController {
 		String fileName = uuid + file.getOriginalFilename();
 		String redirectedURL = "redirect:/myreservation?resrv_email=%s";
 
-		try (FileOutputStream fos = new FileOutputStream("c:/tmp/img/" + fileName);
+		try (FileOutputStream fos = new FileOutputStream(byEnvironment("imagefile.path") + fileName);
 				InputStream is = file.getInputStream();) {
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
 			while ((readCount = is.read(buffer)) != -1) {
 				fos.write(buffer, 0, readCount);
 			}
-			reviewWritepageService.insertReviewData(getFormattedReviewData(param, file, uuid), file.isEmpty());
+			reviewWritepageService.addReviewData(getFormattedReviewData(param, file, uuid), file.isEmpty());
 		} catch (Exception ex) {
 			throw new RuntimeException("Error happened");
 		}

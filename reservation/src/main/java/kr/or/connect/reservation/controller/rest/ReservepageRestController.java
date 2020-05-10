@@ -1,7 +1,5 @@
 package kr.or.connect.reservation.controller.rest;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,8 +32,6 @@ public class ReservepageRestController {
 
 	@PostMapping(path = "/reservations")
 	public int reserve(@ModelAttribute Reservation reservation) {
-		reservation.setCreateDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now()));
-		reservation.setModifyDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now()));
 		return reservepageService.addReservation(reservation);
 	}
 }

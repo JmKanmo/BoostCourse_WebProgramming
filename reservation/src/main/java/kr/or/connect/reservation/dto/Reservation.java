@@ -1,5 +1,7 @@
 package kr.or.connect.reservation.dto;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import lombok.Data;
@@ -14,7 +16,7 @@ public class Reservation {
 	private String reservationEmail = "";
 	private String reservationDate = "";
 	private int cancelFlag;
-	private String createDate = "";
-	private String modifyDate = "";
+	private final String createDate = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now());
+	private final String modifyDate = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(LocalDateTime.now());
 	private List<ReservationPrice> reservationPrice;
 }

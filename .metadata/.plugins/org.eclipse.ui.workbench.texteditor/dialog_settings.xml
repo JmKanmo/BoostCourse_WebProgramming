@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="spr_bi"/>
+		<item key="selection" value="tmp/img/spr_book2"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="spr_bi"/>
-			<item value="ico_n_logo"/>
-			<item value="spr_bi.png "/>
-			<item value="http://localhost:8080/reservation/resources/img/spr_bi.png "/>
-			<item value="save"/>
-			<item value="imgLoad"/>
-			<item value="imgLord"/>
-			<item value="saveFileName"/>
-			<item value="fi.id AS fileId"/>
-			<item value="fi.id"/>
-			<item value="save_file_name"/>
-			<item value="save_file"/>
-			<item value="save_filke"/>
-			<item value="Logger"/>
-			<item value=":"/>
+			<item value="tmp/img/spr_book2"/>
+			<item value="spr_book2"/>
+			<item value="enctype"/>
+			<item value="&lt;form"/>
+			<item value="UUID."/>
+			<item value=".do"/>
+			<item value="img"/>
+			<item value="imageId"/>
+			<item value="Handlebars"/>
+			<item value="reservationInfoId"/>
+			<item value="reservatioInfoId"/>
+			<item value="reservation_info_id"/>
+			<item value="reservation_info_id&apos;"/>
+			<item value="reservatioInfonId_"/>
+			<item value="reservatioInfonId"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="806"/>
-		<item key="DIALOG_Y_ORIGIN" value="585"/>
+		<item key="DIALOG_X_ORIGIN" value="1199"/>
+		<item key="DIALOG_Y_ORIGIN" value="238"/>
 		<item key="DIALOG_WIDTH" value="340"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

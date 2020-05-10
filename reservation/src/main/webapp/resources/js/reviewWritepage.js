@@ -258,7 +258,7 @@ class ReviewFormController {
       }
     };
 
-    this.submitForm.onsubmit = function () {
+    this.submitForm.onsubmit = () => {
       return checkBeforeSubmit();
     };
   }

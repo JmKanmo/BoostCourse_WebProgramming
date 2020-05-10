@@ -21,7 +21,7 @@ public class ReviewWritepageServiceImpl implements ReviewWritepageService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void insertReviewData(ReviewData reviewData, boolean isEmpty) {
+	public void addReviewData(ReviewData reviewData, boolean isEmpty) {
 		if (isEmpty) {
 			reviewWritepageDao.insertReservationUserComment(reviewData);
 		} else {
