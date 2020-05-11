@@ -34,7 +34,7 @@ public class UserController {
 		System.out.println("hello");
 		try (
 				// 윈도우일 경우
-				FileOutputStream fos = new FileOutputStream("c:/tmp/" + file.getOriginalFilename());
+				FileOutputStream fos = new FileOutputStream("c:/tmp/helloguys/" + file.getOriginalFilename());
 				InputStream is = file.getInputStream();) {
 
 			int readCount = 0;

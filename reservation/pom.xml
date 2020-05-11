@@ -144,6 +144,21 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- swagger2 의존성 추가 Swagger 사용을 위해서는 구현체인 springfox-swagger2 가 필요하며, 또 
+			가장 중요한 (사용목적이라해도 과언이 아닌) UI 적으로 확인을 위해서는 springfox-swagger-ui 이렇게 2개의 라이브러리가 
+			필요하다. -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

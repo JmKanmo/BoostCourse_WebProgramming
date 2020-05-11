@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<form action="/regist" method="post" id="hello" enctype="multipart/form-data" onsubmit="return false;">
+	<form action="/guestbook/regist" method="post" id="hello" enctype="multipart/form-data">
 		name: <input type="text" name="name" /> <br> email: <input type="text" name="email" /> <br> age: <input
 			type="text" name="age" /> <br> <button type = "submit" class="submitBtn">접속하기</button> <input type="file" id="img_file"
 			name="file" accept="image/*" multiple="multiple">
@@ -18,6 +18,7 @@
 		<div id="file_list">
 			<img class="thumb_img" style="width: 300px; height: 300px;" src="" alt="" />
 		</div>
+		<input type="submit" />
 		<img src="" alt="" />
 	</form>
 
@@ -29,14 +30,6 @@
 			].indexOf(image.type) > -1);
 			return result;
 		}
-
-		document.querySelector("#hello").onsubmit = function() { return myFunction() };
-
-		function myFunction() {
-		  alert('hello');
-		  return false;
-		}
-		
 	</script>
 
 </body>

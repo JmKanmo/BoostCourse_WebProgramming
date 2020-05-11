@@ -22,7 +22,7 @@
     <logger name="kr.or.connect" level="debug"/>
 
     <root level="debug">
-        <appender-ref ref="CONSOLE"/>
+        <!-- <appender-ref ref="CONSOLE"/> -->
         <appender-ref ref="FILE"/>
     </root>
 </configuration>
