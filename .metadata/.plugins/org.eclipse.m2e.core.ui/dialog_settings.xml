@@ -2,8 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
-			<item value="C:\Users\JunmoKang\eclipse-workspace\jdbcexam"/>
 			<item value="C:\Users\JunmoKang\eclipse-workspace\mvcexam"/>
+			<item value="C:\Users\JunmoKang\eclipse-workspace\jdbcexam"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -27,6 +27,7 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="kr.or.connect.mavenweb"/>
 			<item value="kr.or.connect.reservation"/>
 			<item value="kr.or.connect.guestbook"/>
 			<item value="kr.or.connect.kr.or.connect.guestbook"/>
@@ -35,6 +36,7 @@
 			<item value="kr.or.connect"/>
 		</list>
 		<list key="artifactId">
+			<item value="mavenweb"/>
 			<item value="reservation"/>
 			<item value="guestbook"/>
 			<item value="kr.or.connect.guestbook"/>

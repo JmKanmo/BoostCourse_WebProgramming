@@ -5,6 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import springfox.documentation.builders.PathSelectors;
@@ -18,7 +20,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
-@ComponentScan(basePackages = { "kr.or.connect.mavenweb.calculator.controller" })
+@ComponentScan(basePackages = { "kr.or.connect.mavenweb.securityexam.controller",
+		"kr.or.connect.mavenweb.calculator.controller" })
 public class MvcConfig implements WebMvcConfigurer {
 	// DefaultServlet에 대한 설정을 합니다.
 	// DispatcherServlet이 처리하지 못하는 URL은 DefaultServlet이 처리하게 됩니다.
@@ -34,6 +37,19 @@ public class MvcConfig implements WebMvcConfigurer {
 	 * 위한 별도의 설정이 필요하다. 이는, Swagger UI 를 ResourceHandler 에 수동으로 등록해야 하는 작업인데, Spring
 	 * Boot 에서는 이를 자동으로 설정해주지만 Spring MVC 에서는 그렇지 않기 때문이다.
 	 */
+
+	// Spring MVC에서 jsp view 가 위치하는 경로를 설정한다.
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		registry.jsp("/WEB-INF/view/", ".jsp");
+	}
+
+	// '/' 로 요청이 오면 '/main'으로 리다이렉트 하도록 합니다.
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addRedirectViewController("/", "/main");
+	}
+
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any()) // // 현재
