@@ -8,6 +8,10 @@
 <title>로그인</title>
 </head>
 <body>
+	<a href="javascript: window.history.back();">뒤로가기</a>
+	<br>
+	<a href="/calculator/main">메인화면</a>
+	<br>
 	<div>
 		<div>
 			<form method="post" action="/calculator/authenticate">
