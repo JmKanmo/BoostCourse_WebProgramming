@@ -9,14 +9,19 @@ import java.nio.file.Files;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import kr.or.connect.mvcexam.dto.User;
 
 @Controller
 public class UserController {
@@ -29,9 +34,10 @@ public class UserController {
 	}
 
 	@PostMapping("/regist")
-	public String upload(MultipartHttpServletRequest multi) {
+	public String upload(MultipartHttpServletRequest multi, @ModelAttribute @Valid User user, BindingResult result) {
 		MultipartFile file = multi.getFile("file");
-		System.out.println("hello");
+		System.out.println(user.toString());
+		System.out.println(result.hasErrors());
 		try (
 				// 윈도우일 경우
 				FileOutputStream fos = new FileOutputStream("c:/tmp/helloguys/" + file.getOriginalFilename());
@@ -47,7 +53,7 @@ public class UserController {
 		} catch (Exception ex) {
 			throw new RuntimeException("file Save Error");
 		}
-		return "uploadok";
+		return "userform";
 	}
 
 	@GetMapping("/download")

@@ -1,13 +1,23 @@
 package kr.or.connect.mvcexam.dto;
 
-import java.io.File;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class User {
+	@NotBlank
+	@Size(max = 20, min = 5, message = "이름은 5자이상, 20자이하로 작성하셔야합니다.")
 	private String name;
+	@NotBlank
+	@Email
 	private String email;
+	@Min(0)
+	@Max(Integer.MAX_VALUE)
 	private int age;
-	private File reviewImg;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -35,13 +45,5 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", email=" + email + ", age=" + age + "]";
-	}
-
-	public File getReviewImg() {
-		return reviewImg;
-	}
-
-	public void setReviewImg(File reviewImg) {
-		this.reviewImg = reviewImg;
 	}
 }

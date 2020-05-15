@@ -43,9 +43,15 @@ public class MemberController {
 		return "members/joinform";
 	}
 
+	@GetMapping("/joinerror")
+	public String joinerror() {
+		return "members/joinerror";
+	}
+
 	// 사용자가 입력한 name, email, password가 member에 저장된다.
 	@PostMapping("/join")
 	public String join(@ModelAttribute Member member, HttpServletRequest request) {
+
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberService.addMemberRole(memberService.addMember(member), request.getParameter("admin"),
 				request.getParameter("user"));

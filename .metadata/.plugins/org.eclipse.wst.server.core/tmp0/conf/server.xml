@@ -103,7 +103,7 @@
 				<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 				<Context docBase="C:\Users\JunmoKang\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\\tmp" path="/tmp" reloadable="true"/>
 				
-			<Context docBase="C:\Users\JunmoKang\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mavenweb" path="/calculator" reloadable="true" source="org.eclipse.jst.jee.server:mavenweb"/></Host>
+			<Context docBase="C:\Users\JunmoKang\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvcexam" path="/guestbook" reloadable="true" source="org.eclipse.jst.jee.server:mvcexam"/></Host>
 		</Engine>
 	</Service>
 </Server>
